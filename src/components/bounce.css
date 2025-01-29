@@ -1,0 +1,52 @@
+.sphere {
+	perspective: 980px;
+	background:
+		radial-gradient(40px at 30% 30%, rgba(243, 243, 243, .05) 0%, rgba(243, 243, 243, .05) 99%, transparent 100%),
+		radial-gradient(40px at 25% 20%, rgba(243, 243, 243, .5) 0, rgba(255, 255, 255, .2) 8%, transparent 40%, transparent 100%),
+		radial-gradient(100px at 25% 20%, rgba(255, 9, 79, 0.2) 0%, transparent 100%),
+		radial-gradient(100px at 80% 90%, rgba(153, 12, 76, 0.85) 0%, transparent 100%);
+	border-radius: 50%;
+	animation: hover 2s ease 0s infinite;
+}
+
+.sphere:after {
+	content: '';
+	position: absolute;
+	left: 25%;
+	top: 50%;
+	z-index: -1;
+	box-shadow: 0 100px 20px rgba(51, 51, 51, 0.5);
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	transform: rotateX(70deg);
+	animation: hover-shadow 2s ease 0s infinite;
+}
+
+@keyframes hover {
+	0% {
+		transform: translate(0, 0px);
+	}
+
+	50% {
+		transform: translate(0, -10px);
+	}
+
+	100% {
+		transform: translate(0, 0px);
+	}
+}
+
+@keyframes hover-shadow {
+	0% {
+		box-shadow: 0 100px 20px rgba(51, 51, 51, 0.5);
+	}
+
+	50% {
+		box-shadow: 0 120px 40px rgba(51, 51, 51, 0.5);
+	}
+
+	100% {
+		box-shadow: 0 100px 20px rgba(51, 51, 51, 0.5);
+	}
+}
