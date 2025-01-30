@@ -4,14 +4,52 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajinkya Bharat Malhotra</title>
+    <title>Professional Animated Layout</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+      rel="stylesheet">
     <style>
+      /* Hide scrollbar while keeping scrolling functional */
+      .custom-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .custom-scrollbar {
+        -ms-overflow-style: none;
+        /* Hide scrollbar on IE/Edge */
+        scrollbar-width: none;
+        /* Hide scrollbar on Firefox */
+      }
+
+      /* Fade-in animation */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Navbar Active Button */
+      .nav-active {
+        font-weight: bold;
+        border-left: 4px solid white;
+      }
+
+      .nav-button:hover {
+        font-weight: bold;
+      }
+
       body {
         background-color: #0a192f;
         margin: 0;
         overflow: hidden;
         height: 100vh;
+        font-family: 'Inter', sans-serif;
       }
 
       .spotlight {
@@ -29,15 +67,110 @@
   </head>
 
   <body>
-    <div class="spotlight" id="spotlight"></div>
+
+    <div class="flex justify-center items-center h-screen p-4">
+      <div class="spotlight" id="spotlight"></div>
+      <!-- Main container -->
+      <div class="w-1/2 h-full shadow-lg rounded-lg flex">
+
+        <!-- Left Sidebar (Fixed) -->
+        <div class="w-1/2 text-white p-6 flex flex-col justify-between">
+          <div>
+            <h2 class="text-5xl font-extrabold dark:text-white">Ajinkya Malhotra
+            </h2>
+            <p class="mb-6 text-2xl my-4 font-bold text-gray-300">
+              Software
+              Engineer @
+              ARM</p>
+            <p
+              class="mb-6 text-2xl font-normal text-gray-500 dark:text-gray-400">
+              I code.</p>
+            <nav class="mt-12 space-y-3">
+              <button
+                class="nav-button nav-active block w-full text-left p-3 transition duration-300"
+                onclick="scrollToSection('section1')" id="btn-section1">About
+              </button>
+              <button
+                class="nav-button block w-full text-left p-3 transition duration-300"
+                onclick="scrollToSection('section2')"
+                id="btn-section2">Experience
+              </button>
+              <button
+                class="nav-button block w-full text-left p-3 transition duration-300"
+                onclick="scrollToSection('section3')" id="btn-section3">Projects
+              </button>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Right Side (Scrollable Content) -->
+        <div class="w-2/3 overflow-y-auto p-6 h-full custom-scrollbar">
+          <div id="section1" class="fade-in mb-10 p-6 rounded-lg h-[50vh]">
+            <p class="text-gray-700 leading-relaxed">Content for About...
+            </p>
+          </div>
+          <div id="section2" class="fade-in mb-10 p-6 rounded-lg h-[50vh]">
+            <p class="text-gray-700 leading-relaxed">Content for Experience...
+            </p>
+          </div>
+          <div id="section3" class="fade-in mb-10 p-6 rounded-lg h-[50vh]">
+            <p class="text-gray-700 leading-relaxed">Content for Projects...
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
     <script>
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        updateActiveNav(id);
+      }
+
+      function updateActiveNav(activeId) {
+        let navButtons = document.querySelectorAll(".nav-button");
+        navButtons.forEach(btn => btn.classList.remove("nav-active"));
+        document.getElementById("btn-" + activeId).classList.add("nav-active");
+      }
+
+      // Highlight active navbar item on scroll
+      document.addEventListener("scroll", () => {
+        let sections = document.querySelectorAll(".fade-in");
+        let navButtons = document.querySelectorAll(".nav-button");
+
+        sections.forEach((section, index) => {
+          let rect = section.getBoundingClientRect();
+          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            navButtons.forEach(btn => btn.classList.remove("nav-active"));
+            navButtons[index].classList.add("nav-active");
+          }
+        });
+      });
+
+      // Fade-in animation when scrolling
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.2 });
+
+      fadeElements.forEach(element => observer.observe(element));
+
+      // Ensure Section 1 is active on load
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("btn-section1").classList.add("nav-active");
+      });
       document.addEventListener("mousemove", (e) => {
         const spotlight = document.getElementById("spotlight");
         spotlight.style.left = `${e.clientX}px`;
         spotlight.style.top = `${e.clientY}px`;
       });
     </script>
+
   </body>
 
 </html>
