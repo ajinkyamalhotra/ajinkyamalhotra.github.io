@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajinkya Malhotra Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"
+      crossorigin="anonymous"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
       rel="stylesheet">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
       /* Hide scrollbar while keeping scrolling functional */
       .custom-scrollbar::-webkit-scrollbar {
@@ -37,11 +41,12 @@
       /* Navbar Active Button */
       .nav-active {
         font-weight: bold;
-        border-left: 2px solid white;
+        border-left: 5px solid teal
       }
 
       .nav-button:hover {
         font-weight: bold;
+        color: teal
       }
 
       body {
@@ -63,6 +68,27 @@
         transition: transform 0.05s linear;
         border-radius: 50%;
       }
+
+      .social-icons {
+        display: flex;
+        gap: 30px;
+      }
+
+      .social-icons a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.7);
+        /* Icon color */
+        font-size: 28px;
+        /* Increase icon size */
+        transition: transform 0.3s, color 0.3s;
+      }
+
+      .social-icons a:hover {
+        transform: scale(1.5);
+        /* Enlarge on hover */
+        color: teal;
+        /* Change color on hover */
+      }
     </style>
   </head>
 
@@ -75,7 +101,7 @@
 
         <!-- Left Sidebar (Fixed) -->
         <div class="w-1/2 text-white p-6 flex flex-col justify-between">
-          <div>
+          <div class="top-0">
             <h2 class="text-5xl font-extrabold dark:text-white">Ajinkya Malhotra
             </h2>
             <p class="mb-6 text-2xl my-4 font-bold text-gray-300">
@@ -99,6 +125,18 @@
                 onclick="scrollToSection('section3')" id="btn-section3">Projects
               </button>
             </nav>
+          </div>
+          <div class="my-14 bottom-0 social-icons">
+            <a href="https://github.com/ajinkyamalhotra" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ajinkyamalhotra"
+              target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:ajinkyamalhotra73@gmail.com">
+              <i class="fas fa-envelope"></i>
+            </a>
           </div>
         </div>
 
