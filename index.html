@@ -534,6 +534,40 @@
           behavior: 'smooth'
         });
       });
+      rightSection.addEventListener("scroll", () => {
+        let sections = document.querySelectorAll(".fade-in");
+        let navButtons = document.querySelectorAll(".nav-button");
+
+        let closestSectionIndex = 0;
+        let minDistance = Infinity;
+
+        const containerRect = rightSection.getBoundingClientRect();
+        const scrollBottom = rightSection.scrollTop + rightSection.clientHeight;
+        const scrollHeight = rightSection.scrollHeight;
+
+        // Check if scrolled to the bottom
+        if (scrollBottom >= scrollHeight - 5) {  // Adjust threshold if needed
+          navButtons.forEach(btn => btn.classList.remove("nav-active"));
+          navButtons[sections.length - 1].classList.add("nav-active");
+          return;
+        }
+
+        // Find section closest to the top of the container
+        sections.forEach((section, index) => {
+          let rect = section.getBoundingClientRect();
+          let distance = Math.abs(rect.top - containerRect.top);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSectionIndex = index;
+          }
+        });
+
+        // Update active button based on the closest section
+        navButtons.forEach(btn => btn.classList.remove("nav-active"));
+        navButtons[closestSectionIndex].classList.add("nav-active");
+      });
+
     </script>
 
   </body>
