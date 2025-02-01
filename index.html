@@ -89,6 +89,18 @@
         color: teal;
         /* Change color on hover */
       }
+
+      ::selection {
+        background: teal;
+        color: white;
+        /* Optional: change text color for better contrast */
+      }
+
+      /* For better cross-browser support */
+      ::-moz-selection {
+        background: teal;
+        color: white;
+      }
     </style>
   </head>
 
@@ -141,7 +153,8 @@
         </div>
 
         <!-- Right Side (Scrollable Content) -->
-        <div class="w-2/3 overflow-y-auto p-6 h-full custom-scrollbar">
+        <div id=rightSection
+          class="w-2/3 overflow-y-auto p-6 h-full custom-scrollbar">
           <div id="section1"
             class="fade-in mb-10 p-6 rounded-lg text-gray-400 leading-relaxed">
             <p>I am a passionate software
@@ -502,6 +515,15 @@
         const spotlight = document.getElementById("spotlight");
         spotlight.style.left = `${e.clientX}px`;
         spotlight.style.top = `${e.clientY}px`;
+      });
+
+      const rightSection = document.getElementById('rightSection');
+      window.addEventListener('wheel', function (event) {
+        const scrollSpeed = 3; // Increase this number to make it scroll faster
+        rightSection.scrollBy({
+          top: event.deltaY * scrollSpeed,
+          behavior: 'smooth'
+        });
       });
     </script>
 
