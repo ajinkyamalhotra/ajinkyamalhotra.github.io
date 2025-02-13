@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleLabel.addEventListener("pointerup", (e) => {
       // Prevent the default to avoid potential double-tap issues
       e.preventDefault();
+      e.stopPropagation();
       // Manually toggle the checkbox
       themeToggle.checked = !themeToggle.checked;
       // Dispatch the change event so the theme updates
