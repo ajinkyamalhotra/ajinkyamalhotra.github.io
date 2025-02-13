@@ -2,172 +2,53 @@
 <html lang="en">
 
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajinkya Malhotra Portfolio</title>
+    <!-- Tailwind and Font Awesome CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"
-      crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
-      rel="stylesheet">
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-      /* Hide scrollbar while keeping scrolling functional */
-      .custom-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-
-      .custom-scrollbar {
-        -ms-overflow-style: none;
-        /* Hide scrollbar on IE/Edge */
-        scrollbar-width: none;
-        /* Hide scrollbar on Firefox */
-      }
-
-      /* Fade-in animation */
-      .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-      }
-
-      .fade-in.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* Navbar Active Button */
-      .nav-active {
-        font-weight: bold;
-        border-left: 5px solid teal
-      }
-
-      .nav-button:hover {
-        font-weight: bold;
-        color: teal
-      }
-
-      body {
-        background-color: #0a192f;
-        margin: 0;
-        overflow: hidden;
-        height: 100vh;
-        font-family: 'Inter', sans-serif;
-      }
-
-      .spotlight {
-        position: absolute;
-        width: 790px;
-        height: 790px;
-        background: radial-gradient(circle,
-            rgba(173, 216, 255, 0.10) 10%, rgba(255, 255, 255, 0) 90%);
-        box-shadow: 0 0 150px rgba(173, 216, 255, 0.048);
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        transition: transform 0.05s linear;
-        border-radius: 50%;
-      }
-
-      .social-icons {
-        display: flex;
-        gap: 30px;
-      }
-
-      .social-icons a {
-        text-decoration: none;
-        color: rgba(255, 255, 255, 0.7);
-        /* Icon color */
-        font-size: 28px;
-        /* Increase icon size */
-        transition: transform 0.3s, color 0.3s;
-      }
-
-      .social-icons a:hover {
-        transform: scale(1.5);
-        /* Enlarge on hover */
-        color: teal;
-        /* Change color on hover */
-      }
-
-      ::selection {
-        background: teal;
-        color: white;
-        /* Optional: change text color for better contrast */
-      }
-
-      /* For better cross-browser support */
-      ::-moz-selection {
-        background: teal;
-        color: white;
-      }
-
-      /* Mobile-only adjustments */
-      @media (max-width: 768px) {
-        body {
-          height: auto !important;
-          overflow: auto !important;
-        }
-
-        /* Stack the two main sections vertically */
-        .flex {
-          flex-direction: column !important;
-        }
-
-        /* Override fixed widths so each section takes full width */
-        .w-1\/2 {
-          width: 100% !important;
-        }
-
-        .w-2\/3 {
-          width: 100% !important;
-        }
-
-        /* Let the scrollable content expand naturally */
-        #rightSection {
-          height: auto !important;
-        }
-
-        /* Reduce spotlight size on mobile */
-        .spotlight {
-          width: 300px !important;
-          height: 300px !important;
-        }
-      }
-    </style>
+      rel="stylesheet" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
-
-    <div class="flex justify-center items-center h-screen p-4">
+    <!-- Added an ID for the outer container -->
+    <div id="outerContainer"
+      class="flex justify-center items-center h-screen p-4">
       <div class="spotlight" id="spotlight"></div>
-      <!-- Main container -->
-      <div class="mt-14 w-full max-w-7xl h-full shadow-lg rounded-lg flex">
-
-        <!-- Left Sidebar (Fixed) -->
-        <div class="w-1/2 text-white p-6 flex flex-col justify-between">
+      <!-- Main container with an ID -->
+      <div id="mainContainer"
+        class="mt-14 w-full max-w-7xl h-full shadow-lg rounded-lg flex">
+        <!-- Left Sidebar (Fixed) with an ID -->
+        <div id="leftSidebar"
+          class="w-1/2 text-white p-6 flex flex-col justify-between">
           <div class="top-0">
             <h2 class="text-5xl font-extrabold dark:text-white">Ajinkya Malhotra
             </h2>
             <p class="mb-6 text-2xl my-4 font-bold text-gray-300">
-              Software
-              Engineer @
-              ARM</p>
-            <p class="mb-6 text-2xl font-normal text-gray-400">
-              I code.</p>
+              Software Engineer @ ARM
+            </p>
+            <p class="mb-6 text-2xl font-normal text-gray-400">I code.</p>
             <nav class="mt-12 space-y-3">
-              <button class="nav-button nav-active block w-full text-left p-3
-                transition duration-300" onclick="scrollToSection('section1')"
-                id="btn-section1">About
+              <button
+                class="nav-button nav-active block w-full text-left p-3 transition duration-300"
+                onclick="scrollToSection('section1')" id="btn-section1">
+                About
               </button>
-              <button class="nav-button block w-full text-left p-3 transition
-                duration-300" onclick="scrollToSection('section2')"
-                id="btn-section2">Experience
+              <button
+                class="nav-button block w-full text-left p-3 transition duration-300"
+                onclick="scrollToSection('section2')" id="btn-section2">
+                Experience
               </button>
-              <button class="nav-button block w-full text-left p-3
-                transition duration-300" onclick="scrollToSection('section3')"
-                id="btn-section3">Projects
+              <button
+                class="nav-button block w-full text-left p-3 transition duration-300"
+                onclick="scrollToSection('section3')" id="btn-section3">
+                Projects
               </button>
             </nav>
           </div>
@@ -184,20 +65,20 @@
             </a>
           </div>
         </div>
-
-        <!-- Right Side (Scrollable Content) -->
-        <div id=rightSection
+        <!-- Right Side (Scrollable Content) with an ID -->
+        <div id="rightSection"
           class="w-2/3 overflow-y-auto p-6 h-full custom-scrollbar">
+          <!-- About Section (Static) -->
           <div id="section1"
             class="fade-in mb-10 p-6 rounded-lg text-gray-400 leading-relaxed">
-            <p>I am a passionate software
-              engineer with a knack for solving complex problems and crafting
-              creative solutions. With a Masters degree in Computer Science
-              from Texas A&M University, I have built a strong foundation in
-              software engineering, cloud computing, and automation. My career
-              spans industry-leading companies like AWS and ARM, where I have
-              worked on high-impact projects in cloud infrastructure,
-              performance optimization, and CI/CD automation.
+            <p>
+              I am a passionate software engineer with a knack for solving
+              complex problems and crafting creative solutions. With a Masters
+              degree in Computer Science from Texas A&M University, I have built
+              a strong foundation in software engineering, cloud computing, and
+              automation. My career spans industry-leading companies like AWS
+              and ARM, where I have worked on high-impact projects in cloud
+              infrastructure, performance optimization, and CI/CD automation.
             </p>
             <br />
             <p>
@@ -211,398 +92,32 @@
             <p>
               I have deep expertise in AWS, Python, Java, and Groovy, which I
               leverage to streamline CI/CD pipelines, enhance automation
-              frameworks, and improve cloud performance. Whether its designing
+              frameworks, and improve cloud performance. Whether it’s designing
               AI-powered solutions, automating large-scale infrastructure, or
               debugging mission-critical systems, I thrive on tackling difficult
               puzzles that push the boundaries of technology.
             </p>
           </div>
+          <!-- Experience Section (Data Driven) -->
           <div id="section2"
             class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
-            <div class="space-y-6 w-full max-w-4xl">
-              <a href="https://arm.com" target="_blank" class="group block
-                bg-transparent shadow-md rounded-lg p-6 hover:bg-gray-100/5
-                transform transition-transform duration-300 hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <div class="text-gray-300 font-semibold w-1/4">Jan 2024 -
-                    Present</div>
-                  <div class="w-3/4">
-                    <h3 class="text-lg font-bold text-gray-300 flex items-center
-                      gap-2">
-                      Software Engineer at ARM
-                      <svg class="w-5 h-5 text-gray-300 transition-transform
-                        transform rotate-45 group-hover:rotate-[-45deg]"
-                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </h3>
-                    <p class="text-gray-400 mt-3">Working on Performance
-                      Models Productization team which handles external releases
-                      to various partners. Optimizing AWS infrastructure using
-                      various tools.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        AWS</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        Jenkins</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        Groovy</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        Python</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Bash</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        Git</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="https://arm.com" target="_blank" class="group block
-                bg-transparent shadow-md rounded-lg p-6
-                hover:bg-gray-100/5 transform transition-transform duration-300
-                hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <div class="text-gray-300 font-semibold w-1/4">May 2023 -
-                    Aug 2023</div>
-                  <div class="w-3/4">
-                    <h3 class="text-lg font-bold text-gray-300 flex items-center
-                      gap-2">
-                      Software Engineer Intern at ARM
-                      <svg class="w-5 h-5 text-gray-300 transition-transform
-                        transform rotate-45 group-hover:rotate-[-45deg]"
-                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </h3>
-                    <p class="text-gray-400 mt-3">Worked on automating AWS
-                      pipeline, by managing AMIs updates, EC2 instances, and EBS
-                      Volumes. Accomplished automation of complex manually
-                      repepitive tasks using a variety of tools and improved
-                      overall operational efficiency.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        AWS</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        Python</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        Boto3</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Terraform</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Packer</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Pytest</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="https://aws.amazon.com/" target="_blank" class="group
-                block bg-transparent shadow-md rounded-lg p-6
-                hover:bg-gray-100/5 transform transition-transform duration-300
-                hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <div class="text-gray-300 font-semibold w-1/4">May 2020 -
-                    Jun 2022</div>
-                  <div class="w-3/4">
-                    <h3 class="text-lg font-bold text-gray-300 flex items-center
-                      gap-2">
-                      Cloud Support Engineer at AWS
-                      <svg class="w-5 h-5 text-gray-300 transition-transform
-                        transform rotate-45 group-hover:rotate-[-45deg]"
-                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </h3>
-                    <p class="text-gray-400 mt-3">Applied advanced
-                      troubleshooting techniques to provide unique solutions to
-                      AWS customers. Drove multiple projects to improve internal
-                      support-related processes and overall customers
-                      experience. Worked on critical, highly complex customer
-                      problems that spanned throughout multiple AWS services.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">
-                        ✨ AWS Lambda</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        AWS API Gateway</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨
-                        SNS/SQS</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">EC2</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">S3</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        ounded-full text-xs font-medium">VPC</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Javascript</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Python</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="resume.pdf" target="_blank" class="group block
-                bg-transparent shadow-md rounded-lg p-4
-                hover:bg-gray-100/5 hover:text-teal-500 transform
-                transition-transform duration-300 hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <h3 class="text-medium font-bold text-gray-300 flex
-                    items-center gap-2">
-                    View full Resume
-                    <svg class="w-5 h-5 text-gray-300 transition-transform
-                      transform rotate-45 group-hover:rotate-[-45deg]"
-                      xmlns="http://www.w3.org/2000/svg" fill="none"
-                      viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </h3>
-                </div>
-              </a>
+            <div class="space-y-6 w-full max-w-4xl" id="experienceContainer">
+              <!-- Experience cards injected here -->
             </div>
           </div>
+          <!-- Projects Section (Data Driven) -->
           <div id="section3"
             class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
-            <div class="space-y-6 w-full max-w-4xl">
-              <a href="https://github.com/ajinkyamalhotra/Steam-Game-Recommendation/"
-                target="_blank" class="group block bg-transparent shadow-md
-                rounded-lg p-6 hover:bg-gray-100/5 transform
-                transition-transform duration-300 hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <div class="text-gray-300 font-semibold w-1/4">Mar 2023 -
-                    May 2023</div>
-                  <div class="w-3/4">
-                    <h3 class="text-lg font-bold text-gray-300 flex items-center
-                      gap-2">
-                      Steam Game Recommendation
-                      <svg class="w-5 h-5 text-gray-300 transition-transform
-                        transform rotate-45 group-hover:rotate-[-45deg]"
-                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </h3>
-                    <p class="text-gray-400 mt-3">Developed a video game
-                      recommendation engine utilizing Content-Based Filtering
-                      and VBPR algorithms.
-                      Successfully deployed the recommendation system which
-                      enhanced user engagement and satisfaction
-                      by streamlining the discovery process for games tailored
-                      to individual tastes.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">AWS
-                        Lambda</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Heroku</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Python</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">HTML/CSS</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Bootstrap</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Git</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="https://github.com/ajinkyamalhotra/Chess-Master"
-                target="_blank" class="group block bg-transparent shadow-md
-                rounded-lg p-6 hover:bg-gray-100/5 transform
-                transition-transform duration-300 hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <div class="text-gray-300 font-semibold w-1/4">Feb 2023 -
-                    Apr 2023</div>
-                  <div class="w-3/4">
-                    <h3 class="text-lg font-bold text-gray-300 flex items-center
-                      gap-2">
-                      Chess Master
-                      <svg class="w-5 h-5 text-gray-300 transition-transform
-                        transform rotate-45 group-hover:rotate-[-45deg]"
-                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </h3>
-                    <p class="text-gray-400 mt-3">Designed a human vs CPU
-                      chess-like game and created a computer player, using
-                      Minimax algorithm. CPU player is optimized through
-                      Alpha-Beta pruning, Depth Limited Search, and Iterative
-                      Deepening Search.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨Java
-                      </span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Minimax</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">DLS</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">IDS</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-              <a href="https://github.com/ajinkyamalhotra/Network-Optimization-using-Shortest-Path"
-                target="_blank"
-                class="group block bg-transparent shadow-md rounded-lg p-6 hover:bg-gray-100/5 transform transition-transform duration-300 hover:scale-110">
-                <div class="flex gap-4 items-center">
-                  <div class="text-gray-300 font-semibold w-1/4">Nov 2022</div>
-                  <div class="w-3/4">
-                    <h3 class="text-lg font-bold text-gray-300 flex items-center
-                      gap-2">
-                      Network Optimization
-                      <svg class="w-5 h-5 text-gray-300 transition-transform
-                        transform rotate-45 group-hover:rotate-[-45deg]"
-                        xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </h3>
-                    <p class="text-gray-400 mt-3">Designed a sparse (30000 total
-                      edges) and dense (5000000 total edges) random graph
-                      generator. Implemented Dijkstras without heap, with heap
-                      and
-                      Kruskals algorithm for performance comparison.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-5">
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">✨Java
-                      </span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Dijkstras</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Heap</span>
-                      <span class="bg-teal-400/10 text-teal-300 px-3 py-1
-                        rounded-full text-xs font-medium">Kruskals</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
+            <div class="space-y-6 w-full max-w-4xl" id="projectsContainer">
+              <!-- Project cards injected here -->
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-    <script>
-      function scrollToSection(id) {
-        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        updateActiveNav(id);
-      }
-
-      function updateActiveNav(activeId) {
-        let navButtons = document.querySelectorAll(".nav-button");
-        navButtons.forEach(btn => btn.classList.remove("nav-active"));
-        document.getElementById("btn-" + activeId).classList.add("nav-active");
-      }
-
-      // Highlight active navbar item on scroll
-      document.addEventListener("scroll", () => {
-        let sections = document.querySelectorAll(".fade-in");
-        let navButtons = document.querySelectorAll(".nav-button");
-
-        sections.forEach((section, index) => {
-          let rect = section.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-            navButtons.forEach(btn => btn.classList.remove("nav-active"));
-            navButtons[index].classList.add("nav-active");
-          }
-        });
-      });
-
-      // Fade-in animation when scrolling
-      const fadeElements = document.querySelectorAll(".fade-in");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-          }
-        });
-      }, { threshold: 0.2 });
-
-      fadeElements.forEach(element => observer.observe(element));
-
-      // Ensure Section 1 is active on load
-      document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("btn-section1").classList.add("nav-active");
-      });
-      document.addEventListener("mousemove", (e) => {
-        const spotlight = document.getElementById("spotlight");
-        spotlight.style.left = `${e.clientX}px`;
-        spotlight.style.top = `${e.clientY}px`;
-      });
-
-      const rightSection = document.getElementById('rightSection');
-      window.addEventListener('wheel', function (event) {
-        const scrollSpeed = 4;
-        rightSection.scrollBy({
-          top: event.deltaY * scrollSpeed,
-          behavior: 'smooth'
-        });
-      });
-      rightSection.addEventListener("scroll", () => {
-        let sections = document.querySelectorAll(".fade-in");
-        let navButtons = document.querySelectorAll(".nav-button");
-
-        let closestSectionIndex = 0;
-        let minDistance = Infinity;
-
-        const containerRect = rightSection.getBoundingClientRect();
-        const scrollBottom = rightSection.scrollTop + rightSection.clientHeight;
-        const scrollHeight = rightSection.scrollHeight;
-
-        // Check if scrolled to the bottom
-        if (scrollBottom >= scrollHeight - 5) {  // Adjust threshold if needed
-          navButtons.forEach(btn => btn.classList.remove("nav-active"));
-          navButtons[sections.length - 1].classList.add("nav-active");
-          return;
-        }
-
-        // Find section closest to the top of the container
-        sections.forEach((section, index) => {
-          let rect = section.getBoundingClientRect();
-          let distance = Math.abs(rect.top - containerRect.top);
-
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestSectionIndex = index;
-          }
-        });
-
-        // Update active button based on the closest section
-        navButtons.forEach(btn => btn.classList.remove("nav-active"));
-        navButtons[closestSectionIndex].classList.add("nav-active");
-      });
-
-    </script>
-
+    <!-- External JavaScript Files -->
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
   </body>
 
 </html>

@@ -1,0 +1,135 @@
+/* Global styles and resets */
+body {
+    background-color: #0a192f;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    /* For desktop we use fixed height; mobile override below */
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* Hide scrollbar while keeping scrolling functional */
+.custom-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.custom-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navbar Active Button */
+.nav-active {
+    font-weight: bold;
+    border-left: 5px solid teal;
+}
+
+.nav-button:hover {
+    font-weight: bold;
+    color: teal;
+}
+
+/* Spotlight effect */
+.spotlight {
+    position: absolute;
+    width: 790px;
+    height: 790px;
+    background: radial-gradient(circle, rgba(173, 216, 255, 0.10) 10%, rgba(255, 255, 255, 0) 90%);
+    box-shadow: 0 0 150px rgba(173, 216, 255, 0.048);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s linear;
+    border-radius: 50%;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 30px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 28px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.5);
+    color: teal;
+}
+
+/* Selection styling */
+::selection {
+    background: teal;
+    color: white;
+}
+
+::-moz-selection {
+    background: teal;
+    color: white;
+}
+
+/* ----------------------------
+     MOBILE OVERRIDES
+  ----------------------------- */
+@media (max-width: 768px) {
+
+    /* Allow body to scroll naturally */
+    body {
+        height: auto !important;
+        overflow: auto !important;
+    }
+
+    /* Outer container: stack items vertically and remove vertical centering */
+    #outerContainer {
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+        height: auto;
+    }
+
+    /* Main container: remove fixed height and stack sidebar & content */
+    #mainContainer {
+        flex-direction: column !important;
+        height: auto !important;
+        margin-top: 1rem;
+    }
+
+    /* Left sidebar and right section take full width */
+    #leftSidebar,
+    #rightSection {
+        width: 100% !important;
+    }
+
+    /* Right section: let content expand naturally */
+    #rightSection {
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+
+    /* Optionally, adjust padding/margins as needed for mobile */
+    #leftSidebar,
+    #rightSection {
+        padding: 1rem !important;
+    }
+
+    /* Reduce spotlight size on mobile */
+    .spotlight {
+        width: 300px !important;
+        height: 300px !important;
+    }
+}
