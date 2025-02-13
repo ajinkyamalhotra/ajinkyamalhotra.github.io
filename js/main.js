@@ -174,14 +174,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  themeToggle.addEventListener("touchend", (e) => {
-    // Prevent the default touch behavior
-    e.preventDefault();
-    // Toggle the checkbox state manually
-    themeToggle.checked = !themeToggle.checked;
-    // Dispatch the change event so the rest of the logic runs
-    themeToggle.dispatchEvent(new Event("change"));
-  });
+  // For mobile devices, attach a pointerup event to the toggle's label
+  // This ensures that a tap reliably toggles the checkbox state.
+  if ("ontouchstart" in window || navigator.maxTouchPoints) {
+    const toggleLabel = themeToggle.parentElement; // Assuming the label wraps the checkbox
+    toggleLabel.addEventListener("pointerup", (e) => {
+      // Prevent the default to avoid potential double-tap issues
+      e.preventDefault();
+      // Manually toggle the checkbox
+      themeToggle.checked = !themeToggle.checked;
+      // Dispatch the change event so the theme updates
+      themeToggle.dispatchEvent(new Event("change"));
+    });
+  }
 
 });
 
