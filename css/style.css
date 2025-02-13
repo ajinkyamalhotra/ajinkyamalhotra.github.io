@@ -83,6 +83,25 @@ body {
     color: white;
 }
 
+/* Card styling */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    /* A subtle light background */
+    border-radius: 0.75rem;
+    /* Default rounded corners */
+    padding: 1.5rem;
+    /* Generous padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Soft shadow */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.1);
+    /* Slightly lighter on hover */
+}
+
 /* ----------------------------
      MOBILE OVERRIDES
   ----------------------------- */
@@ -131,5 +150,12 @@ body {
     .spotlight {
         width: 300px !important;
         height: 300px !important;
+    }
+
+    .card {
+        border-radius: 0.5rem;
+        /* Slightly less rounded on mobile */
+        padding: 1rem;
+        /* Less padding on mobile */
     }
 }
