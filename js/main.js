@@ -110,18 +110,18 @@ document.addEventListener("DOMContentLoaded", () => {
   aboutEl.appendChild(frag);
 
   document.getElementById("socialContainer").innerHTML = `
-<a href="${siteData.socialLinks.github}" target="_blank" 
-   aria-label="GitHub">
-  <i class="fab fa-github"></i>
-</a>
-<a href="${siteData.socialLinks.linkedin}" target="_blank" 
-   aria-label="LinkedIn">
-  <i class="fab fa-linkedin"></i>
-</a>
-<a href="${siteData.socialLinks.email}" aria-label="Email">
-  <i class="fas fa-envelope"></i>
-</a>
-`;
+    <a href="${siteData.socialLinks.github}" target="_blank" 
+       aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="${siteData.socialLinks.linkedin}" target="_blank" 
+       aria-label="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="${siteData.socialLinks.email}" aria-label="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+  `;
 
   const expContainer = document.getElementById("experienceContainer");
   experiences.forEach(item => {
@@ -135,6 +135,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("btn-section1")
     .classList.add("nav-active");
+
+  // Remove preloader with fade-out animation
+  const preloader = document.getElementById("preloader");
+  if (preloader) {
+    preloader.classList.add("fade-out");
+    setTimeout(() => preloader.remove(), 500);
+  }
 });
 
 /* Smooth scrolling on nav button click */
