@@ -174,6 +174,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  themeToggle.addEventListener("touchstart", () => {
+    themeToggle.click();
+  });
+
 });
 
 /* Smooth scrolling on nav button click */
