@@ -146,16 +146,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // Back-to-Top Button functionality
   const backToTop = document.getElementById("backToTop");
   const rightSection = document.getElementById("rightSection");
-  rightSection.addEventListener("scroll", () => {
-    if (rightSection.scrollTop > 200) {
-      backToTop.classList.add("show");
-    } else {
-      backToTop.classList.remove("show");
-    }
-  });
-  backToTop.addEventListener("click", () => {
-    rightSection.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  // Check if we're on mobile by using the viewport width
+  if (window.innerWidth <= 768) {
+    // On mobile devices, listen to window scrolling
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 200) {
+        backToTop.classList.add("show");
+      } else {
+        backToTop.classList.remove("show");
+      }
+    });
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  } else {
+    // On desktop devices, use the rightSection container's scroll event
+    const rightSection = document.getElementById("rightSection");
+    rightSection.addEventListener("scroll", () => {
+      if (rightSection.scrollTop > 200) {
+        backToTop.classList.add("show");
+      } else {
+        backToTop.classList.remove("show");
+      }
+    });
+    backToTop.addEventListener("click", () => {
+      rightSection.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 
   // Initialize fancy theme toggle switch
   const themeToggle = document.getElementById("themeToggle");
