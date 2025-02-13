@@ -30,10 +30,15 @@ body {
     transform: translateY(0);
 }
 
-/* Navbar Active Button */
-.nav-active {
+.nav-button {
+    border-left: 5px solid transparent;
+    transition: color 0.1s ease, border-color 0.1s ease;
+}
+
+.nav-button.nav-active {
     font-weight: bold;
-    border-left: 5px solid teal;
+    color: teal;
+    border-left-color: teal;
 }
 
 .nav-button:hover {
