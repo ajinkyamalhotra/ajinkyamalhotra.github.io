@@ -179,6 +179,33 @@ body {
     background: var(--hover-bg);
 }
 
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(10, 25, 47, 0.7);
+    color: var(--text-color);
+    border: none;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease,
+        transform 0.3s ease;
+    display: none;
+}
+
+#backToTop.show {
+    display: block;
+}
+
+#backToTop:hover {
+    background-color: var(--accent-color);
+    transform: translateX(-50%) scale(1.1);
+}
+
 /* Mobile Overrides */
 @media (max-width: 768px) {
     body {

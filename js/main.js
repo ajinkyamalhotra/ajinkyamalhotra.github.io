@@ -142,6 +142,21 @@ document.addEventListener("DOMContentLoaded", () => {
     preloader.classList.add("fade-out");
     setTimeout(() => preloader.remove(), 500);
   }
+
+  // Back-to-Top Button functionality
+  const backToTop = document.getElementById("backToTop");
+  const rightSection = document.getElementById("rightSection");
+  rightSection.addEventListener("scroll", () => {
+    if (rightSection.scrollTop > 200) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+  backToTop.addEventListener("click", () => {
+    rightSection.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
 });
 
 /* Smooth scrolling on nav button click */
