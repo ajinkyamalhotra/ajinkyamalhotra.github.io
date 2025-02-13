@@ -51,7 +51,8 @@ body {
     position: absolute;
     width: 790px;
     height: 790px;
-    background: radial-gradient(circle, rgba(173, 216, 255, 0.10) 10%, rgba(255, 255, 255, 0) 90%);
+    background: radial-gradient(circle,
+            rgba(173, 216, 255, 0.10) 10%, rgba(255, 255, 255, 0) 90%);
     box-shadow: 0 0 150px rgba(173, 216, 255, 0.048);
     pointer-events: none;
     transform: translate(-50%, -50%);
