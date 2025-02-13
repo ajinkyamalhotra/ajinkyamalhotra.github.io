@@ -102,6 +102,39 @@
         background: teal;
         color: white;
       }
+
+      /* Mobile-only adjustments */
+      @media (max-width: 768px) {
+        body {
+          height: auto !important;
+          overflow: auto !important;
+        }
+
+        /* Stack the two main sections vertically */
+        .flex {
+          flex-direction: column !important;
+        }
+
+        /* Override fixed widths so each section takes full width */
+        .w-1\/2 {
+          width: 100% !important;
+        }
+
+        .w-2\/3 {
+          width: 100% !important;
+        }
+
+        /* Let the scrollable content expand naturally */
+        #rightSection {
+          height: auto !important;
+        }
+
+        /* Reduce spotlight size on mobile */
+        .spotlight {
+          width: 300px !important;
+          height: 300px !important;
+        }
+      }
     </style>
   </head>
 
