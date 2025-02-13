@@ -1,5 +1,26 @@
 // js/data.js
 
+// Personal and site-wide data
+const siteData = {
+    name: "Ajinkya Malhotra",
+    jobTitle: "Software Engineer @ ARM",
+    tagline: "I code.",
+    about: [
+        `I am a passionate software engineer with a knack for solving complex problems and crafting creative solutions. With a Masters degree in Computer Science from Texas A&M University, I have built a strong foundation in software engineering, cloud computing, and automation. My career spans industry-leading companies like AWS and ARM, where I have worked on high-impact projects in cloud infrastructure, performance optimization, and CI/CD automation.`,
+
+        `At AWS, I gained hands-on experience working on scalable, distributed systems and troubleshooting intricate cloud infrastructure challenges. Now, at ARM, I focus on optimizing cloud architectures, automating workflows, and enhancing system performance to push the limits of efficiency.`,
+
+        `I have deep expertise in AWS, Python, Java, and Groovy, which I leverage to streamline CI/CD pipelines, enhance automation frameworks, and improve cloud performance. Whether it’s designing AI-powered solutions, automating large-scale infrastructure, or debugging mission-critical systems, I thrive on tackling difficult puzzles that push the boundaries of technology.`
+    ],
+    socialLinks: {
+        github: "https://github.com/ajinkyamalhotra",
+        linkedin: "https://www.linkedin.com/in/ajinkyamalhotra",
+        email: "mailto:ajinkyamalhotra73@gmail.com"
+    }
+};
+
+
+// Experience data
 const experiences = [
     {
         type: "experience",
@@ -58,6 +79,7 @@ const experiences = [
     },
 ];
 
+// Project data
 const projects = [
     {
         link: "https://github.com/ajinkyamalhotra/Steam-Game-Recommendation/",
@@ -80,7 +102,7 @@ const projects = [
         title: "Chess Master",
         description:
             "Designed a human vs CPU chess-like game and created a computer player, using Minimax algorithm. CPU player is optimized through Alpha-Beta pruning, Depth Limited Search, and Iterative Deepening Search.",
-        tags: ["✨Java", "Minimax", "DLS", "IDS"],
+        tags: ["✨ Java", "Minimax", "DLS", "IDS"],
     },
     {
         link: "https://github.com/ajinkyamalhotra/Network-Optimization-using-Shortest-Path",
@@ -88,6 +110,6 @@ const projects = [
         title: "Network Optimization",
         description:
             "Designed a sparse (30000 total edges) and dense (5000000 total edges) random graph generator. Implemented Dijkstras without heap, with heap and Kruskals algorithm for performance comparison.",
-        tags: ["✨Java", "Dijkstras", "Heap", "Kruskals"],
+        tags: ["✨ Java", "Dijkstras", "Heap", "Kruskals"],
     },
 ];

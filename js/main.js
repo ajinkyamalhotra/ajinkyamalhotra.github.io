@@ -1,6 +1,6 @@
 // js/main.js
 
-// Helper functions to create HTML cards
+// Helper functions to create HTML cards for experiences and projects
 function createCard(item) {
   if (item.type === "experience") {
     return `
@@ -60,8 +60,26 @@ function createProjectCard(item) {
   `;
 }
 
-// When the DOM is loaded, populate the content sections
+// When DOM is loaded, populate personal details, about content, and cards
 document.addEventListener("DOMContentLoaded", () => {
+  // Populate personal info from siteData
+  document.getElementById("siteName").textContent = siteData.name;
+  document.getElementById("jobTitle").textContent = siteData.jobTitle;
+  document.getElementById("tagline").textContent = siteData.tagline;
+
+  // Populate about section with separate paragraphs
+  const aboutContentEl = document.getElementById("aboutContent");
+  siteData.about.forEach(paragraph => {
+    aboutContentEl.innerHTML += `<p class="mb-4">${paragraph}</p>`;
+  });
+
+  // Populate social links
+  document.getElementById("socialContainer").innerHTML = `
+    <a href="${siteData.socialLinks.github}" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="${siteData.socialLinks.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="${siteData.socialLinks.email}"><i class="fas fa-envelope"></i></a>
+  `;
+
   // Populate Experiences
   const experienceContainer = document.getElementById("experienceContainer");
   experiences.forEach(item => {
@@ -78,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("btn-section1").classList.add("nav-active");
 });
 
-// Navigation and scroll handling
+// Navigation and scroll handling functions remain unchanged
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
   updateActiveNav(id);

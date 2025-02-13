@@ -17,23 +17,23 @@
   </head>
 
   <body>
-    <!-- Added an ID for the outer container -->
+    <!-- Outer container -->
     <div id="outerContainer"
       class="flex justify-center items-center h-screen p-4">
       <div class="spotlight" id="spotlight"></div>
-      <!-- Main container with an ID -->
+      <!-- Main container -->
       <div id="mainContainer"
         class="mt-14 w-full max-w-7xl h-full shadow-lg rounded-lg flex">
-        <!-- Left Sidebar (Fixed) with an ID -->
+        <!-- Left Sidebar (Fixed) -->
         <div id="leftSidebar"
           class="w-1/2 text-white p-6 flex flex-col justify-between">
           <div class="top-0">
-            <h2 class="text-5xl font-extrabold dark:text-white">Ajinkya Malhotra
+            <!-- These elements will be populated dynamically -->
+            <h2 id="siteName" class="text-5xl font-extrabold dark:text-white">
             </h2>
-            <p class="mb-6 text-2xl my-4 font-bold text-gray-300">
-              Software Engineer @ ARM
+            <p id="jobTitle" class="mb-6 text-2xl my-4 font-bold text-gray-300">
             </p>
-            <p class="mb-6 text-2xl font-normal text-gray-400">I code.</p>
+            <p id="tagline" class="mb-6 text-2xl font-normal text-gray-400"></p>
             <nav class="mt-12 space-y-3">
               <button
                 class="nav-button nav-active block w-full text-left p-3 transition duration-300"
@@ -52,51 +52,17 @@
               </button>
             </nav>
           </div>
-          <div class="my-14 bottom-0 social-icons">
-            <a href="https://github.com/ajinkyamalhotra" target="_blank">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/ajinkyamalhotra"
-              target="_blank">
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:ajinkyamalhotra73@gmail.com">
-              <i class="fas fa-envelope"></i>
-            </a>
-          </div>
+          <!-- Social icons container -->
+          <div id="socialContainer" class="my-14 bottom-0 social-icons"></div>
         </div>
-        <!-- Right Side (Scrollable Content) with an ID -->
+        <!-- Right Side (Scrollable Content) -->
         <div id="rightSection"
           class="w-2/3 overflow-y-auto p-6 h-full custom-scrollbar">
-          <!-- About Section (Static) -->
+          <!-- About Section -->
           <div id="section1"
             class="fade-in mb-10 p-6 rounded-lg text-gray-400 leading-relaxed">
-            <p>
-              I am a passionate software engineer with a knack for solving
-              complex problems and crafting creative solutions. With a Masters
-              degree in Computer Science from Texas A&M University, I have built
-              a strong foundation in software engineering, cloud computing, and
-              automation. My career spans industry-leading companies like AWS
-              and ARM, where I have worked on high-impact projects in cloud
-              infrastructure, performance optimization, and CI/CD automation.
-            </p>
-            <br />
-            <p>
-              At AWS, I gained hands-on experience working on scalable,
-              distributed systems and troubleshooting intricate cloud
-              infrastructure challenges. Now, at ARM, I focus on optimizing
-              cloud architectures, automating workflows, and enhancing system
-              performance to push the limits of efficiency.
-            </p>
-            <br />
-            <p>
-              I have deep expertise in AWS, Python, Java, and Groovy, which I
-              leverage to streamline CI/CD pipelines, enhance automation
-              frameworks, and improve cloud performance. Whether it’s designing
-              AI-powered solutions, automating large-scale infrastructure, or
-              debugging mission-critical systems, I thrive on tackling difficult
-              puzzles that push the boundaries of technology.
-            </p>
+            <!-- About content will be injected here -->
+            <div id="aboutContent"></div>
           </div>
           <!-- Experience Section (Data Driven) -->
           <div id="section2"
