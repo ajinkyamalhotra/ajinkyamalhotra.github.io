@@ -174,18 +174,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // For mobile devices, attach a pointerup event to the toggle's label
-  // This ensures that a tap reliably toggles the checkbox state.
+  // Flag to prevent double toggling on mobile
+  let touchHandled = false;
+
+  // For mobile devices, attach a touchend event to the toggle's label
   if ("ontouchstart" in window || navigator.maxTouchPoints) {
-    const toggleLabel = themeToggle.parentElement; // Assuming the label wraps the checkbox
-    toggleLabel.addEventListener("pointerup", (e) => {
-      // Prevent the default to avoid potential double-tap issues
+    const toggleLabel = themeToggle.parentElement; // Assumes the label wraps the checkbox
+
+    toggleLabel.addEventListener("touchend", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      // Manually toggle the checkbox
-      themeToggle.checked = !themeToggle.checked;
-      // Dispatch the change event so the theme updates
-      themeToggle.dispatchEvent(new Event("change"));
+
+      // If we haven't just handled a touch event, toggle the checkbox manually.
+      if (!touchHandled) {
+        touchHandled = true;
+        themeToggle.checked = !themeToggle.checked;
+        themeToggle.dispatchEvent(new Event("change"));
+
+        // Reset the flag after a short delay to allow subsequent taps.
+        setTimeout(() => {
+          touchHandled = false;
+        }, 500);
+      }
     });
   }
 
