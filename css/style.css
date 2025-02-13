@@ -158,9 +158,11 @@ body.light h6,
 body.light a,
 body.light li,
 body.light button,
+body.light input,
 body.light div {
     color: #000000 !important;
 }
+
 
 @keyframes spin {
     0% {
@@ -253,7 +255,30 @@ body {
     color: var(--accent-color);
 }
 
-/* Spotlight effect */
+/* Search Bars */
+.fancy-search {
+    display: block;
+    width: 100%;
+    /* Ensure the search bar spans the container's width */
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    outline: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fancy-search::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.fancy-search:focus {
+    background: var(--hover-bg);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Spotlight Effect */
 .spotlight {
     position: absolute;
     width: 790px;

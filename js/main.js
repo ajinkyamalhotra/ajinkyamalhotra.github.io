@@ -1,4 +1,6 @@
-// js/main.js
+/* 
+ * Main JavaScript File for Ajinkya Malhotra Portfolio
+ */
 
 /* Helper functions to create HTML cards */
 function createCard(item) {
@@ -93,13 +95,61 @@ text-xs font-medium">
 `;
 }
 
+/* Utility: Debounce function to limit rapid event firing */
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
 /* Populate DOM on content loaded */
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("siteName").textContent = siteData.name;
-  document.getElementById("jobTitle").textContent = siteData.jobTitle;
-  document.getElementById("tagline").textContent = siteData.tagline;
-
+  // Cache DOM elements for performance
+  const siteNameEl = document.getElementById("siteName");
+  const jobTitleEl = document.getElementById("jobTitle");
+  const taglineEl = document.getElementById("tagline");
   const aboutEl = document.getElementById("aboutContent");
+  const socialContainerEl = document.getElementById("socialContainer");
+  const expContainer = document.getElementById("experienceContainer");
+  const projContainer = document.getElementById("projectsContainer");
+  const preloader = document.getElementById("preloader");
+  const themeToggle = document.getElementById("themeToggle");
+  const backToTop = document.getElementById("backToTop");
+  const rightSection = document.getElementById("rightSection");
+
+  // Auto-detect system theme if no saved preference exists
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+      themeToggle.checked = true;
+    } else {
+      document.body.classList.remove("light");
+      themeToggle.checked = false;
+    }
+  } else {
+    // No saved theme; detect system preference
+    const prefersLight = window.matchMedia && window.matchMedia(
+      "(prefers-color-scheme: light)").matches;
+    if (prefersLight) {
+      document.body.classList.add("light");
+      themeToggle.checked = true;
+      localStorage.setItem("theme", "light");
+    } else {
+      document.body.classList.remove("light");
+      themeToggle.checked = false;
+      localStorage.setItem("theme", "dark");
+    }
+  }
+
+  // Populate header information
+  siteNameEl.textContent = siteData.name;
+  jobTitleEl.textContent = siteData.jobTitle;
+  taglineEl.textContent = siteData.tagline;
+
+  // Populate about section paragraphs
   const frag = document.createDocumentFragment();
   siteData.about.forEach(paragraph => {
     const p = document.createElement("p");
@@ -109,13 +159,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   aboutEl.appendChild(frag);
 
-  document.getElementById("socialContainer").innerHTML = `
-    <a href="${siteData.socialLinks.github}" target="_blank" 
-       aria-label="GitHub">
+  // Populate social links with improved accessibility
+  socialContainerEl.innerHTML = `
+    <a href="${siteData.socialLinks.github}" target="_blank" aria-label="GitHub">
       <i class="fab fa-github"></i>
     </a>
-    <a href="${siteData.socialLinks.linkedin}" target="_blank" 
-       aria-label="LinkedIn">
+    <a href="${siteData.socialLinks.linkedin}" target="_blank" aria-label="LinkedIn">
       <i class="fab fa-linkedin"></i>
     </a>
     <a href="${siteData.socialLinks.email}" aria-label="Email">
@@ -123,32 +172,21 @@ document.addEventListener("DOMContentLoaded", () => {
     </a>
   `;
 
-  const expContainer = document.getElementById("experienceContainer");
-  experiences.forEach(item => {
-    expContainer.insertAdjacentHTML("beforeend", createCard(item));
-  });
+  // Render initial experience and project cards
+  renderExperiences(experiences);
+  renderProjects(projects);
 
-  const projContainer = document.getElementById("projectsContainer");
-  projects.forEach(item => {
-    projContainer.insertAdjacentHTML("beforeend", createProjectCard(item));
-  });
-
-  document.getElementById("btn-section1")
-    .classList.add("nav-active");
+  // Set initial active nav button
+  document.getElementById("btn-section1").classList.add("nav-active");
 
   // Remove preloader with fade-out animation
-  const preloader = document.getElementById("preloader");
   if (preloader) {
     preloader.classList.add("fade-out");
     setTimeout(() => preloader.remove(), 500);
   }
 
   // Back-to-Top Button functionality
-  const backToTop = document.getElementById("backToTop");
-  const rightSection = document.getElementById("rightSection");
-  // Check if we're on mobile by using the viewport width
   if (window.innerWidth <= 768) {
-    // On mobile devices, listen to window scrolling
     window.addEventListener("scroll", () => {
       if (window.pageYOffset > 200) {
         backToTop.classList.add("show");
@@ -160,8 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   } else {
-    // On desktop devices, use the rightSection container's scroll event
-    const rightSection = document.getElementById("rightSection");
     rightSection.addEventListener("scroll", () => {
       if (rightSection.scrollTop > 200) {
         backToTop.classList.add("show");
@@ -174,13 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initialize fancy theme toggle switch
-  const themeToggle = document.getElementById("themeToggle");
-  const savedTheme = localStorage.getItem("theme") || "dark";
-  if (savedTheme === "light") {
-    document.body.classList.add("light");
-    themeToggle.checked = true;
-  }
+  // Theme toggle event listener with mobile touch support
   themeToggle.addEventListener("change", () => {
     if (themeToggle.checked) {
       document.body.classList.add("light");
@@ -196,8 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // For mobile devices, attach a touchend event to the toggle's label
   if ("ontouchstart" in window || navigator.maxTouchPoints) {
-    const toggleLabel = themeToggle.parentElement; // Assumes the label wraps the checkbox
-
+    const toggleLabel = themeToggle.parentElement;
     toggleLabel.addEventListener("touchend", (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -207,12 +236,55 @@ document.addEventListener("DOMContentLoaded", () => {
         touchHandled = true;
         themeToggle.checked = !themeToggle.checked;
         themeToggle.dispatchEvent(new Event("change"));
-
-        // Reset the flag after a short delay to allow subsequent taps.
-        setTimeout(() => {
-          touchHandled = false;
-        }, 500);
+        setTimeout(() => { touchHandled = false; }, 500);
       }
+    });
+  }
+
+  const expSearchInput = document.getElementById("experienceSearch");
+  const projSearchInput = document.getElementById("projectSearch");
+
+  expSearchInput.addEventListener("input", function (e) {
+    const query = e.target.value.toLowerCase();
+    // Filter only experiences (exclude resume type) based on the query
+    const filteredExperiences = experiences.filter(exp => {
+      if (exp.type !== "experience") return false;
+      return (
+        exp.title.toLowerCase().includes(query) ||
+        exp.description.toLowerCase().includes(query) ||
+        (exp.tags && exp.tags.some(tag => tag.toLowerCase().includes(query)))
+      );
+    });
+    // Find the resume card, if any, so it is always appended.
+    const resumeCard = experiences.find(exp => exp.type === "resume");
+    let finalResults = filteredExperiences;
+    if (resumeCard) {
+      finalResults.push(resumeCard);
+    }
+    renderExperiences(finalResults);
+  });
+
+  projSearchInput.addEventListener("input", function (e) {
+    const query = e.target.value.toLowerCase();
+    const filtered = projects.filter(proj =>
+      proj.title.toLowerCase().includes(query) ||
+      proj.description.toLowerCase().includes(query) ||
+      (proj.tags && proj.tags.some(tag => tag.toLowerCase().includes(query)))
+    );
+    renderProjects(filtered);
+  });
+
+  /* Helper functions to re-render cards based on filtered data */
+  function renderExperiences(data) {
+    expContainer.innerHTML = '';
+    data.forEach(item => {
+      expContainer.insertAdjacentHTML("beforeend", createCard(item));
+    });
+  }
+  function renderProjects(data) {
+    projContainer.innerHTML = '';
+    data.forEach(item => {
+      projContainer.insertAdjacentHTML("beforeend", createProjectCard(item));
     });
   }
 
@@ -226,15 +298,15 @@ function scrollToSection(id) {
   updateActiveNav(id);
 }
 
+/* Update active state for navigation buttons */
 function updateActiveNav(activeId) {
   const navButtons = document.querySelectorAll(".nav-button");
   navButtons.forEach(btn => btn.classList.remove("nav-active"));
-  document.getElementById("btn-" + activeId)
-    .classList.add("nav-active");
+  document.getElementById("btn-" + activeId).classList.add("nav-active");
 }
 
 /* Update nav active state on document scroll */
-document.addEventListener("scroll", () => {
+document.addEventListener("scroll", debounce(() => {
   const sections = document.querySelectorAll(".fade-in");
   const navButtons = document.querySelectorAll(".nav-button");
   sections.forEach((section, index) => {
@@ -244,7 +316,7 @@ document.addEventListener("scroll", () => {
       navButtons[index].classList.add("nav-active");
     }
   });
-});
+}, 100));
 
 /* Update nav active state on rightSection scroll */
 function updateNavActiveOnScroll() {
@@ -253,8 +325,7 @@ function updateNavActiveOnScroll() {
   let closestSectionIndex = 0;
   let minDistance = Infinity;
   const containerRect = rightSection.getBoundingClientRect();
-  const scrollBottom = rightSection.scrollTop +
-    rightSection.clientHeight;
+  const scrollBottom = rightSection.scrollTop + rightSection.clientHeight;
   const scrollHeight = rightSection.scrollHeight;
 
   if (scrollBottom >= scrollHeight - 5) {
@@ -276,9 +347,8 @@ function updateNavActiveOnScroll() {
   navButtons[closestSectionIndex].classList.add("nav-active");
 }
 
-/* Throttle rightSection scroll updates */
+/* Throttle rightSection scroll updates using requestAnimationFrame */
 let ticking = false;
-const rightSection = document.getElementById("rightSection");
 rightSection.addEventListener("scroll", () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
