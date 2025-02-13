@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ajinkya Malhotra Portfolio</title>
+    <meta name="description" content="Ajinkya Malhotra's Portfolio website,
+    showcasing projects and experience as a Software Engineer." />
     <!-- Tailwind and Font Awesome CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet"
@@ -14,6 +16,7 @@
       rel="stylesheet" />
     <!-- External CSS -->
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
 
   <body>
@@ -25,60 +28,60 @@
       <div id="mainContainer"
         class="mt-14 w-full max-w-7xl h-full shadow-lg rounded-lg flex">
         <!-- Left Sidebar (Fixed) -->
-        <div id="leftSidebar"
+        <aside id="leftSidebar"
           class="w-1/2 text-white p-6 flex flex-col justify-between">
-          <div class="top-0">
+          <div>
             <!-- These elements will be populated dynamically -->
-            <h2 id="siteName" class="text-5xl font-extrabold dark:text-white">
-            </h2>
-            <p id="jobTitle" class="mb-6 text-2xl my-4 font-bold text-gray-300">
-            </p>
-            <p id="tagline" class="mb-6 text-2xl font-normal text-gray-400"></p>
-            <nav class="mt-12 space-y-3">
-              <button class="nav-button nav-active block w-full 
-                                text-left p-3 transition duration-300"
-                onclick="scrollToSection('section1')" id="btn-section1">
-                About
-              </button>
-              <button class="nav-button block w-full text-left 
-                                p-3 transition duration-300"
-                onclick="scrollToSection('section2')" id="btn-section2">
-                Experience
-              </button>
-              <button class="nav-button block w-full text-left 
-                                p-3 transition duration-300"
-                onclick="scrollToSection('section3')" id="btn-section3">
-                Projects
-              </button>
+            <header>
+              <h2 id="siteName" class="text-5xl font-extrabold dark:text-white">
+              </h2>
+              <p id="jobTitle"
+                class="mb-6 text-2xl my-4 font-bold text-gray-300"></p>
+              <p id="tagline" class="mb-6 text-2xl font-normal text-gray-400">
+              </p>
+            </header>
+            <nav class="mt-12 space-y-3" aria-label="Main Navigation">
+              <button class="nav-button nav-active block w-full text-left p-3
+                              transition duration-300"
+                onclick="scrollToSection('section1')"
+                id="btn-section1">About</button>
+              <button class="nav-button block w-full text-left p-3 transition
+                              duration-300"
+                onclick="scrollToSection('section2')"
+                id="btn-section2">Experience</button>
+              <button class="nav-button block w-full text-left p-3 transition
+                              duration-300"
+                onclick="scrollToSection('section3')"
+                id="btn-section3">Projects</button>
             </nav>
           </div>
           <!-- Social icons container -->
           <div id="socialContainer" class="my-14 bottom-0 social-icons"></div>
-        </div>
+        </aside>
         <!-- Right Side (Scrollable Content) -->
-        <div id="rightSection"
+        <main id="rightSection"
           class="w-2/3 overflow-y-auto p-6 h-full custom-scrollbar">
           <!-- About Section -->
-          <div id="section1"
+          <section id="section1"
             class="fade-in mb-10 p-6 rounded-lg text-gray-400 leading-relaxed">
             <!-- About content will be injected here -->
             <div id="aboutContent"></div>
-          </div>
+          </section>
           <!-- Experience Section (Data Driven) -->
-          <div id="section2"
+          <section id="section2"
             class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
             <div class="space-y-6 w-full max-w-4xl" id="experienceContainer">
               <!-- Experience cards injected here -->
             </div>
-          </div>
+          </section>
           <!-- Projects Section (Data Driven) -->
-          <div id="section3"
+          <section id="section3"
             class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
             <div class="space-y-6 w-full max-w-4xl" id="projectsContainer">
               <!-- Project cards injected here -->
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
       </div>
     </div>
     <!-- External JavaScript Files -->

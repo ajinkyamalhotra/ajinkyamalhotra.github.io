@@ -1,9 +1,17 @@
+/* Define CSS Variables for consistent design */
+:root {
+    --primary-bg: #0a192f;
+    --accent-color: teal;
+    --text-color: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --hover-bg: rgba(255, 255, 255, 0.1);
+}
+
 /* Global styles and resets */
 body {
-    background-color: #0a192f;
+    background-color: var(--primary-bg);
     margin: 0;
     font-family: 'Inter', sans-serif;
-    /* For desktop we use fixed height; mobile override below */
     overflow: hidden;
     height: 100vh;
 }
@@ -30,6 +38,7 @@ body {
     transform: translateY(0);
 }
 
+/* Navigation Buttons */
 .nav-button {
     border-left: 5px solid transparent;
     transition: color 0.1s ease, border-color 0.1s ease;
@@ -37,13 +46,13 @@ body {
 
 .nav-button.nav-active {
     font-weight: bold;
-    color: teal;
-    border-left-color: teal;
+    color: var(--accent-color);
+    border-left-color: var(--accent-color);
 }
 
 .nav-button:hover {
     font-weight: bold;
-    color: teal;
+    color: var(--accent-color);
 }
 
 /* Spotlight effect */
@@ -52,7 +61,8 @@ body {
     width: 790px;
     height: 790px;
     background: radial-gradient(circle,
-            rgba(173, 216, 255, 0.10) 10%, rgba(255, 255, 255, 0) 90%);
+            rgba(173, 216, 255, 0.10) 10%,
+            rgba(255, 255, 255, 0) 90%);
     box-shadow: 0 0 150px rgba(173, 216, 255, 0.048);
     pointer-events: none;
     transform: translate(-50%, -50%);
@@ -75,51 +85,41 @@ body {
 
 .social-icons a:hover {
     transform: scale(1.5);
-    color: teal;
+    color: var(--accent-color);
 }
 
 /* Selection styling */
 ::selection {
-    background: teal;
+    background: var(--accent-color);
     color: white;
 }
 
 ::-moz-selection {
-    background: teal;
+    background: var(--accent-color);
     color: white;
 }
 
 /* Card styling */
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    /* A subtle light background */
+    background: var(--card-bg);
     border-radius: 0.75rem;
-    /* Default rounded corners */
     padding: 1.5rem;
-    /* Generous padding */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Soft shadow */
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .card:hover {
     transform: scale(1.02);
-    background: rgba(255, 255, 255, 0.1);
-    /* Slightly lighter on hover */
+    background: var(--hover-bg);
 }
 
-/* ----------------------------
-     MOBILE OVERRIDES
-  ----------------------------- */
+/* Mobile Overrides */
 @media (max-width: 768px) {
-
-    /* Allow body to scroll naturally */
     body {
         height: auto !important;
         overflow: auto !important;
     }
 
-    /* Outer container: stack items vertically and remove vertical centering */
     #outerContainer {
         flex-direction: column !important;
         justify-content: flex-start !important;
@@ -127,32 +127,27 @@ body {
         height: auto;
     }
 
-    /* Main container: remove fixed height and stack sidebar & content */
     #mainContainer {
         flex-direction: column !important;
         height: auto !important;
         margin-top: 1rem;
     }
 
-    /* Left sidebar and right section take full width */
     #leftSidebar,
     #rightSection {
         width: 100% !important;
     }
 
-    /* Right section: let content expand naturally */
     #rightSection {
         height: auto !important;
         overflow-y: visible !important;
     }
 
-    /* Optionally, adjust padding/margins as needed for mobile */
     #leftSidebar,
     #rightSection {
         padding: 1rem !important;
     }
 
-    /* Reduce spotlight size on mobile */
     .spotlight {
         width: 300px !important;
         height: 300px !important;
@@ -160,8 +155,6 @@ body {
 
     .card {
         border-radius: 0.5rem;
-        /* Slightly less rounded on mobile */
         padding: 1rem;
-        /* Less padding on mobile */
     }
 }
