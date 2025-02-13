@@ -174,8 +174,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  themeToggle.addEventListener("touchstart", () => {
-    themeToggle.click();
+  themeToggle.addEventListener("touchend", (e) => {
+    // Prevent the default touch behavior
+    e.preventDefault();
+    // Toggle the checkbox state manually
+    themeToggle.checked = !themeToggle.checked;
+    // Dispatch the change event so the rest of the logic runs
+    themeToggle.dispatchEvent(new Event("change"));
   });
 
 });
