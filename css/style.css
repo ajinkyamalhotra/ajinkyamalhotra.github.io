@@ -30,6 +30,138 @@
     animation: spin 1s linear infinite;
 }
 
+/* Container for the toggle placed at top right */
+#themeToggleContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+}
+
+/* Fancy Theme Toggle Switch (Bigger Version) */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0a192f;
+    /* dark mode background */
+    transition: background-color 0.4s;
+    border-radius: 40px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--text-color);
+    transition: transform 0.4s;
+    border-radius: 50%;
+}
+
+/* Sun and Moon Icons */
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    transition: opacity 0.4s;
+}
+
+.sun-icon {
+    left: 10px;
+    opacity: 0;
+    /* hidden by default in dark mode */
+}
+
+.moon-icon {
+    right: 10px;
+    opacity: 1;
+}
+
+/* When toggled to Light Mode */
+input:checked+.slider {
+    background-color: yellowgreen;
+    /* light mode accent */
+}
+
+input:checked+.slider:before {
+    transform: translateX(40px);
+}
+
+input:checked+.slider .sun-icon {
+    opacity: 1;
+}
+
+input:checked+.slider .moon-icon {
+    opacity: 0;
+}
+
+/* Light mode overrides */
+body.light {
+    background-color: #e3f2fd;
+    /* Soft off-white */
+    color: #000000;
+    /* Black text */
+}
+
+body.light .card {
+    background: rgba(49, 130, 206, 0.1);
+}
+
+body.light .nav-button {
+    color: #000000;
+}
+
+body.light .nav-button.nav-active {
+    color: #000000;
+    border-left-color: #3182ce;
+    /* Accent border remains */
+}
+
+body.light .spotlight {
+    background: radial-gradient(circle,
+            rgba(49, 130, 206, 0.1) 10%, rgba(250, 250, 250, 0) 90%);
+    box-shadow: 0 0 150px rgba(49, 130, 206, 0.048);
+}
+
+/* Force all text to be black in light mode */
+body.light,
+body.light p,
+body.light span,
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4,
+body.light h5,
+body.light h6,
+body.light a,
+body.light li,
+body.light button,
+body.light div {
+    color: #000000 !important;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -184,12 +316,12 @@ body {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(10, 25, 47, 0.7);
+    background-color: rgba(10, 25, 47, 0.1);
     color: var(--text-color);
     border: none;
     border-radius: 9999px;
     padding: 0.75rem 1.5rem;
-    font-size: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
     z-index: 1000;
     transition: background-color 0.3s ease,

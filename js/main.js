@@ -157,6 +157,23 @@ document.addEventListener("DOMContentLoaded", () => {
     rightSection.scrollTo({ top: 0, behavior: "smooth" });
   });
 
+  // Initialize fancy theme toggle switch
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("theme") || "dark";
+  if (savedTheme === "light") {
+    document.body.classList.add("light");
+    themeToggle.checked = true;
+  }
+  themeToggle.addEventListener("change", () => {
+    if (themeToggle.checked) {
+      document.body.classList.add("light");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.body.classList.remove("light");
+      localStorage.setItem("theme", "dark");
+    }
+  });
+
 });
 
 /* Smooth scrolling on nav button click */
