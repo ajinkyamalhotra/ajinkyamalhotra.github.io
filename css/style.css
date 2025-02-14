@@ -159,6 +159,7 @@ body.light a,
 body.light li,
 body.light button,
 body.light input,
+body.light input::placeholder,
 body.light div {
     color: #000000 !important;
 }
@@ -214,6 +215,7 @@ body {
     font-family: 'Inter', sans-serif;
     overflow: hidden;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 /* Hide scrollbar while keeping scrolling functional */
