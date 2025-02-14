@@ -12,6 +12,7 @@
 @import url('components/search.css');
 @import url('components/info.css');
 @import url('components/social.css');
+@import url('components/skills.css');
 
 /* Import Animations */
 @import url('animations/fadeIn.css');

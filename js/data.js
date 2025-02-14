@@ -153,7 +153,29 @@ const projects = [
 ];
 
 const skills = [
-    { name: "AWS", level: 9 },
+    {
+        name: "AWS",
+        level: 9,
+        subSkills: [
+            { name: "EC2", level: 8 },
+            { name: "ASG", level: 8 },
+            { name: "VPC", level: 8 },
+            { name: "AMI", level: 8 },
+            { name: "SNS", level: 8 },
+            { name: "SQS", level: 8 },
+            { name: "S3", level: 9 },
+            { name: "Lambda", level: 7.5 },
+            { name: "API Gateway", level: 8 },
+        ]
+    },
+    {
+        name: "Software Engineering",
+        level: 9,
+        subSkills: [
+            { name: "Object Oriented Programming", level: 8 },
+            { name: "Scrum", level: 8 },
+        ]
+    },
     { name: "Python", level: 9.5 },
     { name: "Java", level: 8 },
     { name: "Groovy", level: 7.5 },

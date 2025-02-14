@@ -176,7 +176,8 @@ body {
         padding: 1rem;
     }
 
-    #searchContainer {
+    #searchContainer,
+    #infoButton {
         display: none !important;
     }
 }
