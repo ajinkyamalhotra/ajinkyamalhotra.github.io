@@ -118,6 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("themeToggle");
   const backToTop = document.getElementById("backToTop");
   const rightSection = document.getElementById("rightSection");
+  const searchContainer = document.getElementById("searchContainer");
+  const searchIcon = document.getElementById("searchIcon");
+  const searchBox = document.getElementById("searchBox");
+  const expSearchInput = document.getElementById("experienceSearch");
+  const projSearchInput = document.getElementById("projectSearch");
+  const contentDiv = document.querySelector(".content");
 
   fetchDeploymentDetails()
 
@@ -245,9 +251,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-
-  const expSearchInput = document.getElementById("experienceSearch");
-  const projSearchInput = document.getElementById("projectSearch");
 
   expSearchInput.addEventListener("input", function (e) {
     const query = e.target.value.toLowerCase();
@@ -389,6 +392,165 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Toggle search input visibility
+  searchIcon.addEventListener("click", function (event) {
+    searchContainer.classList.toggle("showSearch");
+    searchBox.focus();
+    highlightText(searchBox.value.trim());
+    event.stopPropagation();
+  });
+
+  // Prevent clicks inside the search box from bubbling up.
+  searchBox.addEventListener("click", function (event) {
+    console.log("Clicked inside search box.");
+    event.stopPropagation();
+  });
+
+  // Use a capturing mousedown event to prevent blur when clicking on a <mark>
+  document.addEventListener("mousedown", function (event) {
+    if (event.target.closest("mark")) {
+      console.log("Mousedown on a <mark> element prevented.");
+      event.preventDefault();
+    }
+  }, true);
+
+  // Global click handler.
+  document.addEventListener("click", function (event) {
+    if (event.target.tagName.toLowerCase() !== "mark") {
+      searchBox.blur();
+      searchContainer.classList.remove("showSearch");
+      clearHighlights();
+      searchBox.value = "";
+      matchCounter.value = "";
+      matchCounter.textContent = "";
+    }
+  });
+
+  // Function to highlight words inside .content
+  function highlightText(searchTerm) {
+    clearHighlights();
+    if (!searchTerm) return;
+    const regex = new RegExp(`(${searchTerm})`, "gi");
+
+    function walkNodes(node) {
+      if (node.nodeType === 3) { // Only text nodes
+        const match = node.nodeValue.match(regex);
+        if (match) {
+          const newHTML = node.nodeValue.replace(regex, '<mark>$1</mark>');
+          const tempElement = document.createElement("span");
+          tempElement.innerHTML = newHTML;
+
+          while (tempElement.firstChild) {
+            node.parentNode.insertBefore(tempElement.firstChild, node);
+          }
+          node.remove(); // Remove original text node
+        }
+      } else if (node.nodeType === 1 && node.childNodes.length > 0) {
+        node.childNodes.forEach(walkNodes);
+      }
+    }
+
+    walkNodes(contentDiv);
+  }
+
+  // Function to remove all highlights
+  function clearHighlights() {
+    document.querySelectorAll("mark").forEach((mark) => {
+      const parent = mark.parentNode;
+      parent.replaceChild(document.createTextNode(mark.textContent), mark);
+      parent.normalize();
+    });
+  }
+
+  // Listen for search input dynamically
+  searchBox.addEventListener("input", function () {
+    highlightText(searchBox.value.trim());
+  });
+
+  // Update highlights on input and scroll to the first occurrence.
+  let currentMatchIndex = 0;
+
+  // Helper: Update the match counter text
+  function updateMatchCounter(marks) {
+    if (!searchBox.value.trim()) {
+      matchCounter.textContent = "";
+      return;
+    }
+    if (marks.length === 0) {
+      matchCounter.textContent = "0 of 0";
+    } else {
+      matchCounter.textContent = `${currentMatchIndex + 1} of ${marks.length}`;
+    }
+  }
+
+  // When the search icon is clicked, show and focus the search box.
+  searchIcon.addEventListener("click", function (event) {
+    searchContainer.classList.add("showSearch");
+    searchBox.focus();
+    searchBox.select();
+    event.stopPropagation();
+  });
+
+  // Prevent clicks inside the search box from bubbling up.
+  searchBox.addEventListener("click", function (event) {
+    event.stopPropagation();
+  });
+
+  // On input, highlight text and scroll to the first occurrence.
+  searchBox.addEventListener("input", function () {
+    clearHighlights();
+    const searchTerm = searchBox.value.trim();
+    if (!searchTerm) {
+      matchCounter.textContent = "";
+      return;
+    }
+    highlightText(searchTerm);
+
+    const marks = document.querySelectorAll("mark");
+    if (marks.length > 0) {
+      currentMatchIndex = 0;
+      marks[currentMatchIndex].classList.add("active-match");
+      marks[currentMatchIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+    updateMatchCounter(marks);
+  });
+
+  searchBox.addEventListener("keydown", function (e) {
+    const marks = document.querySelectorAll("mark");
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (marks.length === 0) return;
+
+      // Remove the active class from the current match.
+      marks[currentMatchIndex].classList.remove("active-match");
+
+      if (e.shiftKey) {
+        // Shift+Enter: Go to the previous occurrence.
+        currentMatchIndex = (currentMatchIndex - 1 + marks.length) % marks.length;
+      } else {
+        // Enter: Go to the next occurrence.
+        currentMatchIndex = (currentMatchIndex + 1) % marks.length;
+      }
+
+      // Mark the new match as active and scroll it into view.
+      marks[currentMatchIndex].classList.add("active-match");
+      marks[currentMatchIndex].scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      updateMatchCounter(marks);
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      searchBox.blur();
+      clearHighlights();
+      searchBox.value = "";
+      matchCounter.textContent = "";
+    }
+  });
 });
 
 // Toggle Website Info Popup

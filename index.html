@@ -19,7 +19,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
   </head>
 
-  <body>
+  <body class="content">
     <!-- Preloader -->
     <div id="preloader">
       <div class="loader"></div>
@@ -119,6 +119,15 @@
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <button id="backToTop">↑ Top</button>
+    <!-- Floating Search Button -->
+    <div id="searchContainer">
+      <button id="searchIcon">&#128269;</button>
+      <div class="search-input-wrapper">
+        <input type="text" id="searchBox" class="fancy-search"
+          placeholder="Global Search..." />
+        <span id="matchCounter" class="match-counter"></span>
+      </div>
+    </div>
   </body>
 
 </html>
