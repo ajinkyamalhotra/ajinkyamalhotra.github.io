@@ -439,6 +439,7 @@ body {
     color: var(--text-color);
     outline: none;
     transition: background 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.1em;
 }
 
 .fancy-search::placeholder {

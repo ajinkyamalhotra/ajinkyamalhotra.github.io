@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const frag = document.createDocumentFragment();
   siteData.about.forEach(paragraph => {
     const p = document.createElement("p");
-    p.className = "mb-4";
+    p.className = "mb-4 text-lg";
     p.textContent = paragraph;
     frag.appendChild(p);
   });
