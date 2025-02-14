@@ -414,30 +414,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Toggle the Website Info popup (with auto-close on tap outside for mobile)
-  function toggleInfoPopup(event) {
-    const popup = document.getElementById("infoPopup");
-
-    if (!popup.classList.contains("show")) {
-      popup.classList.add("show");
-      document.addEventListener("click", closePopupOutside);
-    } else {
-      popup.classList.remove("show");
-      document.removeEventListener("click", closePopupOutside);
-    }
-    event.stopPropagation();
-  }
-
-  // Close the popup if clicking outside (only on mobile)
-  function closePopupOutside(event) {
+  document.addEventListener("click", function (event) {
     const popup = document.getElementById("infoPopup");
     const button = document.getElementById("infoButton");
-
     if (!popup.contains(event.target) && !button.contains(event.target)) {
       popup.classList.remove("show");
-      document.removeEventListener("click", closePopupOutside);
     }
-  }
+  });
 
   // Toggle search input visibility
   searchIcon.addEventListener("click", function (event) {

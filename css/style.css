@@ -546,6 +546,7 @@ body {
     display: flex;
     align-items: center;
     z-index: 1000;
+    transition: all 0.3s ease-in-out;
 }
 
 #searchIcon {
@@ -568,6 +569,7 @@ body {
     box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2),
         0px 0px 25px var(--accent-color);
     animation: softGlow 3s infinite alternate;
+    transition: all 0.3s ease-in-out;
 }
 
 #searchIcon::before {
@@ -614,6 +616,7 @@ body {
     background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
     opacity: 0;
     animation: sparkle 3s infinite alternate;
+    transition: all 0.3s ease-in-out;
 }
 
 @keyframes sparkle {
