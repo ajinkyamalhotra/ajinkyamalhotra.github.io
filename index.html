@@ -64,6 +64,10 @@
               id="btn-section3">
               <i class="fas fa-code"></i> Projects
             </button>
+            <button class="nav-button" onclick="scrollToSection('section4')"
+              id="btn-section4">
+              <i class="fas fa-chart-bar"></i> Skills
+            </button>
           </nav>
           <!-- Website Info Button -->
           <button id="infoButton" onclick="toggleInfoPopup(event)">
@@ -111,6 +115,12 @@
             <div class="space-y-6 w-full max-w-4xl" id="projectsContainer">
               <!-- Project cards injected here -->
             </div>
+          </section>
+          <!-- Skills Section -->
+          <section id="section4"
+            class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
+            <br />
+            <div id="skillsContainer"></div>
           </section>
         </main>
       </div>

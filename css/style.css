@@ -716,6 +716,36 @@ body.light #matchCounter {
     color: rgba(0, 0, 0, 0.7);
 }
 
+.progress-bar {
+    transition: width 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: linear-gradient(90deg, #38b2ac, #81e6d9);
+    background-size: 200% 100%;
+    animation: gradientShift 3s linear infinite;
+    box-shadow: 0 0 10px rgba(56, 178, 172, 0.5);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+@keyframes fadeInName {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* Mobile Overrides */
 @media (max-width: 768px) {
     #infoButton {

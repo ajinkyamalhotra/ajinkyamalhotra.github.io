@@ -151,3 +151,14 @@ const projects = [
         tags: ["✨ Java", "Dijkstras", "Heap", "Kruskals"]
     }
 ];
+
+const skills = [
+    { name: "AWS", level: 90 },
+    { name: "Python", level: 95 },
+    { name: "Java", level: 80 },
+    { name: "Groovy", level: 75 },
+    { name: "Bash", level: 70 },
+    { name: "Git", level: 85 },
+    { name: "HTML/CSS", level: 80 },
+    { name: "JavaScript", level: 80 }
+];

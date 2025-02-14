@@ -186,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render initial experience and project cards
   renderExperiences(experiences);
   renderProjects(projects);
+  renderSkills();
 
   // Set initial active nav button
   document.getElementById("btn-section1").classList.add("nav-active");
@@ -295,6 +296,52 @@ document.addEventListener("DOMContentLoaded", () => {
       projContainer.insertAdjacentHTML("beforeend", createProjectCard(item));
     });
   }
+  function renderSkills() {
+    const skillsContainer = document.getElementById("skillsContainer");
+    if (!skillsContainer) return;
+    let html = "";
+    skills.forEach(skill => {
+      html += `
+        <div class="mb-4">
+          <div class="flex justify-between mb-1">
+            <div class="text-lg font-bold text-gray-300">${skill.name}</div>
+            <span class="text-lg font-bold text-gray-300
+             skill-percentage" data-target="${skill.level}">0%</span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
+            <div class="bg-teal-400 h-2.5 rounded-full progress-bar"
+            style="width: 0;"></div>
+          </div>
+        </div>
+      `;
+    });
+    skillsContainer.innerHTML = html;
+
+    // Animate the progress bars and number counters after a short delay
+    setTimeout(() => {
+      // Animate each progress bar's width
+      document.querySelectorAll(".progress-bar").forEach((bar, index) => {
+        const skillLevel = skills[index].level;
+        bar.style.width = skillLevel + "%";
+      });
+      // Animate the percentage numbers from 0 to target
+      document.querySelectorAll(".skill-percentage").forEach(span => {
+        const target = parseInt(span.getAttribute('data-target'));
+        let current = 0;
+        const stepTime = 20;
+        const step = target / (2000 / stepTime);
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+          }
+          span.textContent = Math.round(current) + '%';
+        }, stepTime);
+      });
+    }, 500);
+  }
+
   async function fetchDeploymentDetails() {
     const username = "ajinkyamalhotra";
     const repo = "ajinkyamalhotra.github.io";
