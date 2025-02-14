@@ -1,0 +1,85 @@
+/* ---------------------- */
+/* Theme Toggle Component */
+/* ---------------------- */
+
+#themeToggleContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 40px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #0a192f;
+    transition: background-color 0.4s;
+    border-radius: 40px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 32px;
+    width: 32px;
+    left: 4px;
+    bottom: 4px;
+    background-color: var(--text-color);
+    transition: transform 0.4s;
+    border-radius: 50%;
+}
+
+/* Sun and Moon Icons */
+.sun-icon,
+.moon-icon {
+    position: absolute;
+    font-size: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+    transition: opacity 0.4s;
+}
+
+.sun-icon {
+    left: 10px;
+    opacity: 0;
+}
+
+.moon-icon {
+    right: 10px;
+    opacity: 1;
+}
+
+/* When toggled to Light Mode */
+input:checked+.slider {
+    background-color: yellowgreen;
+}
+
+input:checked+.slider:before {
+    transform: translateX(40px);
+}
+
+input:checked+.slider .sun-icon {
+    opacity: 1;
+}
+
+input:checked+.slider .moon-icon {
+    opacity: 0;
+}

@@ -153,12 +153,12 @@ const projects = [
 ];
 
 const skills = [
-    { name: "AWS", level: 90 },
-    { name: "Python", level: 95 },
-    { name: "Java", level: 80 },
-    { name: "Groovy", level: 75 },
-    { name: "Bash", level: 70 },
-    { name: "Git", level: 85 },
-    { name: "HTML/CSS", level: 80 },
-    { name: "JavaScript", level: 80 }
+    { name: "AWS", level: 9 },
+    { name: "Python", level: 9.5 },
+    { name: "Java", level: 8 },
+    { name: "Groovy", level: 7.5 },
+    { name: "Bash", level: 7 },
+    { name: "Git", level: 8.5 },
+    { name: "HTML/CSS", level: 8 },
+    { name: "JavaScript", level: 8 }
 ];

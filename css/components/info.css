@@ -1,0 +1,84 @@
+/* ---------------------- */
+/* Info Button Component  */
+/* ---------------------- */
+
+#infoButton {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, var(--primary-bg), var(--accent-color));
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0px 4px 15px var(--accent-color);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#infoButton i {
+    font-size: 1.2rem;
+}
+
+#infoButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 20px rgba(0, 255, 255, 0.8);
+}
+
+/* Info Popup */
+#infoPopup {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+    background: var(--primary-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 16px 22px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px var(--accent-color);
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(15px);
+    visibility: hidden;
+    z-index: 999;
+}
+
+body.light #infoPopup {
+    background-color: #e3f2fd;
+    color: #000000;
+}
+
+#infoPopup.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+#infoPopup p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+#infoPopup i {
+    color: #00ffcc;
+    font-size: 1rem;
+}
+
+.date-text,
+.geek-text {
+    color: #ffcc00;
+    font-size: 0.9rem;
+    font-weight: normal;
+}
