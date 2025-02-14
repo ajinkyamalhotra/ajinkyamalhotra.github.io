@@ -170,6 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <a href="${siteData.socialLinks.email}" aria-label="Email">
       <i class="fas fa-envelope"></i>
     </a>
+    <a href="resume.pdf" target="_blank" aria-label="Resume" title="View Resume">
+      <i class="fas fa-file-alt"></i>
+    </a>
   `;
 
   // Render initial experience and project cards

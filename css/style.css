@@ -238,21 +238,81 @@ body {
     transform: translateY(0);
 }
 
-/* Navigation Buttons */
+/* Fancy Navigation */
+.fancy-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 20px;
+}
+
+/* Transparent Nav Buttons */
 .nav-button {
-    border-left: 5px solid transparent;
-    transition: color 0.1s ease, border-color 0.1s ease;
+    font-size: 18px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    /* Fully Transparent */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    /* Light Border */
+    color: var(--text-color);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    /* Slight Glass Blur Effect */
+    -webkit-backdrop-filter: blur(5px);
 }
 
-.nav-button.nav-active {
-    font-weight: bold;
-    color: var(--accent-color);
-    border-left-color: var(--accent-color);
+/* Nav Button Icons */
+.nav-button i {
+    font-size: 20px;
+    opacity: 0.8;
 }
 
+/* Hover Effect - Glowing */
 .nav-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    /* Slight Transparency */
+    border-color: var(--accent-color);
+    /* Accent Color Border */
+    transform: translateX(5px);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Active Button Style */
+.nav-button.nav-active {
+    background: rgba(255, 255, 255, 0.15);
+    /* Slightly Visible for Active */
+    border-color: var(--accent-color);
     font-weight: bold;
-    color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Active Button Underline */
+.nav-button.nav-active::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-color), transparent);
+    margin-top: 5px;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Adjust Sidebar to Ensure Proper Spacing */
+#leftSidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#siteName,
+#jobTitle,
+#tagline {
+    text-align: left;
 }
 
 /* Search Bars */
@@ -297,6 +357,10 @@ body {
 .social-icons {
     display: flex;
     gap: 30px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    /* Adds spacing below nav bar */
 }
 
 .social-icons a {
@@ -365,6 +429,25 @@ body {
 
 /* Mobile Overrides */
 @media (max-width: 768px) {
+    #leftSidebar {
+        align-items: center;
+        text-align: center;
+    }
+
+    .fancy-nav {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .nav-button {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
     body {
         height: auto !important;
         overflow: auto !important;
