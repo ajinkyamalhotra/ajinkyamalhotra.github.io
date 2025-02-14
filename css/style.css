@@ -813,4 +813,12 @@ body.light #matchCounter {
         border-radius: 0.5rem;
         padding: 1rem;
     }
+
+    #searchContainer {
+        display: none !important;
+    }
+
+    #infoButton {
+        display: none !important;
+    }
 }
