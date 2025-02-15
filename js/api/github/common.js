@@ -26,9 +26,16 @@ export async function fetchPaginatedData(baseUrl, headers = HEADERS, perPage = 1
         const url = `${baseUrl}?page=${page}&per_page=${perPage}`;
         const response = await fetch(url, { headers });
 
-        if (response.status === 403) {
+        if (response.status === 403) {// API rate limit exceeded
             console.warn("GitHub API rate limit exceeded!");
-            return { error: "rate limit" };
+            document.getElementById("infoPopup").innerHTML = `
+                    <p><i class="fas fa-exclamation-triangle"></i>
+                    <strong> Oops! GitHub has decided to ration free API calls.
+                    </strong></p><p>🤷‍♂️ <strong>Website Info unavailable at the
+                    moment.</strong></p>
+                    <p>🚀 <strong>Try again later.</strong></p>
+                `;
+            return null;
         } else if (!response.ok) {
             throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
@@ -50,9 +57,16 @@ export async function fetchPaginatedData(baseUrl, headers = HEADERS, perPage = 1
  */
 export async function fetchData(url, headers = HEADERS) {
     const response = await fetch(url, { headers });
-    if (response.status === 403) {
+    if (response.status === 403) {// API rate limit exceeded
         console.warn("GitHub API rate limit exceeded!");
-        return { error: "rate limit" };
+        document.getElementById("infoPopup").innerHTML = `
+                <p><i class="fas fa-exclamation-triangle"></i>
+                <strong>Oops! GitHub has decided to ration free API calls.
+                Website Info unavailable at the moment.</strong></p>
+                <p>🚀 Maybe it's time to get a GitHub Token?</p>
+                <p>🤷‍♂️ Or just chill for a while and try again later.
+            `;
+        return null;
     } else if (!response.ok) {
         throw new Error(`Error: ${response.status} ${response.statusText}`);
     }
