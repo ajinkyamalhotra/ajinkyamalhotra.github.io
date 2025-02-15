@@ -276,11 +276,24 @@ const skills = [
         ]
     },
     {
+        name: "Algorithms & Data Structures",
+        level: 8.5,
+        subSkills: [
+            { name: "Dijkstra's Algorithm", level: 9 },
+            { name: "Kruskal's Algorithm", level: 9 },
+            { name: "Minimax Algorithm", level: 9 },
+            { name: "Alpha-Beta Pruning", level: 7.5 },
+            { name: "Depth Limited Search", level: 8.5 },
+            { name: "Iterative Deepening Search", level: 8.5 }
+        ]
+    },
+    {
         name: "Operating Systems",
         level: 8,
         subSkills: [
             { name: "Windows", level: 8 },
-            { name: "Linux/Unix", level: 9 }
+            { name: "Linux/Unix", level: 9 },
+            { name: "MacOS", level: 8 }
         ]
     },
     {
@@ -294,15 +307,27 @@ const skills = [
         ]
     },
     {
-        name: "Algorithms & Data Structures",
-        level: 8.5,
+        name: "Coding Languages",
+        level: 8,
         subSkills: [
-            { name: "Dijkstra's Algorithm", level: 9 },
-            { name: "Kruskal's Algorithm", level: 9 },
-            { name: "Minimax Algorithm", level: 9 },
-            { name: "Alpha-Beta Pruning", level: 7.5 },
-            { name: "Depth Limited Search", level: 8.5 },
-            { name: "Iterative Deepening Search", level: 8.5 }
+            { name: "Python", level: 8 },
+            { name: "Java", level: 9 },
+            { name: "JavaScript", level: 8 },
+            { name: "Groovy", level: 9 },
+            { name: "Bash", level: 8 },
+            { name: "SQL", level: 8 },
+            { name: "C/C++", level: 4.5 },
+        ]
+    },
+    {
+        name: "Tools",
+        level: 7.5,
+        subSkills: [
+            { name: "Git", level: 8 },
+            { name: "Jira", level: 8 },
+            { name: "Confluence", level: 8 },
+            { name: "Jenkins", level: 8 },
+            { name: "Splunk", level: 7 },
         ]
     },
     {
@@ -314,15 +339,4 @@ const skills = [
             { name: "CNN (Convolutional Neural Networks)", level: 5 }
         ]
     },
-    { name: "Python", level: 8.5 },
-    { name: "Java", level: 9.5 },
-    { name: "JavaScript", level: 8 },
-    { name: "Groovy", level: 8 },
-    { name: "Bash", level: 7.5 },
-    { name: "SQL", level: 8 },
-    { name: "Git", level: 8.5 },
-    { name: "Jira", level: 8 },
-    { name: "Confluence", level: 8 },
-    { name: "Jenkins", level: 8 },
-    { name: "Splunk", level: 7 },
 ];
