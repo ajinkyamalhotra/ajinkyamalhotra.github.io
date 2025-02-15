@@ -60,7 +60,7 @@ export function getSkillsHTML(skills) {
 }
 
 export function initSkillsComponent(container, skills) {
-  // Toggle individual sub-skills on click
+  // Attach event listeners for toggling individual sub-skills
   container.querySelectorAll('[data-has-subskills="true"]').forEach((skillItem) => {
     skillItem.addEventListener("click", () => {
       const subSkillsContainer = skillItem.querySelector(".sub-skills");
@@ -82,10 +82,13 @@ export function initSkillsComponent(container, skills) {
     });
   });
 
-  // Event listener for the expand/collapse all button
+  // Add event listener for the expand/collapse all button
   const expandAllBtn = container.querySelector("#expand-all-btn");
   if (expandAllBtn) {
-    expandAllBtn.addEventListener("click", () => {
+    expandAllBtn.addEventListener("click", (e) => {
+      // Prevent the click event from bubbling up to parent elements.
+      e.stopPropagation();
+
       // Check if we should expand (if any sub-skills container is hidden)
       const subSkillsContainers = container.querySelectorAll(".sub-skills");
       let shouldExpand = false;
