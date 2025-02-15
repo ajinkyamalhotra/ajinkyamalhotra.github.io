@@ -248,7 +248,7 @@ const projects = [
 const skills = [
     {
         name: "AWS",
-        level: 9,
+        level: 8.5,
         subSkills: [
             { name: "Lambda", level: 9 },
             { name: "API Gateway", level: 9 },
@@ -257,7 +257,11 @@ const skills = [
             { name: "IAM", level: 9 },
             { name: "EC2", level: 9 },
             { name: "S3", level: 9 },
-            { name: "RDS", level: 8 },
+            { name: "EBS", level: 8 },
+            { name: "EFS", level: 8 },
+            { name: "Spot Fleets", level: 8 },
+            { name: "ASG", level: 8 },
+            { name: "RDS", level: 7 },
             { name: "Connect", level: 6 },
             { name: "Pinpoint", level: 6 },
             { name: "CloudFormation", level: 8 }
@@ -265,7 +269,7 @@ const skills = [
     },
     {
         name: "Software Engineering",
-        level: 9,
+        level: 8,
         subSkills: [
             { name: "Object Oriented Programming", level: 8.5 },
             { name: "APIs", level: 8.5 },
@@ -277,7 +281,7 @@ const skills = [
     },
     {
         name: "Algorithms & Data Structures",
-        level: 8.5,
+        level: 8,
         subSkills: [
             { name: "Dijkstra's Algorithm", level: 9 },
             { name: "Kruskal's Algorithm", level: 9 },
@@ -298,7 +302,7 @@ const skills = [
     },
     {
         name: "IDEs",
-        level: 8,
+        level: 7.5,
         subSkills: [
             { name: "Eclipse", level: 7.5 },
             { name: "IntelliJ", level: 8.5 },
@@ -308,7 +312,7 @@ const skills = [
     },
     {
         name: "Coding Languages",
-        level: 8,
+        level: 7.5,
         subSkills: [
             { name: "Python", level: 8 },
             { name: "Java", level: 9 },
