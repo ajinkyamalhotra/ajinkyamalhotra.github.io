@@ -261,34 +261,27 @@ const skills = [
             { name: "EFS", level: 8 },
             { name: "Spot Fleets", level: 8 },
             { name: "ASG", level: 8 },
+            { name: "CloudFormation", level: 8 },
+            { name: "DynamoDB", level: 8 },
+            { name: "Terraform", level: 7 },
+            { name: "Packer", level: 7 },
             { name: "RDS", level: 7 },
             { name: "Connect", level: 6 },
             { name: "Pinpoint", level: 6 },
-            { name: "CloudFormation", level: 8 }
         ]
     },
     {
         name: "Software Engineering",
         level: 8,
         subSkills: [
-            { name: "Object Oriented Programming", level: 8.5 },
-            { name: "APIs", level: 8.5 },
+            { name: "Algorithms & Data Structures", level: 8 },
+            { name: "Object Oriented Programming", level: 8 },
+            { name: "APIs", level: 8 },
             { name: "Scrum", level: 8 },
-            { name: "CI/CD", level: 8.5 },
-            { name: "Test Automation", level: 7.5 },
-            { name: "Software Development Life Cycle (SDLC)", level: 8 }
-        ]
-    },
-    {
-        name: "Algorithms & Data Structures",
-        level: 8,
-        subSkills: [
-            { name: "Dijkstra's Algorithm", level: 9 },
-            { name: "Kruskal's Algorithm", level: 9 },
-            { name: "Minimax Algorithm", level: 9 },
-            { name: "Alpha-Beta Pruning", level: 7.5 },
-            { name: "Depth Limited Search", level: 8.5 },
-            { name: "Iterative Deepening Search", level: 8.5 }
+            { name: "CI/CD", level: 8 },
+            { name: "Test Automation", level: 7 },
+            { name: "Security", level: 7 },
+            { name: "Software Development Life Cycle (SDLC)", level: 7 }
         ]
     },
     {
