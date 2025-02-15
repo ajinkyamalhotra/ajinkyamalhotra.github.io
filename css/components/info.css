@@ -82,3 +82,13 @@ body.light #infoPopup {
     font-size: 0.9rem;
     font-weight: normal;
 }
+
+#languagesChart {
+    width: 100% !important;
+    max-width: 400px;
+    height: 250px !important;
+    display: block;
+    margin: auto;
+    font-weight: bold;
+    color: #00ffcc;
+}

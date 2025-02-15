@@ -7,8 +7,9 @@
     <title>Ajinkya Malhotra Portfolio</title>
     <meta name="description" content="Ajinkya Malhotra's Portfolio website,
     showcasing projects and experience as a Software Engineer." />
-    <!-- Tailwind and Font Awesome CSS -->
+    <!-- Tailwind, chart.js and Font Awesome CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link
@@ -137,6 +138,17 @@
           id="versionSHA">Fetching...</span></p>
       <p><i class="fas fa-user"></i> Deployed By: <span
           id="versionDeployer">Fetching...</span></p>
+      <p><i class="fas fa-star"></i> Stars: <span
+          id="repoStars">Loading...</span></p>
+      <p><i class="fas fa-code-branch"></i> Forks: <span
+          id="repoForks">Loading...</span></p>
+      <p><i class="fas fa-exclamation-circle"></i> Open Issues: <span
+          id="repoIssues">Loading...</span></p>
+      <p><i class="fas fa-code-pull-request"></i> Open PRs: <span
+          id="repoPRs">Loading...</span></p>
+
+      <p><i class="fas fa-code"></i> Languages Used:</p>
+      <canvas id="languagesChart"></canvas>
     </div>
   </body>
 
