@@ -98,6 +98,49 @@ const experiences = [
         ]
     },
     {
+        type: "experience",
+        link: "https://www.esurance.com/",
+        period: "Aug 2019 - May 2020",
+        title: "Software Engineer at Esurance",
+        description:
+            "Designed, enhanced, and maintained APIs for integration with " +
+            "existing Esurance applications.",
+        tags: [
+            "✨ Java",
+            "✨ JUnit",
+            "✨ Splunk",
+            "CI/CD",
+            "MongoDB"
+        ]
+    },
+    {
+        type: "experience",
+        link: "https://www.vsp.com/",
+        period: "Jun 2018 - May 2019",
+        title: "Software Engineer Intern at VSP Vision Care",
+        description:
+            "Developed and executed selenium, smoke, and regression tests " +
+            "on the staging environment. Performed functional tests on four " +
+            "different web portal applications.",
+        tags: [
+            "✨ Java",
+            "✨ Scrum",
+            "QA",
+        ]
+    },
+    {
+        type: "experience",
+        link: "https://www.vsp.com/",
+        period: "Aug 2017 - May 2019",
+        title: "Teaching Assistant at Sac State",
+        description:
+            "Helped, guided, and graded students' assignments and answered " +
+            "questions during online discussions.",
+        tags: [
+            "✨ Advanced Computer 3D Graphics",
+        ]
+    },
+    {
         type: "resume",
         link: "resume.pdf",
         title: "View full Resume"
@@ -149,6 +192,56 @@ const projects = [
             "heap, with heap and Kruskals algorithm for performance " +
             "comparison.",
         tags: ["✨ Java", "Dijkstras", "Heap", "Kruskals"]
+    },
+    {
+        link:
+            "https://github.com/ajinkyamalhotra/Firearm-Classification",
+        period: "Oct 2019 - Dec 2019",
+        title: "Firearm Classification",
+        description:
+            "Designed a Neural Network (NN) using TFLearn to classify " +
+            "different types of firearms. Achieved 85% accurate results for " +
+            "1000 epochs using the Alex NET architecture.",
+        tags: ["✨ Python", "CNN", "TensorFlow", "TFLearn"]
+    },
+    {
+        link:
+            "https://github.com/ajinkyamalhotra/GpuProgrammingCuda/blob/" +
+            "master/TiledMatrixMultiplicationKernel.cu",
+        period: "May 2018",
+        title: "2D Tiled Image Convolution",
+        description:
+            "Implemented a tiled image convolution CUDA kernel which " +
+            "utilizes shared memory and constant memory. Input data is " +
+            "loaded/titled from global memory to shared memory, to reduce " +
+            "the number of reads. Constant memory is the fastest memory in a " +
+            "GPU grid and is used to store the constant mask data.",
+        tags: ["✨ CUDA", "C", "Parallel GPU Programming"]
+    },
+    {
+        link:
+            "https://github.com/ajinkyamalhotra/GpuProgrammingCuda/blob/" +
+            "master/HistogramKernel.cu",
+        period: "Apr 2018",
+        title: "Histogram",
+        description:
+            "Implemented an efficient Histogram algorithm using " +
+            "privatization technique for an input array of Integers. " +
+            "4096 Histogram bins use unsigned 32-bit counters that are " +
+            "saturated at 127.",
+        tags: ["✨ CUDA", "C", "Parallel GPU Programming"]
+    },
+    {
+        link:
+            "https://github.com/ajinkyamalhotra",
+        period: "Mar 2017 - Jul 2017 ",
+        title: "Attendance Tracker",
+        description:
+            "Created an application by using Google Sheets API to record " +
+            "attendance on Google docs spreadsheet. Developed a portal for " +
+            "students to register their attendance and for professors to " +
+            "keep track of attendance.",
+        tags: ["✨ Java", "Google Sheets API", "HTML/CSS", "JavaScript"]
     }
 ];
 
@@ -157,30 +250,81 @@ const skills = [
         name: "AWS",
         level: 9,
         subSkills: [
-            { name: "EC2", level: 8 },
-            { name: "ASG", level: 8 },
-            { name: "VPC", level: 8 },
-            { name: "AMI", level: 8 },
-            { name: "SNS", level: 8 },
-            { name: "SQS", level: 8 },
+            { name: "Lambda", level: 9 },
+            { name: "API Gateway", level: 9 },
+            { name: "SNS", level: 9 },
+            { name: "SQS", level: 9 },
+            { name: "IAM", level: 9 },
+            { name: "EC2", level: 9 },
             { name: "S3", level: 9 },
-            { name: "Lambda", level: 7.5 },
-            { name: "API Gateway", level: 8 },
+            { name: "RDS", level: 8 },
+            { name: "Connect", level: 6 },
+            { name: "Pinpoint", level: 6 },
+            { name: "CloudFormation", level: 8 }
         ]
     },
     {
         name: "Software Engineering",
         level: 9,
         subSkills: [
-            { name: "Object Oriented Programming", level: 8 },
+            { name: "Object Oriented Programming", level: 8.5 },
+            { name: "APIs", level: 8.5 },
             { name: "Scrum", level: 8 },
+            { name: "CI/CD", level: 8.5 },
+            { name: "Test Automation", level: 7.5 },
+            { name: "Software Development Life Cycle (SDLC)", level: 8 }
         ]
     },
-    { name: "Python", level: 9.5 },
-    { name: "Java", level: 8 },
-    { name: "Groovy", level: 7.5 },
-    { name: "Bash", level: 7 },
+    {
+        name: "Operating Systems",
+        level: 8,
+        subSkills: [
+            { name: "Windows", level: 8 },
+            { name: "Linux/Unix", level: 9 }
+        ]
+    },
+    {
+        name: "IDEs",
+        level: 8,
+        subSkills: [
+            { name: "Eclipse", level: 7.5 },
+            { name: "IntelliJ", level: 8.5 },
+            { name: "Visual Studio", level: 9 },
+            { name: "MySQL Workbench", level: 7 }
+        ]
+    },
+    {
+        name: "Algorithms & Data Structures",
+        level: 8.5,
+        subSkills: [
+            { name: "Dijkstra's Algorithm", level: 9 },
+            { name: "Kruskal's Algorithm", level: 9 },
+            { name: "Minimax Algorithm", level: 9 },
+            { name: "Alpha-Beta Pruning", level: 7.5 },
+            { name: "Depth Limited Search", level: 8.5 },
+            { name: "Iterative Deepening Search", level: 8.5 }
+        ]
+    },
+    {
+        name: "Machine Learning",
+        level: 5,
+        subSkills: [
+            { name: "TensorFlow", level: 5 },
+            { name: "TFLearn", level: 5 },
+            { name: "CNN (Convolutional Neural Networks)", level: 5 }
+        ]
+    },
+    { name: "Python", level: 8.5 },
+    { name: "Java", level: 9.5 },
+    { name: "JavaScript", level: 8 },
+    { name: "Groovy", level: 8.5 },
+    { name: "Bash", level: 7.7 },
+    { name: "SQL", level: 8 },
     { name: "Git", level: 8.5 },
-    { name: "HTML/CSS", level: 8 },
-    { name: "JavaScript", level: 8 }
+    { name: "Bitbucket", level: 7.5 },
+    { name: "Jira", level: 8 },
+    { name: "Confluence", level: 8 },
+    { name: "Jenkins", level: 8 },
+    { name: "Splunk", level: 7 },
+    { name: "Django", level: 7 },
 ];

@@ -41,7 +41,8 @@ export function getSkillsHTML(skills) {
                         <span class="text-sm font-medium text-gray-300 sub-skill-percentage" data-target="${sub.level}">0</span>
                       </div>
                       <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                        <div class="bg-teal-400 h-2.5 rounded-full sub-progress-bar" style="width: 0;"></div>
+                        <!-- Orange color for sub-skills progress bar with dark mode alternative -->
+                        <div class="bg-orange-400 dark:bg-orange-500 h-2.5 rounded-full sub-progress-bar" style="width: 0; transition: width 2s ease-in-out;"></div>
                       </div>
                     </div>
                   `
@@ -60,23 +61,64 @@ export function getSkillsHTML(skills) {
 }
 
 export function initSkillsComponent(container, skills) {
+  // Helper function to animate sub-skills for a single parent skill container.
+  function animateSubSkills(subContainer, skillData) {
+    // Animate sub-skill progress bars using CSS transitions.
+    subContainer.querySelectorAll(".sub-progress-bar").forEach((bar, index) => {
+      const subSkill = skillData.subSkills[index];
+      // Reset to 0% before animating (so re-expanding triggers the animation)
+      bar.style.width = "0%";
+      // A short delay to allow the reset to apply before animating
+      setTimeout(() => {
+        bar.style.width = subSkill.level * 10 + "%";
+      }, 50);
+    });
+
+    // Animate sub-skill percentages numerically
+    subContainer.querySelectorAll(".sub-skill-percentage").forEach((span, index) => {
+      const subSkill = skillData.subSkills[index];
+      const target = parseFloat(span.getAttribute("data-target"));
+      let current = 0;
+      const stepTime = 20;
+      const step = target / (2000 / stepTime);
+      const interval = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          current = target;
+          clearInterval(interval);
+        }
+        span.textContent = current.toFixed(1);
+      }, stepTime);
+    });
+  }
+
   // Attach event listeners for toggling individual sub-skills
   container.querySelectorAll('[data-has-subskills="true"]').forEach((skillItem) => {
     skillItem.addEventListener("click", () => {
       const subSkillsContainer = skillItem.querySelector(".sub-skills");
       if (subSkillsContainer) {
         const isHidden = subSkillsContainer.style.display === "none";
-        subSkillsContainer.style.display = isHidden ? "block" : "none";
-        // Rotate the arrow to indicate expanded/collapsed state
-        const arrow = skillItem.querySelector(".arrow");
-        if (arrow) {
-          arrow.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
-        }
-        // Toggle a class for additional styling if needed
         if (isHidden) {
+          subSkillsContainer.style.display = "block";
+          // Rotate the arrow to indicate expanded state
+          const arrow = skillItem.querySelector(".arrow");
+          if (arrow) arrow.style.transform = "rotate(180deg)";
           skillItem.classList.add("expanded-box");
+          // Animate sub-skills on every expand
+          const skillIndex = skillItem.getAttribute("data-index");
+          animateSubSkills(subSkillsContainer, skills[skillIndex]);
         } else {
+          // Collapse sub-skills and reset the progress bars and numbers
+          subSkillsContainer.style.display = "none";
+          const arrow = skillItem.querySelector(".arrow");
+          if (arrow) arrow.style.transform = "rotate(0deg)";
           skillItem.classList.remove("expanded-box");
+          subSkillsContainer.querySelectorAll(".sub-progress-bar").forEach((bar) => {
+            bar.style.width = "0";
+          });
+          subSkillsContainer.querySelectorAll(".sub-skill-percentage").forEach((span) => {
+            span.textContent = "0";
+          });
         }
       }
     });
@@ -105,10 +147,18 @@ export function initSkillsComponent(container, skills) {
           sub.style.display = "block";
           if (arrow) arrow.style.transform = "rotate(180deg)";
           parentSkill.classList.add("expanded-box");
+          const skillIndex = parentSkill.getAttribute("data-index");
+          animateSubSkills(sub, skills[skillIndex]);
         } else {
           sub.style.display = "none";
           if (arrow) arrow.style.transform = "rotate(0deg)";
           parentSkill.classList.remove("expanded-box");
+          sub.querySelectorAll(".sub-progress-bar").forEach((bar) => {
+            bar.style.width = "0";
+          });
+          sub.querySelectorAll(".sub-skill-percentage").forEach((span) => {
+            span.textContent = "0";
+          });
         }
       });
       // Update button icon and text based on the new state
@@ -120,9 +170,8 @@ export function initSkillsComponent(container, skills) {
     });
   }
 
-  // Animate progress bars and counters after a short delay
-  setTimeout(() => {
-    // Animate main skill progress bars and percentages
+  // Function to animate main skills progress bars and numbers
+  function animateProgressBars() {
     container.querySelectorAll(".progress-bar").forEach((bar, index) => {
       const skillLevel = skills[index].level;
       bar.style.width = skillLevel * 10 + "%";
@@ -142,32 +191,20 @@ export function initSkillsComponent(container, skills) {
         span.textContent = current.toFixed(1);
       }, stepTime);
     });
+  }
 
-    // Animate sub-skill progress bars and percentages
-    container.querySelectorAll(".sub-progress-bar").forEach((bar) => {
-      const parentSkillEl = bar.closest(".skill-item");
-      const skillIndex = parentSkillEl.getAttribute("data-index");
-      const subSkills = skills[skillIndex].subSkills;
-      const subSkillIndex = Array.from(
-        parentSkillEl.querySelectorAll(".sub-progress-bar")
-      ).indexOf(bar);
-      const subSkill = subSkills[subSkillIndex];
-      bar.style.width = subSkill.level * 10 + "%";
-    });
-
-    container.querySelectorAll(".sub-skill-percentage").forEach((span) => {
-      const target = parseFloat(span.getAttribute("data-target"));
-      let current = 0;
-      const stepTime = 20;
-      const step = target / (2000 / stepTime);
-      const interval = setInterval(() => {
-        current += step;
-        if (current >= target) {
-          current = target;
-          clearInterval(interval);
+  // Use an Intersection Observer to animate main skills when the container comes into view
+  const observer = new IntersectionObserver(
+    (entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateProgressBars();
+          observerInstance.disconnect();
         }
-        span.textContent = current.toFixed(1);
-      }, stepTime);
-    });
-  }, 500);
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  observer.observe(container);
 }

@@ -1,6 +1,6 @@
 /* Base style for each skill item */
 .skill-item {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 /* Style for the subtle box when a skill is expanded */
