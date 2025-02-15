@@ -1,7 +1,7 @@
 import { renderExperiences, renderProjects, renderSkills } from
   "./render/render.js";
 import { initTheme } from "./theme/theme.js";
-import { fetchDeploymentDetails } from "./api/github-deployment.js";
+import { invokeAPIsAndUpdateUI } from "./api/wrapper.js";
 import { scrollToSection, initNav } from "./components/nav.js";
 import { initContentSearch } from "./components/search.js";
 import { initSpotlight } from "./components/spotlight.js";
@@ -35,8 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentDiv = document.querySelector(".content");
   const matchCounter = document.getElementById("matchCounter");
 
-  // Fetch deployment details
-  fetchDeploymentDetails();
+  invokeAPIsAndUpdateUI();
 
   // Initialize theme, scroller and website-deployment info
   initTheme(themeToggle, document.body);
