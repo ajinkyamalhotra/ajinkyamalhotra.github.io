@@ -111,11 +111,8 @@
     position: absolute;
     top: 50%;
     right: -4rem;
-    /* -2.5rem instead of -40px */
     width: 4rem;
-    /* 2.5rem instead of 40px */
     height: 0.125rem;
-    /* about 2px if 1rem=16px */
     background: var(--accent-color);
     transform: translateY(-50%);
     opacity: 0.8;
@@ -126,9 +123,7 @@
     position: absolute;
     top: 50%;
     left: -4rem;
-    /* -2.5rem instead of -40px */
     width: 4rem;
-    /* 2.5rem instead of 40px */
     height: 0.125rem;
     background: var(--accent-color);
     transform: translateY(-50%);
@@ -196,7 +191,7 @@ body.light .timeline-year {
 /* --- Mobile Adjustments --- */
 @media (max-width: 768px) {
     .timeline-container::before {
-        left: 8%;
+        left: 50%;
     }
 
     .timeline-event {
@@ -210,6 +205,7 @@ body.light .timeline-year {
         float: none;
         width: 100%;
         transform: translateX(0);
+        margin: 0 auto;
     }
 
     /* On mobile, place the year marker below the card */

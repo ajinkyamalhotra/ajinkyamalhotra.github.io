@@ -15,7 +15,7 @@ export function initCardSearch(expSearchInput, projSearchInput, experiences,
             );
         });
         // Call render function with the container and filtered data
-        renderExperiences(expContainer, finalResults);
+        renderExperiences(expContainer, filteredExperiences);
     });
 
     // Project card filtering
