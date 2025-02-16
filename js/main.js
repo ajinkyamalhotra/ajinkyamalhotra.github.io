@@ -1,5 +1,6 @@
-import { renderExperiences, renderProjects, renderSkills } from
-  "./render/render.js";
+import {
+  renderExperiences, renderProjects, renderSkills, renderTimeline
+} from "./render/render.js";
 import { initTheme } from "./theme/theme.js";
 import { invokeAPIsAndUpdateUI } from "./api/wrapper.js";
 import { scrollToSection, initNav } from "./components/nav.js";
@@ -12,6 +13,7 @@ import { initSpotlightEffect } from "./animations/spotlightEffect.js";
 import { initBackToTop } from "./components/backToTop.js";
 import { initCardSearch } from "./components/cardSearch.js";
 import { populateSocialLinks } from "./components/social.js";
+import { setupTimelineToggle } from "./components/timeline.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Cache DOM elements
@@ -34,13 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const projSearchInput = document.getElementById("projectSearch");
   const contentDiv = document.querySelector(".content");
   const matchCounter = document.getElementById("matchCounter");
+  const timelineContainer = document.getElementById("timelineContainer");
+  const toggleBtn = document.getElementById("toggleSortBtn");
 
   invokeAPIsAndUpdateUI();
 
-  // Initialize theme, scroller and website-deployment info
+  // Initialize theme, scroller, website-deployment and timeline info
   initTheme(themeToggle, document.body);
   window.scrollToSection = scrollToSection;
   window.toggleInfoPopup = toggleInfoPopup;
+  window.timelineData = timelineData;
 
   // Populate header info, about sectiom and social links
   siteNameEl.textContent = siteData.name;
@@ -60,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderExperiences(expContainer, experiences);
   renderProjects(projContainer, projects);
   renderSkills(skills, skillsContainer);
+  renderTimeline(timelineContainer, window.timelineData);
 
   // Set initial active nav button
   document.getElementById("btn-section1").classList.add("nav-active");
@@ -81,4 +87,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initScroll(rightSection);
   initSpotlight();
   initSpotlightEffect();
+  setupTimelineToggle(toggleBtn, timelineContainer, window.timelineData);
 });

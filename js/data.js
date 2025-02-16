@@ -337,3 +337,49 @@ const skills = [
         ]
     },
 ];
+
+// New Timeline Data (for Timeline feature)
+const timelineData = [
+    {
+        title: "Bachelor's of Science in Computer Science",
+        period: "Jan 2015 - May 2019",
+        info: "Studied Computer Science at California State University.",
+        year: "2015"
+    },
+    {
+        title: "1st SDE Internship",
+        period: "June 2018 - May 2019",
+        info: "Got my first internship opporunity at VSP Vision Care.",
+        year: "2018"
+    },
+    {
+        title: "1st SDE Job",
+        period: "August 2019 - May 2020",
+        info: "Started my professional journey as a SDE at Esurance.",
+        year: "2019"
+    },
+    {
+        title: "Cloud Support Engineer at AWS",
+        period: "May 2020 - June 2022",
+        info: "Transitioned to AWS, where I took on advanced cloud/engineering challenges.",
+        year: "2020"
+    },
+    {
+        title: "Master's Degree in Computer Science",
+        period: "August 2022 - December 2023",
+        info: "Went back to school to gain my Master's in Computer Science at Texas A&M University.",
+        year: "2022"
+    },
+    {
+        title: "SDE Internship @ ARM",
+        period: "May 2023 - August 2023",
+        info: "While pursuing my masters degree, I interned at ARM as a SDE.",
+        year: "2023"
+    },
+    {
+        title: "SDE @ ARM",
+        period: "Jan 2024 - Present",
+        info: "Working as a Software Engineer at ARM, focusing on high-impact projects.",
+        year: "2024"
+    }
+];

@@ -1,0 +1,228 @@
+/* --- Timeline Container and Central Line --- */
+.timeline-container {
+    position: relative;
+    margin: 3rem auto;
+    padding: 2rem 0;
+    width: 90%;
+    opacity: 0;
+    /* initial state for animation */
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.timeline-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: var(--accent-color);
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: top;
+    transition: transform 1s ease-out;
+    opacity: 0.9;
+}
+
+.timeline-container.visible::before {
+    transform: translateX(-50%) scaleY(1);
+}
+
+/* --- Sort Toggle Button --- */
+#toggleSortBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+#toggleSortBtn:hover {
+    background: var(--hover-bg);
+}
+
+/* --- Timeline Event Wrapper --- */
+.timeline-event {
+    position: relative;
+    margin: 1.5rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.timeline-event.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Timeline Card --- */
+.timeline-card {
+    position: relative;
+    width: 45%;
+    padding: 1.5rem 2rem;
+    background: var(--card-bg);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.8s ease-out, background 0.3s ease;
+}
+
+/* When the parent event is visible, slide the card in */
+.timeline-event.visible .timeline-card.left {
+    transform: translateX(0);
+}
+
+.timeline-event.visible .timeline-card.right {
+    transform: translateX(0);
+}
+
+/* Initial state: cards are offset horizontally */
+.timeline-event.left .timeline-card {
+    float: left;
+    transform: translateX(-50px);
+}
+
+.timeline-event.right .timeline-card {
+    float: right;
+    transform: translateX(50px);
+}
+
+/* Highlighted state when year marker is hovered */
+.timeline-card.highlight {
+    transform: scale(1.05);
+    background: var(--hover-bg);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Connector line from card edge to year marker */
+.timeline-event.left .timeline-card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -4rem;
+    /* -2.5rem instead of -40px */
+    width: 4rem;
+    /* 2.5rem instead of 40px */
+    height: 0.125rem;
+    /* about 2px if 1rem=16px */
+    background: var(--accent-color);
+    transform: translateY(-50%);
+    opacity: 0.8;
+}
+
+.timeline-event.right .timeline-card::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -4rem;
+    /* -2.5rem instead of -40px */
+    width: 4rem;
+    /* 2.5rem instead of 40px */
+    height: 0.125rem;
+    background: var(--accent-color);
+    transform: translateY(-50%);
+    opacity: 0.8;
+}
+
+/* --- Year Marker --- */
+/* The year marker is now always centered on the vertical line */
+.timeline-year {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-bg);
+    color: var(--accent-color);
+    padding: 0.25rem 0.5rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    font-size: 0.9rem;
+    font-weight: bold;
+    z-index: 3;
+}
+
+body.light .timeline-year {
+    color: var(--accent-color) !important;
+    background: var(--primary-bg);
+    border-color: var(--accent-color);
+}
+
+/* --- Card Content Styling --- */
+.timeline-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.timeline-card .period {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+    color: var(--text-color);
+}
+
+.timeline-card .info {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--text-color);
+}
+
+/* Hover effect on card (if hovered directly) */
+.timeline-card:hover {
+    transform: scale(1.02);
+    background: var(--hover-bg);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Clear floats */
+.timeline-event::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* --- Mobile Adjustments --- */
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 8%;
+    }
+
+    .timeline-event {
+        width: 90%;
+        margin: 1.5rem auto;
+        transform: translateY(20px);
+    }
+
+    .timeline-event.left .timeline-card,
+    .timeline-event.right .timeline-card {
+        float: none;
+        width: 100%;
+        transform: translateX(0);
+    }
+
+    /* On mobile, place the year marker below the card */
+    .timeline-year {
+        position: relative;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        margin-top: 0.5rem;
+    }
+
+    .timeline-event.left .timeline-card::before,
+    .timeline-event.right .timeline-card::before {
+        display: none;
+    }
+}

@@ -1,5 +1,6 @@
 import { createCard, createProjectCard } from "../components/card.js";
 import { getSkillsHTML, initSkillsComponent } from "../components/skills.js";
+import { initTimeline } from "../components/timeline.js";
 
 export function renderExperiences(container, data) {
     container.innerHTML = "";
@@ -21,4 +22,8 @@ export function renderSkills(skills, container) {
 
     // Initialize component logic (event listeners, animations, etc.)
     initSkillsComponent(container, skills);
+}
+
+export function renderTimeline(container, timelineData) {
+    initTimeline(container, timelineData);
 }
