@@ -177,7 +177,9 @@ body {
     }
 
     #searchContainer,
-    #infoButton {
+    #infoButton,
+    #btn-sectionTimeline,
+    #sectionTimeline {
         display: none !important;
     }
 }
