@@ -29,11 +29,11 @@ function renderDetailedCard(item) {
           </span>
         </div>
       ` : ""}
-      <div class="flex gap-4 items-center">
-        <div class="text-gray-300 font-semibold w-1/4">
+      <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
+        <div class="text-gray-300 font-semibold w-full md:w-1/4">
           ${item.period || ""}
         </div>
-        <div class="w-3/4">
+        <div class="w-full md:w-3/4">
           <h3 class="text-lg font-bold text-gray-300 flex items-center gap-2">
             ${item.title}
             ${arrowIcon}
