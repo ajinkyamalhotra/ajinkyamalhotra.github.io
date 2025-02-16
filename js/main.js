@@ -1,6 +1,6 @@
 import {
   renderExperiences, renderProjects, renderSkills, renderTimeline,
-  renderEducations
+  renderEducations, renderApp
 } from "./render/render.js";
 import { initTheme } from "./theme/theme.js";
 import { invokeAPIsAndUpdateUI } from "./api/wrapper.js";
@@ -17,6 +17,11 @@ import { populateSocialLinks } from "./components/social.js";
 import { setupTimelineToggle } from "./components/timeline.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Use the existing #app div as our outer container.
+  const app = document.getElementById("app");
+  const appContent = renderApp();
+  app.appendChild(appContent);
+
   // Cache DOM elements
   const siteNameEl = document.getElementById("siteName");
   const jobTitleEl = document.getElementById("jobTitle");

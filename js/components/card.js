@@ -24,7 +24,7 @@ function renderDetailedCard(item) {
     <a href="${item.link}" target="_blank" class="card group block relative">
       ${markerIcon ? `
         <div class="absolute top-2 right-2">
-          <span class="bg-gray-700 text-white text-xs uppercase px-2 py-1 rounded">
+          <span class="text-white text-xs uppercase px-2 py-1 rounded">
             ${markerIcon}
           </span>
         </div>
