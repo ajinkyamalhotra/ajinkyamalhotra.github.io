@@ -1,5 +1,6 @@
 import {
-  renderExperiences, renderProjects, renderSkills, renderTimeline
+  renderExperiences, renderProjects, renderSkills, renderTimeline,
+  renderEducations
 } from "./render/render.js";
 import { initTheme } from "./theme/theme.js";
 import { invokeAPIsAndUpdateUI } from "./api/wrapper.js";
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const expContainer = document.getElementById("experienceContainer");
   const projContainer = document.getElementById("projectsContainer");
   const skillsContainer = document.getElementById("skillsContainer");
+  const eduContainer = document.getElementById("eduContainer");
   const preloader = document.getElementById("preloader");
   const themeToggle = document.getElementById("themeToggle");
   const backToTop = document.getElementById("backToTop");
@@ -64,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render Experiences/Projects cards and skills
   renderExperiences(expContainer, experiences);
   renderProjects(projContainer, projects);
+  renderEducations(eduContainer, educations);
   renderSkills(skills, skillsContainer);
   renderTimeline(timelineContainer, window.timelineData);
 

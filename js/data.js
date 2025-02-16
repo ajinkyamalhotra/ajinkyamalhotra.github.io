@@ -139,17 +139,13 @@ const experiences = [
         tags: [
             "✨ Advanced Computer 3D Graphics",
         ]
-    },
-    {
-        type: "resume",
-        link: "resume.pdf",
-        title: "View full Resume"
     }
 ];
 
 // Project data
 const projects = [
     {
+        type: "project",
         link:
             "https://github.com/ajinkyamalhotra/Steam-Game-Recommendation/",
         period: "Mar 2023 - May 2023",
@@ -170,6 +166,7 @@ const projects = [
         ]
     },
     {
+        type: "project",
         link: "https://github.com/ajinkyamalhotra/Chess-Master",
         period: "Feb 2023 - Apr 2023",
         title: "Chess Master",
@@ -181,6 +178,7 @@ const projects = [
         tags: ["✨ Java", "Minimax", "DLS", "IDS"]
     },
     {
+        type: "project",
         link:
             "https://github.com/ajinkyamalhotra/Network-Optimization-using-" +
             "Shortest-Path",
@@ -194,6 +192,7 @@ const projects = [
         tags: ["✨ Java", "Dijkstras", "Heap", "Kruskals"]
     },
     {
+        type: "project",
         link:
             "https://github.com/ajinkyamalhotra/Firearm-Classification",
         period: "Oct 2019 - Dec 2019",
@@ -205,6 +204,7 @@ const projects = [
         tags: ["✨ Python", "CNN", "TensorFlow", "TFLearn"]
     },
     {
+        type: "project",
         link:
             "https://github.com/ajinkyamalhotra/GpuProgrammingCuda/blob/" +
             "master/TiledMatrixMultiplicationKernel.cu",
@@ -219,6 +219,7 @@ const projects = [
         tags: ["✨ CUDA", "C", "Parallel GPU Programming"]
     },
     {
+        type: "project",
         link:
             "https://github.com/ajinkyamalhotra/GpuProgrammingCuda/blob/" +
             "master/HistogramKernel.cu",
@@ -232,6 +233,7 @@ const projects = [
         tags: ["✨ CUDA", "C", "Parallel GPU Programming"]
     },
     {
+        type: "project",
         link:
             "https://github.com/ajinkyamalhotra",
         period: "Mar 2017 - Jul 2017 ",
@@ -383,3 +385,27 @@ const timelineData = [
         year: "2024"
     }
 ];
+
+// Education data
+const educations = [
+    {
+        type: "education",
+        link:
+            "https://tamu.edu",
+        period: "Aug 2022 - Dec 2023",
+        title: "Master's in Computer Science",
+        description:
+            "Studied Computer Science at Texas A&M University - College Station",
+        tags: []
+    },
+    {
+        type: "education",
+        link:
+            "https://csus.edu",
+        period: "Jan 2015 - May 2019",
+        title: "Bachelor's of Science in Computer Science",
+        description:
+            "Studied Computer Science at California State University - Sacramento",
+        tags: []
+    },
+]

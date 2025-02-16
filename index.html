@@ -69,13 +69,17 @@
               id="btn-section4">
               <i class="fas fa-chart-bar"></i> Skills
             </button>
+            <button class="nav-button" onclick="scrollToSection('section5')"
+              id="btn-section5">
+              <i class="fas fa-graduation-cap"></i> Education
+            </button>
             <!-- New Timeline Tab -->
             <button class="nav-button"
               onclick="scrollToSection('sectionTimeline')"
               id="btn-sectionTimeline">
               <i class="fas fa-stream"></i> Timeline
             </button>
-            <a class="nav-button" id="btn-section5" href="resume.pdf"
+            <a class="nav-button" id="btn-resume" href="resume.pdf"
               target="_blank" aria-label="Resume" title="View Resume">
               <i class="fas fa-file-alt"></i> Resume
             </a>
@@ -116,7 +120,16 @@
           <section id="section4"
             class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
             <br />
-            <div id="skillsContainer"></div>
+            <div class="space-y-6 w-full max-w-4xl" id="skillsContainer">
+              <!-- Skills cards will be injected here -->
+            </div>
+          </section>
+          <section id="section5"
+            class="fade-in mb-10 p-6 border-t border-gray-300 mt-4">
+            <br />
+            <div class="space-y-6 w-full max-w-4xl" id="eduContainer">
+              <!-- Education cards will be injected here -->
+            </div>
           </section>
           <!-- New Timeline Section -->
           <section id="sectionTimeline"

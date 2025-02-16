@@ -1,4 +1,4 @@
-import { createCard, createProjectCard } from "../components/card.js";
+import { createCard } from "../components/card.js";
 import { getSkillsHTML, initSkillsComponent } from "../components/skills.js";
 import { initTimeline } from "../components/timeline.js";
 
@@ -12,7 +12,14 @@ export function renderExperiences(container, data) {
 export function renderProjects(container, data) {
     container.innerHTML = "";
     data.forEach(item => {
-        container.insertAdjacentHTML("beforeend", createProjectCard(item));
+        container.insertAdjacentHTML("beforeend", createCard(item));
+    });
+}
+
+export function renderEducations(container, data) {
+    container.innerHTML = "";
+    data.forEach(item => {
+        container.insertAdjacentHTML("beforeend", createCard(item));
     });
 }
 

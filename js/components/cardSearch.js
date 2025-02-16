@@ -14,12 +14,6 @@ export function initCardSearch(expSearchInput, projSearchInput, experiences,
                     tag => tag.toLowerCase().includes(query)))
             );
         });
-        // Always include the resume card if it exists.
-        const resumeCard = experiences.find(exp => exp.type === "resume");
-        let finalResults = filteredExperiences;
-        if (resumeCard) {
-            finalResults.push(resumeCard);
-        }
         // Call render function with the container and filtered data
         renderExperiences(expContainer, finalResults);
     });
