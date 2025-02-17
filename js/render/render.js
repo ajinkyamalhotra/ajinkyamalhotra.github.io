@@ -6,7 +6,7 @@ import { initTimeline } from "../components/timeline.js";
 import { logAction } from "../logger.js";
 
 export function renderExperiences(container, data) {
-    logAction("Rendering experiences", () => {
+    logAction(`${renderExperiences.name}()`, () => {
         container.innerHTML = "";
         data.forEach(item => {
             container.insertAdjacentHTML("beforeend", createCard(item));
@@ -15,7 +15,7 @@ export function renderExperiences(container, data) {
 }
 
 export function renderProjects(container, data) {
-    logAction("Rendering projects", () => {
+    logAction(`${renderProjects.name}()`, () => {
         container.innerHTML = "";
         data.forEach(item => {
             container.insertAdjacentHTML("beforeend", createCard(item));
@@ -24,7 +24,7 @@ export function renderProjects(container, data) {
 }
 
 export function renderEducations(container, data) {
-    logAction("Rendering education cards", () => {
+    logAction(`${renderEducations.name}()`, () => {
         container.innerHTML = "";
         data.forEach(item => {
             container.insertAdjacentHTML("beforeend", createCard(item));
@@ -34,7 +34,7 @@ export function renderEducations(container, data) {
 
 export function renderSkills(skills, container) {
     // Get the HTML for the skills component from the component module
-    logAction("Rendering skills", () => {
+    logAction(`${renderSkills.name}()`, () => {
         container.innerHTML = getSkillsHTML(skills);
 
         // Initialize component logic (event listeners, animations, etc.)
@@ -43,18 +43,18 @@ export function renderSkills(skills, container) {
 }
 
 export function renderTimeline(container, timelineData) {
-    logAction("Rendering timeline", () => {
+    logAction(`${renderTimeline.name}()`, () => {
         initTimeline(container, timelineData);
     });
 }
 
 /**
- * Combines all components to render the entire application's stage one.
- * Uses the existing #app div as the container.
+ * Combines all components to render the entire application's initial state.
+ * @returns all combined components
  */
 export function renderApp() {
     // Create a fragment to build the app
-    return logAction("Rendering the full app", () => {
+    return logAction(`${renderApp.name}()`, () => {
         const fragment = document.createDocumentFragment();
 
         // Append the components in order
@@ -93,7 +93,7 @@ export function renderApp() {
 
 // Preloader
 function renderPreloader() {
-    return logAction("Rendering preloader", () => {
+    return logAction(`${renderPreloader.name}()`, () => {
         const preloader = document.createElement("div");
         preloader.id = "preloader";
         const loader = document.createElement("div");
@@ -105,7 +105,7 @@ function renderPreloader() {
 
 // Theme Toggle (Light/Dark)
 function renderThemeToggle() {
-    return logAction("Rendering theme toggle", () => {
+    return logAction(`${renderThemeToggle.name}()`, () => {
         const container = document.createElement("div");
         container.id = "themeToggleContainer";
 
@@ -137,7 +137,7 @@ function renderThemeToggle() {
 
 // Sidebar (Left column)
 function renderSidebar() {
-    return logAction("Rendering sidebar", () => {
+    return logAction(`${renderSidebar.name}()`, () => {
         const aside = document.createElement("aside");
         aside.id = "leftSidebar";
         aside.className = "w-1/3 text-white p-6 flex flex-col";
@@ -230,7 +230,7 @@ function renderSidebar() {
 
 // Main Content (Right column)
 function renderMainContent() {
-    return logAction("Rendering main content area", () => {
+    return logAction(`${renderMainContent.name}()`, () => {
         const main = document.createElement("main");
         main.id = "rightSection";
         main.className = "w-2/3 overflow-y-auto p-6 h-full custom-scrollbar";
@@ -314,7 +314,7 @@ function renderMainContent() {
 
 // Extra UI Elements (Back-to-Top, Global Search, Info Popup)
 function renderExtraUI() {
-    return logAction("Rendering extra UI elements", () => {
+    return logAction(`${renderExtraUI.name}()`, () => {
         const container = document.createElement("div");
 
         // Back to Top Button

@@ -7,19 +7,17 @@ import { logAction } from "../logger.js";
  * @param {Object} languagesData - Object mapping languages to number of bytes.
  */
 export function renderLanguagesChart(canvasEl, languagesData) {
-    logAction("Render Languages Chart: Begin", () => {
+    logAction(`${renderLanguagesChart.name}()`, () => {
         // Calculate percentages
         const totalBytes = Object.values(languagesData).reduce((a, b) => a + b, 0);
         const languageLabels = [];
         const languageValues = [];
 
-        logAction("Calculate language percentages", () => {
-            for (let [lang, bytes] of Object.entries(languagesData)) {
-                const percentage = ((bytes / totalBytes) * 100).toFixed(2);
-                languageLabels.push(lang);
-                languageValues.push(parseFloat(percentage));
-            }
-        });
+        for (let [lang, bytes] of Object.entries(languagesData)) {
+            const percentage = ((bytes / totalBytes) * 100).toFixed(2);
+            languageLabels.push(lang);
+            languageValues.push(parseFloat(percentage));
+        }
 
         // Helper: determine theme colors based on body class
         function getThemeColors() {
@@ -29,79 +27,69 @@ export function renderLanguagesChart(canvasEl, languagesData) {
         }
 
         // Determine theme colors
-        let themeColors = logAction("Determine theme colors", () => getThemeColors());
+        let themeColors = getThemeColors();
 
-        // Destroy existing chart if it exists
-        logAction("Destroy existing chart if it exists", () => {
-            if (window.languageChart) {
-                window.languageChart.destroy();
-            }
-        });
+        if (window.languageChart) {
+            window.languageChart.destroy();
+        }
 
         const ctx = canvasEl.getContext("2d");
-        // Create new chart instance
-        logAction("Create new Chart instance", () => {
-            window.languageChart = new Chart(ctx, {
-                type: "bar",
-                data: {
-                    labels: languageLabels,
-                    datasets: [{
-                        label: "Languages Usage (%)",
-                        data: languageValues,
-                        backgroundColor: "#00ffcc",
-                        borderColor: "#00ffcc",
-                        borderWidth: 2,
-                        borderRadius: 6,
-                        barThickness: 20
-                    }]
+        window.languageChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: languageLabels,
+                datasets: [{
+                    label: "Languages Usage (%)",
+                    data: languageValues,
+                    backgroundColor: "#00ffcc",
+                    borderColor: "#00ffcc",
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    barThickness: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: themeColors.text,
+                            font: { size: 14 }
+                        }
+                    }
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            display: true,
-                            labels: {
-                                color: themeColors.text,
-                                font: { size: 14 }
-                            }
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            color: themeColors.text,
+                            font: { size: 12 }
                         }
                     },
-                    scales: {
-                        x: {
-                            grid: { display: false },
-                            ticks: {
-                                color: themeColors.text,
-                                font: { size: 12 }
-                            }
-                        },
-                        y: {
-                            grid: { color: themeColors.grid },
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 10,
-                                color: themeColors.text,
-                                font: { size: 12 },
-                                callback: function (value) {
-                                    return value + "%";
-                                }
+                    y: {
+                        grid: { color: themeColors.grid },
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 10,
+                            color: themeColors.text,
+                            font: { size: 12 },
+                            callback: function (value) {
+                                return value + "%";
                             }
                         }
                     }
                 }
-            });
+            }
         });
-
-        // Set up an observer to update chart colors when the theme changes
-        logAction("Set up MutationObserver for theme changes", () => {
-            const observer = new MutationObserver(() => {
-                themeColors = getThemeColors();
-                window.languageChart.options.plugins.legend.labels.color = themeColors.text;
-                window.languageChart.options.scales.x.ticks.color = themeColors.text;
-                window.languageChart.options.scales.y.ticks.color = themeColors.text;
-                window.languageChart.options.scales.y.grid.color = themeColors.grid;
-                window.languageChart.update();
-            });
-            observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+        const observer = new MutationObserver(() => {
+            themeColors = getThemeColors();
+            window.languageChart.options.plugins.legend.labels.color = themeColors.text;
+            window.languageChart.options.scales.x.ticks.color = themeColors.text;
+            window.languageChart.options.scales.y.ticks.color = themeColors.text;
+            window.languageChart.options.scales.y.grid.color = themeColors.grid;
+            window.languageChart.update();
         });
+        observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
     });
 }

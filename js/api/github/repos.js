@@ -1,13 +1,18 @@
 // js/api/github/repos.js
-import { fetchData, fetchPaginatedData, BASE_URL, GITHUB_USERNAME, GITHUB_REPO, HEADERS } from './common.js';
+import { fetchData, BASE_URL, GITHUB_USERNAME, GITHUB_REPO, HEADERS } from './common.js';
+import {
+    logAction, logActionAsync
+} from "../../logger.js";
 
 /**
  * Fetch repository details.
  * @returns {Promise<Object>} - Repository details.
  */
 export async function fetchRepoDetails() {
-    const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}`;
-    return fetchData(url, HEADERS);
+    return await logActionAsync(`${fetchRepoDetails.name}()`, async () => {
+        const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}`;
+        return fetchData(url, HEADERS);
+    });
 }
 
 /**
@@ -15,12 +20,11 @@ export async function fetchRepoDetails() {
  * @returns {Promise<Array>} - Array of open issues.
  */
 export async function fetchRepoIssues() {
-    const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?state=open`;
-    const issues = await fetchData(url, HEADERS);
-    if (issues.error) {
-        throw new Error("GitHub API rate limit exceeded for issues!");
-    }
-    return issues;
+    return await logActionAsync(`${fetchRepoIssues.name}()`, async () => {
+        const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}/issues?state=open`;
+        const issues = await fetchData(url, HEADERS);
+        return issues;
+    });
 }
 
 /**
@@ -28,12 +32,11 @@ export async function fetchRepoIssues() {
  * @returns {Promise<Array>} - Array of open pull requests.
  */
 export async function fetchRepoPRs() {
-    const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}/pulls?state=open`;
-    const prs = await fetchData(url, HEADERS);
-    if (prs.error) {
-        throw new Error("GitHub API rate limit exceeded for pull requests!");
-    }
-    return prs;
+    return await logActionAsync(`${fetchRepoPRs.name}()`, async () => {
+        const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}/pulls?state=open`;
+        const prs = await fetchData(url, HEADERS);
+        return prs;
+    });
 }
 
 /**
@@ -41,6 +44,8 @@ export async function fetchRepoPRs() {
  * @returns {Promise<Object>} - Object mapping languages to bytes.
  */
 export async function fetchRepoLanguages() {
-    const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}/languages`;
-    return fetchData(url, HEADERS);
+    return await logActionAsync(`${fetchRepoLanguages.name}()`, async () => {
+        const url = `${BASE_URL}/${GITHUB_USERNAME}/${GITHUB_REPO}/languages`;
+        return fetchData(url, HEADERS);
+    });
 }

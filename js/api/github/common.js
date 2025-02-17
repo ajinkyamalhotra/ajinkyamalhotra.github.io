@@ -23,7 +23,7 @@ export const HEADERS = GITHUB_TOKEN
  * @returns {Promise<Array>} - Returns an array with all data from paginated calls.
  */
 export async function fetchPaginatedData(baseUrl, headers = HEADERS, perPage = 100) {
-    return await logActionAsync("fetchPaginatedData", async () => {
+    return await logActionAsync(`${fetchPaginatedData.name}()`, async () => {
         let page = 1;
         let allData = [];
 
@@ -31,7 +31,7 @@ export async function fetchPaginatedData(baseUrl, headers = HEADERS, perPage = 1
             const url = `${baseUrl}?page=${page}&per_page=${perPage}`;
             const response = await fetch(url, { headers });
 
-            if (response.status === 403) {// API rate limit exceeded
+            if (response.status === 403) {
                 console.warn("GitHub API rate limit exceeded!");
                 document.getElementById("infoPopup").innerHTML = `
             <p><i class="fas fa-exclamation-triangle"></i>
@@ -62,7 +62,7 @@ export async function fetchPaginatedData(baseUrl, headers = HEADERS, perPage = 1
  * @returns {Promise<any>} - Returns the parsed JSON response.
  */
 export async function fetchData(url, headers = HEADERS) {
-    return await logActionAsync("fetchData", async () => {
+    return await logActionAsync(`${fetchData.name}()`, async () => {
         const response = await fetch(url, { headers });
         if (response.status === 403) {// API rate limit exceeded
             console.warn("GitHub API rate limit exceeded!");

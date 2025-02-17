@@ -6,7 +6,7 @@ import {
   renderEducations, renderApp
 } from "./render/render.js";
 import { initTheme } from "./theme/theme.js";
-import { invokeAPIsAndUpdateUI } from "./api/wrapper.js";
+import { githubApiWrapper } from "./api/wrapper.js";
 import { scrollToSection, initNav } from "./components/nav.js";
 import { initContentSearch } from "./components/search.js";
 import { initSpotlight } from "./components/spotlight.js";
@@ -15,20 +15,16 @@ import { initFadeIn } from "./animations/fadeIn.js";
 import { initScroll } from "./animations/scroll.js";
 import { initBackToTop } from "./components/backToTop.js";
 import { initCardSearch } from "./components/cardSearch.js";
-import { populateSocialLinks } from "./components/social.js";
+import { populateSocialLinks, populateInfo } from "./components/misc.js";
 import { setupTimelineToggle } from "./components/timeline.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   // Use the existing #app div as our outer container.
   logAction("DOMContentLoaded event", () => {
-    // Render the main app structure.
+    // Render the main app structure and caches DOM elements
     const app = document.getElementById("app");
-    logAction("Rendering app structure", () => {
-      const appContent = renderApp();
-      app.appendChild(appContent);
-    });
-
-    // Cache DOM elements
+    const appContent = renderApp();
+    app.appendChild(appContent);
     const siteNameEl = document.getElementById("siteName");
     const jobTitleEl = document.getElementById("jobTitle");
     const taglineEl = document.getElementById("tagline");
@@ -52,60 +48,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const timelineContainer = document.getElementById("timelineContainer");
     const toggleBtn = document.getElementById("toggleSortBtn");
 
-    // Invoke APIs and update UI.
-    logAction("Invoking APIs and updating UI", () => {
-      invokeAPIsAndUpdateUI();
-    });
+    // Calling Github API, Initialize theme, scroll func, and timeline data.
+    githubApiWrapper();
+    initTheme(themeToggle, document.body);
+    window.scrollToSection = scrollToSection;
+    window.toggleInfoPopup = toggleInfoPopup;
+    window.timelineData = timelineData;
 
-    // Initialize theme, scroll functions, and timeline data.
-    logAction("Initializing theme", () => {
-      initTheme(themeToggle, document.body);
-      window.scrollToSection = scrollToSection;
-      window.toggleInfoPopup = toggleInfoPopup;
-      window.timelineData = timelineData; // Ensure timelineData is defined.
-    });
-
-    // Populate header info and about section.
-    logAction("Populating header and about section", () => {
-      siteNameEl.textContent = siteData.name;
-      jobTitleEl.textContent = siteData.jobTitle;
-      taglineEl.textContent = siteData.tagline;
-      const frag = document.createDocumentFragment();
-      siteData.about.forEach(paragraph => {
-        const p = document.createElement("p");
-        p.className = "mb-4 text-lg";
-        p.textContent = paragraph;
-        frag.appendChild(p);
-      });
-      aboutEl.appendChild(frag);
-    });
-
-    // Populate social links.
-    logAction("Populating social links", () => {
-      populateSocialLinks(socialContainerEl, siteData.socialLinks);
-    });
-
-    // Render experiences, projects, education, skills, and timeline.
-    logAction("Rendering experiences", () => {
-      renderExperiences(expContainer, experiences);
-    });
-    logAction("Rendering projects", () => {
-      renderProjects(projContainer, projects);
-    });
-    logAction("Rendering education details", () => {
-      renderEducations(eduContainer, educations);
-    });
-    logAction("Rendering skills", () => {
-      renderSkills(skills, skillsContainer);
-    });
-    logAction("Rendering timeline", () => {
-      renderTimeline(timelineContainer, window.timelineData);
-    });
-
-    // Set initial active nav button
-    logAction("Setting active navigation button", () => {
-      document.getElementById("btn-section1").classList.add("nav-active");
-    });
+    // Start populating/rendering website UI elements.
+    populateInfo(siteNameEl, jobTitleEl, taglineEl, siteData, aboutEl);
+    populateSocialLinks(socialContainerEl, siteData.socialLinks);
+    renderExperiences(expContainer, experiences);
+    renderProjects(projContainer, projects);
+    renderEducations(eduContainer, educations);
+    renderSkills(skills, skillsContainer);
+    renderTimeline(timelineContainer, window.timelineData);
+    document.getElementById("btn-section1").classList.add("nav-active");
 
     // Remove preloader with fade-out animation.
     if (preloader) {
@@ -121,32 +79,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initialize features
-    logAction("Initializing Back to Top button", () => {
-      initBackToTop(backToTop, rightSection);
-    });
-    logAction("Initializing card search", () => {
-      initCardSearch(expSearchInput, projSearchInput, experiences,
-        projects, expContainer, projContainer);
-    });
-    logAction("Initializing content search", () => {
-      initContentSearch(
-        { searchContainer, searchIcon, searchBox, contentDiv, matchCounter });
-    });
-    logAction("Initializing navigation", () => {
-      initNav(rightSection);
-    });
-    logAction("Initializing fade-in animations", () => {
-      initFadeIn();
-    });
-    logAction("Initializing scroll animations", () => {
-      initScroll(rightSection);
-    });
-    logAction("Initializing spotlight", () => {
-      initSpotlight();
-    });
-    logAction("Setting up timeline toggle", () => {
-      setupTimelineToggle(toggleBtn, timelineContainer, window.timelineData);
-    });
+    initBackToTop(backToTop, rightSection);
+    initCardSearch(expSearchInput, projSearchInput, experiences,
+      projects, expContainer, projContainer);
+    initContentSearch(
+      { searchContainer, searchIcon, searchBox, contentDiv, matchCounter });
+    initNav(rightSection);
+    initFadeIn();
+    initScroll(rightSection);
+    initSpotlight();
+    setupTimelineToggle(toggleBtn, timelineContainer, window.timelineData);
   });
 
   // After initialization, report any tasks that were started but never finished

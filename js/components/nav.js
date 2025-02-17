@@ -1,21 +1,29 @@
 import { debounce } from "../utils/debounce.js";
+import {
+    logAction
+} from "../logger.js";
 
 export function scrollToSection(id) {
-    const section = document.getElementById(id);
-    if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-        updateActiveNav(id);
-    }
+    logAction(`${scrollToSection.name}()`, () => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+            updateActiveNav(id);
+        }
+    });
 }
 
 export function updateActiveNav(activeId) {
-    const navButtons = document.querySelectorAll(".nav-button");
-    navButtons.forEach(btn => btn.classList.remove("nav-active"));
-    const target = document.getElementById("btn-" + activeId);
-    if (target) target.classList.add("nav-active");
+    logAction(`${updateActiveNav.name}()`, () => {
+        const navButtons = document.querySelectorAll(".nav-button");
+        navButtons.forEach(btn => btn.classList.remove("nav-active"));
+        const target = document.getElementById("btn-" + activeId);
+        if (target) target.classList.add("nav-active");
+    });
 }
 
 export function updateNavOnScroll(rightSection) {
+    // Do not log this method
     const sections = document.querySelectorAll(".fade-in");
     const navButtons = document.querySelectorAll(".nav-button");
     let closestSectionIndex = 0;
@@ -44,28 +52,30 @@ export function updateNavOnScroll(rightSection) {
 }
 
 export function initNav(rightSection) {
-    // Update nav on document scroll
-    document.addEventListener("scroll", debounce(() => {
-        const sections = document.querySelectorAll(".fade-in");
-        const navButtons = document.querySelectorAll(".nav-button");
-        sections.forEach((section, index) => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-                navButtons.forEach(btn => btn.classList.remove("nav-active"));
-                navButtons[index].classList.add("nav-active");
+    logAction(`${initNav.name}()`, () => {
+        // Update nav on document scroll
+        document.addEventListener("scroll", debounce(() => {
+            const sections = document.querySelectorAll(".fade-in");
+            const navButtons = document.querySelectorAll(".nav-button");
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+                    navButtons.forEach(btn => btn.classList.remove("nav-active"));
+                    navButtons[index].classList.add("nav-active");
+                }
+            });
+        }, 100));
+
+        // Update nav on rightSection scroll
+        let ticking = false;
+        rightSection.addEventListener("scroll", () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateNavOnScroll(rightSection);
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
-    }, 100));
-
-    // Update nav on rightSection scroll
-    let ticking = false;
-    rightSection.addEventListener("scroll", () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                updateNavOnScroll(rightSection);
-                ticking = false;
-            });
-            ticking = true;
-        }
     });
 }
