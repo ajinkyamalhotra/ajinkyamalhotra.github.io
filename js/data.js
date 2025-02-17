@@ -4,7 +4,11 @@
 const siteData = {
     name: "Ajinkya Malhotra",
     jobTitle: "Software Engineer @ ARM",
-    tagline: "I code.",
+    taglines: [
+        "I code.",
+        "I design.",
+        "I innovate."
+    ],
     about: [
         `I am a passionate software engineer with a knack for solving ` +
         `complex problems and crafting creative solutions. With a ` +

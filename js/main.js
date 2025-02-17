@@ -91,6 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
     setupTimelineToggle(toggleBtn, timelineContainer, window.timelineData);
   });
 
+  // After the DOM/APP are built, restore scroll position on the container.
+  const savedScroll = sessionStorage.getItem('scrollPosition');
+  if (savedScroll) {
+    requestAnimationFrame(() => {
+      const rightSection = document.getElementById("rightSection");
+      if (rightSection) {
+        rightSection.scrollTop = parseInt(savedScroll, 10);
+        console.log("Container scroll position restored to:", savedScroll);
+      }
+    });
+  }
+
   // After initialization, report any tasks that were started but never finished
   // We delay this report by 1 second to allow asynchronous tasks to complete.
   setTimeout(() => {

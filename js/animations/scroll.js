@@ -11,5 +11,13 @@ export function initScroll(rightSection) {
                 behavior: "smooth"
             });
         });
+        // Update sessionStorage on every scroll of the container.
+        rightSection.addEventListener('scroll', () => {
+            sessionStorage.setItem('scrollPosition', rightSection.scrollTop);
+        });
+        // Save scroll position on beforeunload as a backup.
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.setItem('scrollPosition', rightSection.scrollTop);
+        });
     });
 }

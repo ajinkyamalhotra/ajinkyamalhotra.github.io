@@ -160,7 +160,7 @@ function renderSidebar() {
 
         const tagline = document.createElement("p");
         tagline.id = "tagline";
-        tagline.className = "mb-6 text-2xl font-normal text-gray-400";
+        tagline.className = "mb-2 text-2xl font-normal text-cyan-300 italic min-h-[2.5rem] truncate";
         header.appendChild(tagline);
 
         aside.appendChild(header);
