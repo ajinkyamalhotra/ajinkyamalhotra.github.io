@@ -362,6 +362,9 @@ function renderExtraUI() {
         container.appendChild(backToTopContainer);
 
         // Hidden Deployment Details (Info Popup)
+        // Removed commit_SHA from pop-up due to UI reasons:
+        //<p><i class="fas fa-terminal"></i> Commit SHA: <span
+        //id="versionSHA">Fetching...</span></p>
         const infoPopup = document.createElement("div");
         infoPopup.id = "infoPopup";
         infoPopup.innerHTML = `
@@ -369,8 +372,6 @@ function renderExtraUI() {
       id="versionCount">Loading...</span></p>
       <p><i class="far fa-clock"></i> Last Updated: <span
       id="versionDate">Fetching...</span></p>
-      <p><i class="fas fa-terminal"></i> Commit SHA: <span
-      id="versionSHA">Fetching...</span></p>
       <p><i class="fas fa-user"></i> Deployed By: <span
       id="versionDeployer">Fetching...</span></p>
       <p><i class="fas fa-star"></i> Stars: <span

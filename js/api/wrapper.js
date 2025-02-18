@@ -16,7 +16,7 @@ export async function githubApiWrapper() {
             // Caching
             window._versionElement = document.getElementById("versionCount");
             window._dateElement = document.getElementById("versionDate");
-            window._shaElement = document.getElementById("versionSHA");
+            //window._shaElement = document.getElementById("versionSHA");
             window._deployerElement = document.getElementById("versionDeployer");
             window._starsElement = document.getElementById("repoStars");
             window._forksElement = document.getElementById("repoForks");
@@ -25,7 +25,7 @@ export async function githubApiWrapper() {
             window._languagesChartEl = document.getElementById("languagesChart");
             const versionElement = window._versionElement;
             const dateElement = window._dateElement;
-            const shaElement = window._shaElement;
+            //const shaElement = window._shaElement;
             const deployerElement = window._deployerElement;
             const starsElement = window._starsElement;
             const forksElement = window._forksElement;
@@ -36,7 +36,7 @@ export async function githubApiWrapper() {
             // Setting initial state without data
             versionElement.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`;
             dateElement.innerHTML = "Fetching...";
-            shaElement.innerHTML = "Fetching...";
+            //shaElement.innerHTML = "Fetching...";
             deployerElement.innerHTML = "Fetching...";
             starsElement.innerHTML = "Loading...";
             forksElement.innerHTML = "Loading...";
@@ -69,8 +69,8 @@ export async function githubApiWrapper() {
                     `<span class="fancy-number">${count}</span>`;
                 dateElement.innerHTML =
                     `<span class="date-text">${formattedDate} EST</span>`;
-                shaElement.innerHTML =
-                    `<span class="geek-text">${commitSHA}</span>`;
+                //shaElement.innerHTML =
+                //    `<span class="geek-text">${commitSHA}</span>`;
                 deployerElement.innerHTML =
                     `<span class="geek-text">${deployer}</span>`;
                 starsElement.innerHTML =
