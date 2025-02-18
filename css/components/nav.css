@@ -15,7 +15,6 @@
     align-items: center;
     gap: 10px;
     background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
     color: var(--text-color);
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
@@ -30,27 +29,29 @@
 }
 
 .nav-button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--accent-color);
+    color: var(--accent-color);
     transform: translateX(5px);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .nav-button.nav-active {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: var(--accent-color);
+    color: var(--accent-color);
     font-weight: bold;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
-.nav-button.nav-active::after {
+.nav-button::after {
     content: "";
     display: block;
-    width: 100%;
+    width: 0;
     height: 2px;
     background: linear-gradient(90deg, var(--accent-color), transparent);
     margin-top: 5px;
     transition: width 0.3s ease-in-out;
+    color: var(--accent-color)
+}
+
+.nav-button:hover::after,
+.nav-button.nav-active::after {
+    width: 100%;
 }
 
 /* Sidebar and Header Text */

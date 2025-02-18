@@ -183,7 +183,7 @@ body {
     #leftSidebar,
     #rightSection {
         width: 100% !important;
-        padding: 1rem !important;
+        padding: 0.25rem !important;
     }
 
     #rightSection {
@@ -197,8 +197,8 @@ body {
     }
 
     .card {
-        border-radius: 0.5rem;
-        padding: 1rem;
+        border-radius: 0.125rem;
+        padding: 0.25rem;
     }
 
     #searchContainer,
