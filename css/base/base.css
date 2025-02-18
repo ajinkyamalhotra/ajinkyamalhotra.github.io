@@ -94,15 +94,6 @@ body {
     transform: translateX(-50%) scale(1.1);
 }
 
-/* Global Icon and Progress Bar Animations */
-.progress-bar {
-    transition: width 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    background: var(--accent-color);
-    background-size: 200% 100%;
-    animation: gradientShift 3s linear infinite;
-    box-shadow: 0 0 10px rgba(56, 178, 172, 0.5);
-}
-
 #toggleSortBtn,
 #expand-all-btn {
     position: absolute;
