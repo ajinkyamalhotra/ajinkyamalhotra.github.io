@@ -208,3 +208,8 @@ body {
         display: none !important;
     }
 }
+
+i,
+path {
+    color: var(--accent-color) !important;
+}
