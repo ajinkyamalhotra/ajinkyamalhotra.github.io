@@ -29,6 +29,12 @@ export function renderLanguagesChart(canvasEl, languagesData) {
         // Determine theme colors
         let themeColors = getThemeColors();
 
+        // Get the accent color from CSS variables
+        const accentColor = getComputedStyle(document.documentElement)
+            .getPropertyValue('--accent-color')
+            .trim();
+
+        // If a chart already exists, destroy it before creating a new one.
         if (window.languageChart) {
             window.languageChart.destroy();
         }
@@ -41,8 +47,8 @@ export function renderLanguagesChart(canvasEl, languagesData) {
                 datasets: [{
                     label: "Languages Usage (%)",
                     data: languageValues,
-                    backgroundColor: "#00ffcc",
-                    borderColor: "#00ffcc",
+                    backgroundColor: accentColor,
+                    borderColor: accentColor,
                     borderWidth: 2,
                     borderRadius: 6,
                     barThickness: 20

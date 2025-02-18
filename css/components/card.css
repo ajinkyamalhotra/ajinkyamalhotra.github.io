@@ -14,3 +14,8 @@
     transform: scale(1.02);
     background: var(--hover-bg);
 }
+
+.tag-pill {
+    background-color: color-mix(in srgb, var(--accent-color) 20%, transparent 80%);
+    color: color-mix(in srgb, var(--accent-color) 50%, white 50%);
+}

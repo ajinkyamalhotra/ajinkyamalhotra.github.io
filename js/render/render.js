@@ -160,7 +160,7 @@ function renderSidebar() {
 
         const tagline = document.createElement("p");
         tagline.id = "tagline";
-        tagline.className = "mb-2 text-2xl font-normal text-cyan-300 italic min-h-[2.5rem] truncate";
+        tagline.className = "tagline mb-2 text-2xl font-normal italic min-h-[2.5rem] truncate";
         header.appendChild(tagline);
 
         aside.appendChild(header);
@@ -297,8 +297,8 @@ function renderMainContent() {
         const toggleBtn = document.createElement("button");
         toggleBtn.id = "toggleSortBtn";
         toggleBtn.className =
-            "absolute top-0 right-0 m-4 px-4 py-2 border border-teal-500 text-te" +
-            "al-500 rounded hover:bg-teal-500 hover:text-white bg-transparent";
+            "absolute top-0 right-0 m-4 px-4 py-2 border text-te" +
+            "al-500 rounded hover:text-white bg-transparent";
         toggleBtn.textContent = "View Oldest First";
         timelineSection.appendChild(toggleBtn);
 

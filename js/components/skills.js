@@ -4,7 +4,7 @@ export function getSkillsHTML(skills) {
   // Button container aligned to the right with an elegant, transparent button that animates on hover.
   html += `
     <div class="expand-all-container mb-4 flex justify-end">
-      <button id="expand-all-btn" class="px-3 py-1 rounded border border-gray-400 text-gray-300 bg-transparent flex items-center transition duration-200 ease-in-out transform hover:scale-105 hover:bg-gray-700">
+      <button id="expand-all-btn" class="px-3 py-1 rounded border border-gray-400 text-gray-300 bg-transparent flex items-center transition duration-200 ease-in-out hover:bg-gray-700">
         <span class="expansion-icon mr-2">&#9662;</span>
         <span class="btn-text">Expand</span>
       </button>
@@ -23,7 +23,7 @@ export function getSkillsHTML(skills) {
           <span class="text-lg font-bold text-gray-300 skill-percentage" data-target="${skill.level}">0</span>
         </div>
         <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden progress-container">
-          <div class="bg-teal-400 h-2.5 rounded-full progress-bar" style="width: 0;"></div>
+          <div class="h-2.5 rounded-full progress-bar" style="width: 0;"></div>
         </div>
         ${hasSubSkills
         ? `
@@ -41,8 +41,7 @@ export function getSkillsHTML(skills) {
                         <span class="text-sm font-medium text-gray-300 sub-skill-percentage" data-target="${sub.level}">0</span>
                       </div>
                       <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                        <!-- Orange color for sub-skills progress bar with dark mode alternative -->
-                        <div class="bg-orange-400 dark:bg-orange-500 h-2.5 rounded-full sub-progress-bar" style="width: 0; transition: width 2s ease-in-out;"></div>
+                        <div class="h-2.5 rounded-full sub-progress-bar" style="width: 0; transition: width 2s ease-in-out;"></div>
                       </div>
                     </div>
                   `

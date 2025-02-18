@@ -33,26 +33,6 @@
     transform: translateX(-50%) scaleY(1);
 }
 
-/* --- Sort Toggle Button --- */
-#toggleSortBtn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 1rem;
-    background: transparent;
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.3s ease;
-}
-
-#toggleSortBtn:hover {
-    background: var(--hover-bg);
-}
-
 /* --- Timeline Event Wrapper --- */
 .timeline-event {
     position: relative;

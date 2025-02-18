@@ -83,7 +83,7 @@ mark {
 }
 
 mark.active-match {
-    background-color: orange;
+    background-color: var(--sub-accent-color);
     color: var(--primary-bg);
     padding: 2px 4px;
     border-radius: 4px;

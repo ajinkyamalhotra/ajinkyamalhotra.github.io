@@ -16,3 +16,7 @@
     font-size: 1.8rem;
     /* Increased from default size */
 }
+
+.sub-progress-bar {
+    background: var(--sub-accent-color);
+}

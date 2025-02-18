@@ -9,6 +9,10 @@ body {
     /* Other properties already reset above */
 }
 
+#tagline {
+    color: var(--accent-color);
+}
+
 /* Preloader Styles */
 #preloader {
     position: fixed;
@@ -44,10 +48,10 @@ body {
 }
 
 .fancy-number {
-    color: #00ffcc;
+    color: var(--accent-color);
     font-size: 1.3rem;
     font-weight: bold;
-    text-shadow: 0 0 8px #00ffcc;
+    text-shadow: 0 0 8px var(--accent-color);
     animation: pulse 1.5s infinite alternate;
 }
 
@@ -93,10 +97,31 @@ body {
 /* Global Icon and Progress Bar Animations */
 .progress-bar {
     transition: width 2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    background: linear-gradient(90deg, #38b2ac, #81e6d9);
+    background: var(--accent-color);
     background-size: 200% 100%;
     animation: gradientShift 3s linear infinite;
     box-shadow: 0 0 10px rgba(56, 178, 172, 0.5);
+}
+
+#toggleSortBtn,
+#expand-all-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+#toggleSortBtn:hover,
+#expand-all-btn:hover {
+    background: var(--hover-bg);
 }
 
 @keyframes gradientShift {

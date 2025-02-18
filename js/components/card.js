@@ -43,7 +43,7 @@ function renderDetailedCard(item) {
           </p>
           <div class="flex flex-wrap gap-2 mt-5">
             ${(item.tags || []).map(tag => `
-              <span class="bg-teal-400/10 text-teal-300 px-3 py-1 rounded-full text-xs font-medium">
+              <span class="tag-pill px-3 py-1 rounded-full text-xs font-medium">
                 ${tag}
               </span>
             `).join('')}
