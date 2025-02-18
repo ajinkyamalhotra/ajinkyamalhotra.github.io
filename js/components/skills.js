@@ -3,7 +3,7 @@ export function getSkillsHTML(skills) {
 
   // Button container aligned to the right with an elegant, transparent button that animates on hover.
   html += `
-    <div class="expand-all-container mb-4 flex justify-end">
+    <div class="expand-all-container flex justify-end p-2">
       <button id="expand-all-btn" class="px-3 py-1 rounded border border-gray-400 text-gray-300 bg-transparent flex items-center transition duration-200 ease-in-out hover:bg-gray-700">
         <span class="expansion-icon mr-2">&#9662;</span>
         <span class="btn-text">Expand</span>

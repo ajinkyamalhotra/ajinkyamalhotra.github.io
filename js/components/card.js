@@ -29,19 +29,19 @@ function renderDetailedCard(item) {
           </span>
         </div>
       ` : ""}
-      <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
+      <div class="flex flex-col md:flex-row gap-1 items-start md:items-center">
         <div class="text-gray-300 font-semibold w-full md:w-1/4">
           ${item.period || ""}
         </div>
         <div class="w-full md:w-3/4">
-          <h3 class="text-lg font-bold text-gray-300 flex items-center gap-2">
+          <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
             ${item.title}
             ${arrowIcon}
           </h3>
           <p class="text-gray-400 mt-3">
             ${item.description || ""}
           </p>
-          <div class="flex flex-wrap gap-2 mt-5">
+          <div class="flex flex-wrap gap-1 mt-5">
             ${(item.tags || []).map(tag => `
               <span class="tag-pill px-3 py-1 rounded-full text-xs font-medium">
                 ${tag}

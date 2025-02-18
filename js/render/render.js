@@ -63,7 +63,7 @@ export function renderApp() {
         // Create the main container that holds the sidebar and main content.
         const mainContainer = document.createElement("div");
         mainContainer.id = "outerContainer";
-        mainContainer.className = "flex justify-center items-center h-screen p-4";
+        mainContainer.className = "flex justify-center items-center h-screen p-3";
 
         // Create a "spotlight" element
         const spotlight = document.createElement("div");
@@ -140,7 +140,7 @@ function renderSidebar() {
     return logAction(`${renderSidebar.name}()`, () => {
         const aside = document.createElement("aside");
         aside.id = "leftSidebar";
-        aside.className = "w-1/3 text-white p-6 flex flex-col";
+        aside.className = "w-1/3 text-white p-3 flex flex-col";
 
         // Header Section
         const header = document.createElement("header");
@@ -233,13 +233,13 @@ function renderMainContent() {
     return logAction(`${renderMainContent.name}()`, () => {
         const main = document.createElement("main");
         main.id = "rightSection";
-        main.className = "w-2/3 overflow-y-auto p-6 h-full custom-scrollbar";
+        main.className = "w-2/3 overflow-y-auto p-3 h-full custom-scrollbar";
 
         // About Section
         const aboutSection = document.createElement("section");
         aboutSection.id = "section1";
         aboutSection.className =
-            "fade-in mb-10 p-6 rounded-lg text-gray-400 leading-relaxed";
+            "fade-in mb-6 p-3 rounded-lg text-gray-400 leading-relaxed";
         const aboutContent = document.createElement("div");
         aboutContent.id = "aboutContent";
         aboutSection.appendChild(aboutContent);
@@ -248,51 +248,51 @@ function renderMainContent() {
         // Experience Section
         const expSection = document.createElement("section");
         expSection.id = "section2";
-        expSection.className = "fade-in mb-10 p-6 border-t border-gray-300 mt-4";
+        expSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
         expSection.innerHTML = `
       <br>
       <input type="text" id="experienceSearch" placeholder="Search experiences..."
       class="fancy-search mb-4" />
-      <div class="space-y-6 w-full max-w-4xl" id="experienceContainer"></div>
+      <div class="space-y-4 w-full max-w-4xl" id="experienceContainer"></div>
     `;
         main.appendChild(expSection);
 
         // Projects Section
         const projSection = document.createElement("section");
         projSection.id = "section3";
-        projSection.className = "fade-in mb-10 p-6 border-t border-gray-300 mt-4";
+        projSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
         projSection.innerHTML = `
       <br>
       <input type="text" id="projectSearch" placeholder="Search projects..." class
       ="fancy-search mb-4" />
-      <div class="space-y-6 w-full max-w-4xl" id="projectsContainer"></div>
+      <div class="space-y-4 w-full max-w-4xl" id="projectsContainer"></div>
     `;
         main.appendChild(projSection);
 
         // Skills Section
         const skillsSection = document.createElement("section");
         skillsSection.id = "section4";
-        skillsSection.className = "fade-in mb-10 p-6 border-t border-gray-300 mt-4";
+        skillsSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
         skillsSection.innerHTML = `
       <br>
-      <div class="space-y-6 w-full max-w-4xl" id="skillsContainer"></div>
+      <div class="space-y-4 w-full max-w-4xl" id="skillsContainer"></div>
     `;
         main.appendChild(skillsSection);
 
         // Education Section
         const eduSection = document.createElement("section");
         eduSection.id = "section5";
-        eduSection.className = "fade-in mb-10 p-6 border-t border-gray-300 mt-4";
+        eduSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
         eduSection.innerHTML = `
       <br>
-      <div class="space-y-6 w-full max-w-4xl" id="eduContainer"></div>
+      <div class="space-y-4 w-full max-w-4xl" id="eduContainer"></div>
     `;
         main.appendChild(eduSection);
 
         // Timeline Section
         const timelineSection = document.createElement("section");
         timelineSection.id = "sectionTimeline";
-        timelineSection.className = "fade-in mb-10 p-6 border-t border-gray-300 " +
+        timelineSection.className = "fade-in mb-10 p-3 border-t border-gray-300 " +
             "mt-4 relative";
         const toggleBtn = document.createElement("button");
         toggleBtn.id = "toggleSortBtn";
