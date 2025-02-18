@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById("preloader");
     const themeToggle = document.getElementById("themeToggle");
     const backToTop = document.getElementById("backToTop");
+    const backToTopContainer = document.getElementById("backToTopContainer");
     const rightSection = document.getElementById("rightSection");
     const searchContainer = document.getElementById("searchContainer");
     const searchIcon = document.getElementById("searchIcon");
@@ -79,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Initialize features
-    initBackToTop(backToTop, rightSection);
+    initBackToTop(backToTopContainer, backToTop, rightSection);
     initCardSearch(expSearchInput, projSearchInput, experiences,
       projects, expContainer, projContainer);
     initContentSearch(

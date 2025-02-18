@@ -63,7 +63,7 @@ export function renderApp() {
         // Create the main container that holds the sidebar and main content.
         const mainContainer = document.createElement("div");
         mainContainer.id = "outerContainer";
-        mainContainer.className = "flex justify-center items-center h-screen p-3";
+        mainContainer.className = "flex justify-center items-center h-screen p-3 mt-8";
 
         // Create a "spotlight" element
         const spotlight = document.createElement("div");
@@ -318,10 +318,12 @@ function renderExtraUI() {
         const container = document.createElement("div");
 
         // Back to Top Button
+        const backToTopContainer = document.createElement("div");
+        backToTopContainer.id = "backToTopContainer";
         const backToTop = document.createElement("button");
         backToTop.id = "backToTop";
-        backToTop.textContent = "Scroll ↑";
-        container.appendChild(backToTop);
+        backToTop.innerHTML = `<i class="fas fa-arrow-up"></i>`;
+        backToTopContainer.appendChild(backToTop);
 
         // Floating Search Button and Input
         const searchContainer = document.createElement("div");
@@ -329,8 +331,18 @@ function renderExtraUI() {
 
         const searchButton = document.createElement("button");
         searchButton.id = "searchIcon";
-        searchButton.innerHTML = "&#128269;";
+        searchButton.innerHTML = '<i class="fas fa-search"></i>';
         searchContainer.appendChild(searchButton);
+
+        const infoButtonContainer = document.createElement("div");
+        infoButtonContainer.id = "infoButtonContainer";
+
+        // Website Info Button
+        const infoButton = document.createElement("button");
+        infoButton.id = "infoButton";
+        infoButton.setAttribute("onclick", "toggleInfoPopup(event)");
+        infoButton.innerHTML = `<i class="fas fa-info-circle"></i>`;
+        infoButtonContainer.appendChild(infoButton);
 
         const searchWrapper = document.createElement("div");
         searchWrapper.className = "search-input-wrapper";
@@ -346,13 +358,8 @@ function renderExtraUI() {
         searchWrapper.appendChild(matchCounter);
         searchContainer.appendChild(searchWrapper);
         container.appendChild(searchContainer);
-
-        // Website Info Button
-        const infoButton = document.createElement("button");
-        infoButton.id = "infoButton";
-        infoButton.setAttribute("onclick", "toggleInfoPopup(event)");
-        infoButton.innerHTML = `<i class="fas fa-info-circle"></i> Website Info`;
-        container.appendChild(infoButton);
+        container.appendChild(infoButtonContainer);
+        container.appendChild(backToTopContainer);
 
         // Hidden Deployment Details (Info Popup)
         const infoPopup = document.createElement("div");

@@ -53,7 +53,7 @@
     width: 45%;
     padding: 0.75rem 1rem;
     background: var(--card-bg);
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: transform 0.8s ease-out, background 0.3s ease;
 }
