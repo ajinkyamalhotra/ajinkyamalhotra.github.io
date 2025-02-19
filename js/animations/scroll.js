@@ -10,12 +10,13 @@ export function initScroll(rightSection) {
                 event.preventDefault();
 
                 let scrollAmount = event.deltaY * 4;
-                if (Math.abs(event.deltaY) < 3) {
+                if (Math.abs(event.deltaY) < 4) {
                     scrollAmount *= 500;
+                    console.log("scrollAmount *= 500 " + scrollAmount);
                 } else if (Math.abs(event.deltaY) < 50) {
                     scrollAmount *= 100;
+                    console.log("scrollAmount *= 100" + scrollAmount);
                 }
-                console.log("scrollAmount = " + scrollAmount);
                 rightSection.scrollBy({
                     top: scrollAmount,
                     behavior: "smooth"
