@@ -9,9 +9,9 @@ export function initScroll(rightSection) {
             if (!event.ctrlKey) {
                 event.preventDefault();
 
-                const scrollAmount = event.deltaY * 4;
+                let scrollAmount = event.deltaY * 4;
                 if (Math.abs(event.deltaY) < 3) {
-                    scrollAmount *= 1000;
+                    scrollAmount *= 500;
                 } else if (Math.abs(event.deltaY) < 50) {
                     scrollAmount *= 100;
                 }
