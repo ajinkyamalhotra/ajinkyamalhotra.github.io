@@ -5,7 +5,7 @@ import {
 export function initScroll(rightSection) {
     logAction(`${initScroll.name}()`, () => {
         window.addEventListener("wheel", event => {
-            const isTrackpad = Math.abs(event.deltaY) < 100;
+            const isTrackpad = Math.abs(event.deltaY) < 50;
             rightSection.scrollBy({
                 top: isTrackpad ? event.deltaY : event.deltaY * 4,
                 behavior: isTrackpad ? 'auto' : 'smooth'
