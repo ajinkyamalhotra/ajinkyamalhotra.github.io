@@ -15,9 +15,7 @@ export function initScroll(rightSection) {
                 } else if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
                     multiplier = window.innerHeight;
                 }
-                console.log("event.deltaMode = " + event.deltaMode);
-                console.log("WheelEvent.DOM_DELTA_LINE = " + WheelEvent.DOM_DELTA_LINE);
-                console.log("WheelEvent.DOM_DELTA_PAGE = " + WheelEvent.DOM_DELTA_PAGE);
+                console.log("event.deltaY = " + event.deltaY);
                 const scrollAmount = event.deltaY * multiplier * 4;
                 rightSection.scrollBy({
                     top: scrollAmount,
