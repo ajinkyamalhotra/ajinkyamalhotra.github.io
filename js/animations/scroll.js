@@ -9,14 +9,13 @@ export function initScroll(rightSection) {
             if (!event.ctrlKey) {
                 event.preventDefault();
 
-                let multiplier = 1;
-                if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) {
-                    multiplier = 16;
-                } else if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
-                    multiplier = window.innerHeight;
+                const scrollAmount = event.deltaY * 4;
+                if (Math.abs(event.deltaY) < 3) {
+                    scrollAmount *= 1000;
+                } else if (Math.abs(event.deltaY) < 50) {
+                    scrollAmount *= 100;
                 }
-                console.log("event.deltaY = " + event.deltaY);
-                const scrollAmount = event.deltaY * multiplier * 4;
+                console.log("scrollAmount = " + scrollAmount);
                 rightSection.scrollBy({
                     top: scrollAmount,
                     behavior: "smooth"
