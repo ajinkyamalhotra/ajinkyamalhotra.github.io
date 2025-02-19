@@ -63,7 +63,7 @@ export function renderApp() {
         // Create the main container that holds the sidebar and main content.
         const mainContainer = document.createElement("div");
         mainContainer.id = "outerContainer";
-        mainContainer.className = "flex justify-center items-center h-screen p-3 mt-8";
+        mainContainer.className = "flex justify-center items-center h-screen p-3 pt-0 pb-0";
 
         // Create a "spotlight" element
         const spotlight = document.createElement("div");
@@ -74,7 +74,7 @@ export function renderApp() {
         // Create the inner container that holds sidebar and main content
         const innerContainer = document.createElement("div");
         innerContainer.id = "mainContainer";
-        innerContainer.className = "mt-14 w-full max-w-7xl h-full shadow-lg " +
+        innerContainer.className = "w-full max-w-7xl h-full shadow-lg " +
             "rounded-lg flex";
 
         // Append sidebar and main content
@@ -140,7 +140,7 @@ function renderSidebar() {
     return logAction(`${renderSidebar.name}()`, () => {
         const aside = document.createElement("aside");
         aside.id = "leftSidebar";
-        aside.className = "w-1/3 text-white p-3 flex flex-col";
+        aside.className = "w-1/3 text-white p-3 flex flex-col pt-16";
 
         // Header Section
         const header = document.createElement("header");
@@ -233,13 +233,13 @@ function renderMainContent() {
     return logAction(`${renderMainContent.name}()`, () => {
         const main = document.createElement("main");
         main.id = "rightSection";
-        main.className = "w-2/3 overflow-y-auto p-3 h-full custom-scrollbar";
+        main.className = "w-2/3 overflow-y-auto p-3 h-full custom-scrollbar pt-16 pb-0";
 
         // About Section
         const aboutSection = document.createElement("section");
         aboutSection.id = "section1";
         aboutSection.className =
-            "fade-in mb-6 p-3 rounded-lg text-gray-400 leading-relaxed";
+            "fade-in mb-6 p-3 rounded-lg text-gray-400 leading-relaxed pt-8";
         const aboutContent = document.createElement("div");
         aboutContent.id = "aboutContent";
         aboutSection.appendChild(aboutContent);
