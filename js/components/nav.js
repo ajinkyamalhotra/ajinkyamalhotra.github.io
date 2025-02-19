@@ -3,12 +3,21 @@ import {
     logAction
 } from "../logger.js";
 
+// A flag to disable scroll-based nav updates temporarily.
+let disableScrollNavUpdate = false;
+
 export function scrollToSection(id) {
     logAction(`${scrollToSection.name}()`, () => {
         const section = document.getElementById(id);
         if (section) {
+            // Disable scroll-based nav updates while we're scrolling.
+            disableScrollNavUpdate = true;
             section.scrollIntoView({ behavior: "smooth" });
             updateActiveNav(id);
+            // Re-enable scroll-based nav updates after a delay.
+            setTimeout(() => {
+                disableScrollNavUpdate = false;
+            }, 800);
         }
     });
 }
@@ -24,6 +33,9 @@ export function updateActiveNav(activeId) {
 
 export function updateNavOnScroll(rightSection) {
     // Do not log this method
+    // If a nav click triggered a scroll, skip the update
+    if (disableScrollNavUpdate) return;
+
     const sections = document.querySelectorAll(".fade-in");
     const navButtons = document.querySelectorAll(".nav-button");
     let closestSectionIndex = 0;
@@ -55,6 +67,9 @@ export function initNav(rightSection) {
     logAction(`${initNav.name}()`, () => {
         // Update nav on document scroll
         document.addEventListener("scroll", debounce(() => {
+            // Skip updating if a nav button click initiated the scroll.
+            if (disableScrollNavUpdate) return;
+
             const sections = document.querySelectorAll(".fade-in");
             const navButtons = document.querySelectorAll(".nav-button");
             sections.forEach((section, index) => {
