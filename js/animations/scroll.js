@@ -12,10 +12,10 @@ export function initScroll(rightSection) {
                 let scrollAmount = event.deltaY * 4;
                 if (Math.abs(event.deltaY) < 4) {
                     scrollAmount *= 500;
-                    console.log("scrollAmount *= 500 " + scrollAmount);
+                    console.log("scrollAmount * 500 =" + scrollAmount);
                 } else if (Math.abs(event.deltaY) < 50) {
                     scrollAmount *= 100;
-                    console.log("scrollAmount *= 100" + scrollAmount);
+                    console.log("scrollAmount * 100 =" + scrollAmount);
                 }
                 rightSection.scrollBy({
                     top: scrollAmount,
