@@ -5,24 +5,12 @@ import {
 export function initScroll(rightSection) {
     logAction(`${initScroll.name}()`, () => {
         window.addEventListener("wheel", event => {
-            // If the ctrl key is pressed, let the browser handle zooming.
-            if (!event.ctrlKey) {
-                event.preventDefault();
-
-                let scrollAmount = event.deltaY * 4;
-                if (Math.abs(event.deltaY) < 4) {
-                    scrollAmount *= 500;
-                    console.log("scrollAmount * 500 =" + scrollAmount);
-                } else if (Math.abs(event.deltaY) < 50) {
-                    scrollAmount *= 100;
-                    console.log("scrollAmount * 100 =" + scrollAmount);
-                }
-                rightSection.scrollBy({
-                    top: scrollAmount,
-                    behavior: "smooth"
-                });
-            }
-        }, { passive: false }); // Marking as non-passive allows preventDefault
+            const isTrackpad = Math.abs(event.deltaY) < 100;
+            rightSection.scrollBy({
+                top: isTrackpad ? event.deltaY : event.deltaY * 4,
+                behavior: isTrackpad ? 'auto' : 'smooth'
+            });
+        }, { passive: false });
         // Update sessionStorage on every scroll of the container.
         rightSection.addEventListener('scroll', () => {
             sessionStorage.setItem('scrollPosition', rightSection.scrollTop);
