@@ -140,7 +140,7 @@ function renderSidebar() {
     return logAction(`${renderSidebar.name}()`, () => {
         const aside = document.createElement("aside");
         aside.id = "leftSidebar";
-        aside.className = "w-1/3 text-white p-3 flex flex-col pt-16";
+        aside.className = "w-1/3 overflow-y-auto text-white p-3 flex flex-col pt-16 pb-0";
 
         // Header Section
         const header = document.createElement("header");
