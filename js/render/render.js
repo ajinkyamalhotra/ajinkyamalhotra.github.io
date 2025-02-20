@@ -74,7 +74,7 @@ export function renderApp() {
         // Create the inner container that holds sidebar and main content
         const innerContainer = document.createElement("div");
         innerContainer.id = "mainContainer";
-        innerContainer.className = "container mx-auto w-[50vw] h-full shadow-lg " +
+        innerContainer.className = "w-full max-w-6xl h-full shadow-lg " +
             "rounded-lg flex";
 
         // Append sidebar and main content
