@@ -74,7 +74,7 @@ export function renderApp() {
         // Create the inner container that holds sidebar and main content
         const innerContainer = document.createElement("div");
         innerContainer.id = "mainContainer";
-        innerContainer.className = "w-full max-w-6xl h-full " +
+        innerContainer.className = "w-full max-w-screen-md md:max-w-6xl h-full " +
             "rounded-lg flex overflow-hidden gap-4";
 
         // Append sidebar and main content
