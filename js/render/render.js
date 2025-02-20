@@ -74,8 +74,8 @@ export function renderApp() {
         // Create the inner container that holds sidebar and main content
         const innerContainer = document.createElement("div");
         innerContainer.id = "mainContainer";
-        innerContainer.className = "w-full max-w-6xl h-full shadow-lg " +
-            "rounded-lg flex overflow-hidden";
+        innerContainer.className = "w-full max-w-6xl h-full " +
+            "rounded-lg flex overflow-hidden gap-4";
 
         // Append sidebar and main content
         innerContainer.appendChild(renderSidebar());
@@ -221,7 +221,7 @@ function renderSidebar() {
         // Social Icons Container
         const socialContainer = document.createElement("div");
         socialContainer.id = "socialContainer";
-        socialContainer.className = "my-14 social-icons";
+        socialContainer.className = "my-4 social-icons";
         aside.appendChild(socialContainer);
 
         return aside;
