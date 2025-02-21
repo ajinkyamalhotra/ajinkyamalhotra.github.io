@@ -6,7 +6,7 @@ import {
     fetchRepoPRs,
     fetchRepoLanguages
 } from './github/repos.js';
-import { renderLanguagesChart } from './chart.js';
+import { renderLanguagesChart } from '../components/chart.js';
 import { logActionAsync } from "../logger.js";
 
 export async function githubApiWrapper() {

@@ -14,7 +14,7 @@ import { toggleInfoPopup } from "./components/info.js";
 import { initFadeIn } from "./animations/fadeIn.js";
 import { initScroll } from "./animations/scroll.js";
 import { initBackToTop } from "./components/backToTop.js";
-import { initCardSearch } from "./components/cardSearch.js";
+import { initCardSearch } from "./components/card.js";
 import { populateSocialLinks, populateInfo } from "./components/misc.js";
 import { setupTimelineToggle } from "./components/timeline.js";
 
