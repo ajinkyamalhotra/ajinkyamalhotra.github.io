@@ -44,7 +44,7 @@ function renderDetailedCard(item) {
             ${item.title}
             ${arrowIcon}
           </h3>
-          <p class="text-gray-400 mt-3">
+          <p class="text-gray-400 mt-3" style="text-align: justify;">
             ${item.description || ""}
           </p>
           <div class="flex flex-wrap gap-1 mt-5">

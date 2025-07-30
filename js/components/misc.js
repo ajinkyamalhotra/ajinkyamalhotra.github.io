@@ -39,6 +39,7 @@ export function populateInfo(siteNameEl, jobTitleEl, taglineEl, siteData,
       const p = document.createElement("p");
       p.className = "mb-4 text-lg";
       p.textContent = paragraph;
+      p.style.textAlign = 'justify';
       frag.appendChild(p);
     });
     aboutEl.appendChild(frag);
