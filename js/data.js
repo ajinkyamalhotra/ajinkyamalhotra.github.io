@@ -3,7 +3,7 @@
 // Personal and site-wide data
 const siteData = {
     name: "Ajinkya Malhotra",
-    jobTitle: "Software Engineer @ ARM",
+    jobTitle: "Senior Software Engineer @ ARM",
     taglines: [
         "I code.",
         "I design.",
