@@ -57,7 +57,7 @@ const experiences = [
             },
             {
                 title: "Software Engineer",
-                period: "Jan 2024 - Present",
+                period: "Jan 2024 - Apr 2025",
                 description:
                     "Working on Performance Models Productization team which " +
                     "handles external releases to various partners. Optimizing " +
@@ -420,9 +420,15 @@ const timelineData = [
     },
     {
         title: "SDE @ ARM",
-        period: "Jan 2024 - Present",
+        period: "Jan 2024 - April 2025",
         info: "Working as a Software Engineer at ARM, focusing on high-impact projects.",
         year: "2024"
+    },
+    {
+        title: "Senior SDE @ ARM",
+        period: "April 2025 - Present",
+        info: "Growing as a Software Engineer at ARM and leading high-impact projects.",
+        year: "2025"
     }
 ];
 
