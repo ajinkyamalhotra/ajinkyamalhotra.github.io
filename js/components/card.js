@@ -23,9 +23,28 @@ function getMarkerIcon(type) {
   return icons[type] || "";
 }
 
+// Tiny favicon helper for schools (optional override with item.logoUrl)
+function schoolIcon(link = "", size = 128) {
+  try {
+    const u = new URL(link);
+    const host = u.hostname.replace(/^www\./, "");
+    return `https://www.google.com/s2/favicons?domain=${host}&sz=${size}`;
+  } catch {
+    return "";
+  }
+}
+
 // Reusable function for cards with detailed content
 function renderDetailedCard(item) {
   const markerIcon = getMarkerIcon(item.type);
+
+  // Conditional education logo support
+  const isEducation = item.type === "education";
+  const logoSrc = item.logoUrl || (isEducation ? schoolIcon(item.link) : "");
+  const logoImg = logoSrc
+    ? `<img src="${logoSrc}" alt="" class="w-10 h-10 rounded-sm opacity-90 shrink-0" loading="lazy">`
+    : "";
+
   return `
     <a href="${item.link}" target="_blank" class="card group block relative">
       ${markerIcon ? `
@@ -41,6 +60,7 @@ function renderDetailedCard(item) {
         </div>
         <div class="w-full md:w-3/4">
           <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
+            ${logoImg}
             ${item.title}
             ${arrowIcon}
           </h3>
