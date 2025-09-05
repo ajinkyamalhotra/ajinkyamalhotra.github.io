@@ -103,7 +103,7 @@ function renderCompanyCard(item) {
       const host = u.hostname.replace(/^www\./, "");
       return `<img src="https://www.google.com/s2/favicons?domain=${host}&sz=64" 
                    alt=""
-                   class="w-8 h-8 rounded-sm opacity-90"
+                   class="w-11 h-11 rounded-sm opacity-90"
                    loading="lazy">`;
     } catch {
       return "";

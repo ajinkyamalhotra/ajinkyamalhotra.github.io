@@ -4,28 +4,8 @@ import {
 
 export function initTheme(themeToggle, body) {
     logAction(`${initTheme.name}()`, () => {
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme) {
-            if (savedTheme === "light") {
-                body.classList.add("light");
-                themeToggle.checked = true;
-            } else {
-                body.classList.remove("light");
-                themeToggle.checked = false;
-            }
-        } else {
-            const prefersLight = window.matchMedia(
-                "(prefers-color-scheme: light)").matches;
-            if (prefersLight) {
-                body.classList.add("light");
-                themeToggle.checked = true;
-                localStorage.setItem("theme", "light");
-            } else {
-                body.classList.remove("light");
-                themeToggle.checked = false;
-                localStorage.setItem("theme", "dark");
-            }
-        }
+        themeToggle.checked = false;
+        localStorage.setItem("theme", "dark");
 
         themeToggle.addEventListener("change", () => {
             if (themeToggle.checked) {
