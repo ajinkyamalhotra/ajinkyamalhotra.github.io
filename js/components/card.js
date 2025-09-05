@@ -79,7 +79,51 @@ function renderDetailedCard(item) {
     </a>
   `;
 }
+// --- DATE UTILITIES ---------------------------------------------------------
+const MONTHS_3 = {
+  Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+  Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11
+};
 
+function parsePeriod(periodStr = "") {
+  // "Jun 2018 - May 2019" OR "Aug 2022 - Present"
+  const m = periodStr.match(/^\s*([A-Z][a-z]{2})\s+(\d{4})\s*-\s*([A-Z][a-z]{2}|Present)(?:\s+(\d{4}))?\s*$/);
+  if (!m) return { start: null, end: null, isPresent: false };
+
+  const [, sm, sy, em, ey] = m;
+  const start = new Date(Number(sy), MONTHS_3[sm] ?? 0, 1);
+
+  let end, isPresent = false;
+  if (em === "Present") {
+    isPresent = true;
+    const now = new Date();
+    end = new Date(now.getFullYear(), now.getMonth(), 1);
+  } else {
+    end = new Date(Number(ey), MONTHS_3[em] ?? 0, 1);
+  }
+
+  return { start, end, isPresent };
+}
+
+function diffYM(start, end) {
+  if (!start || !end) return { years: 0, months: 0, totalMonths: 0 };
+  let months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+  if (months < 0) months = 0;
+  const years = Math.floor(months / 12);
+  const rem = months % 12;
+  return { years, months: rem, totalMonths: months };
+}
+
+function formatDuration({ years, months }) {
+  const y = years ? `${years} yr${years === 1 ? "" : "s"}` : "";
+  const m = months ? `${months} mo${months === 1 ? "" : "s"}` : "";
+  if (y && m) return `${y} ${m}`;
+  if (y) return y;
+  if (m) return m;
+  return "0 mos";
+}
+
+// --- COMPANY CARD -----------------------------------------------------------
 function renderCompanyCard(item) {
   const markerIcon = getMarkerIcon("experience");
 
@@ -95,16 +139,21 @@ function renderCompanyCard(item) {
       </span>
     ` : "";
 
-    const verticalDivder = showPromotion ? `
-      <hr class="my-4 border-t border-white/10" />
-    ` : "";
+    const { start, end, isPresent } = parsePeriod(r.period || "");
+    const roleDur = (start && end) ? formatDuration(diffYM(start, end)) : "";
+    const verticalDivider = showPromotion ? `<hr class="my-4 border-t border-white/10" />` : "";
 
     return `
       <li class="relative pl-3">
         <span class="absolute left-0 top-2 w-2 h-2 rounded-full bg-current/60"></span>
-        <div class="flex flex-wrap items-baseline gap-x-2">
-          <span class="text-lg font-bold text-gray-300 flex items-center gap-1">${r.title}</span>
-          <span class="text-sm text-gray-300">${r.period || ""} ${promotionBadge} </span>
+        <div class="flex items-baseline gap-x-2">
+          <div class="flex-1 min-w-0">
+            <span class="text-lg font-bold text-gray-300">${r.title}</span>
+            <span class="text-sm text-gray-300 ml-2">${r.period || ""} ${promotionBadge}</span>
+          </div>
+          <div class="hidden md:block text-xs text-gray-400 whitespace-nowrap ml-auto">
+            ${roleDur}
+          </div>
         </div>
         ${r.description ? `
           <p class="text-gray-400 mt-3" style="text-align: justify;">
@@ -112,7 +161,7 @@ function renderCompanyCard(item) {
           </p>
         ` : ""}
       </li>
-      ${verticalDivder}
+      ${verticalDivider}
     `;
   }).join("");
 
@@ -139,31 +188,31 @@ function renderCompanyCard(item) {
         </div>
       ` : ""}
       <div>
-          <!-- Header row -->
-          <div class="flex items-start md:items-center gap-3">
-            ${companyIcon(item.link)}
-            <div class="min-w-0">
-              <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
-                ${item.title}
-                ${arrowIcon}
-              </h3>
-              <div class="text-sm text-gray-300">${item.period || ""}</div>
-            </div>
-          </div>
-          <!-- Roles -->
-          <ul class="mt-4 space-y-4">
-            ${rolesHtml}
-          </ul>
-          <!-- Tags -->
-          <div class="flex flex-wrap gap-1 mt-5">
-            ${(item.tags || []).map(tag => `
-              <span class="tag-pill px-3 py-1 rounded-full text-xs font-medium">
-                ${tag}
-              </span>
-            `).join('')}
+        <!-- Header row -->
+        <div class="flex items-start md:items-center gap-3">
+          ${companyIcon(item.link)}
+          <div class="min-w-0">
+            <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
+              ${item.title}
+              ${arrowIcon}
+            </h3>
+            <div class="text-sm text-gray-300">${item.period || ""}</div>
           </div>
         </div>
-    </a>`
+        <!-- Roles -->
+        <ul class="mt-4 space-y-4">
+          ${rolesHtml}
+        </ul>
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-1 mt-5">
+          ${(item.tags || []).map(tag => `
+            <span class="tag-pill px-3 py-1 rounded-full text-xs font-medium">
+              ${tag}
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    </a>`;
 }
 
 // Main function to create a card. It now supports "experience", "project", and "education" types.
