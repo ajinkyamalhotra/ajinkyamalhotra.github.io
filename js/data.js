@@ -43,53 +43,71 @@ const siteData = {
 // Experience data
 const experiences = [
     {
-        type: "experience",
+        type: "experience-company",
         link: "https://arm.com",
-        period: "Jan 2024 - Present",
-        title: "Software Engineer at ARM",
-        description:
-            "Working on Performance Models Productization team which " +
-            "handles external releases to various partners. Optimizing " +
-            "AWS infrastructure using various tools.",
+        period: "May 2023 - Present",
+        title: "ARM",
+        roles: [
+            {
+                title: "Senior Software Engineer",
+                period: "Apr 2025 - Present",
+                description:
+                    "Developing telemetry, orchestration, and driver interaction software supporting ARM's next-generation chips, enabling efficient performance monitoring and seamless Machine Learning System Integration.\n" +
+                    "Leading Performance Models Productization team responsible for external releases to global partners.",
+            },
+            {
+                title: "Software Engineer",
+                period: "Jan 2024 - Present",
+                description:
+                    "Working on Performance Models Productization team which " +
+                    "handles external releases to various partners. Optimizing " +
+                    "AWS infrastructure using various tools.",
+            },
+            {
+                title: "Software Engineer Intern",
+                period: "May 2023 - Aug 2023",
+                description:
+                    "Worked on automating AWS pipeline, by managing AMIs updates, " +
+                    "EC2 instances, and EBS Volumes. Accomplished automation of " +
+                    "complex manually repetitive tasks using a variety of tools " +
+                    "and improved overall operational efficiency.",
+            }
+        ],
         tags: [
             "✨ AWS",
             "✨ Jenkins",
             "✨ Groovy",
             "✨ Python",
-            "Bash",
-            "✨ Git"
-        ]
-    },
-    {
-        type: "experience",
-        link: "https://arm.com",
-        period: "May 2023 - Aug 2023",
-        title: "Software Engineer Intern at ARM",
-        description:
-            "Worked on automating AWS pipeline, by managing AMIs updates, " +
-            "EC2 instances, and EBS Volumes. Accomplished automation of " +
-            "complex manually repetitive tasks using a variety of tools " +
-            "and improved overall operational efficiency.",
-        tags: [
-            "✨ AWS",
-            "✨ Python",
+            "✨ Bash",
+            "✨ Git",
             "✨ Boto3",
             "Terraform",
             "Packer",
-            "Pytest"
+            "Pytest",
+            "Gitlab Ci/CD",
+            "C++",
+            "Ubuntu",
+            "EC2",
+            "VPC"
         ]
     },
     {
-        type: "experience",
+        type: "experience-company",
         link: "https://aws.amazon.com/",
         period: "May 2020 - Jun 2022",
-        title: "Cloud Support Engineer at AWS",
-        description:
-            "Applied advanced troubleshooting techniques to provide unique " +
-            "solutions to AWS customers. Drove multiple projects to improve " +
-            "internal support-related processes and overall customer " +
-            "experience. Worked on critical, highly complex customer " +
-            "problems that spanned throughout multiple AWS services.",
+        title: "Amazon Web Services",
+        roles: [
+            {
+                title: "Cloud Support Engineer",
+                period: "May 2020 - Jun 2022",
+                description:
+                    "Applied advanced troubleshooting techniques to provide unique " +
+                    "solutions to AWS customers. Drove multiple projects to improve " +
+                    "internal support-related processes and overall customer " +
+                    "experience. Worked on critical, highly complex customer " +
+                    "problems that spanned throughout multiple AWS services.",
+            }
+        ],
         tags: [
             "✨ AWS Lambda",
             "✨ AWS API Gateway",
@@ -102,13 +120,19 @@ const experiences = [
         ]
     },
     {
-        type: "experience",
+        type: "experience-company",
         link: "https://www.esurance.com/",
         period: "Aug 2019 - May 2020",
-        title: "Software Engineer at Esurance",
-        description:
-            "Designed, enhanced, and maintained APIs for integration with " +
-            "existing Esurance applications.",
+        title: "Esurance",
+        roles: [
+            {
+                title: "Software Engineer",
+                period: "Aug 2019 - May 2020",
+                description:
+                    "Designed, enhanced, and maintained APIs for integration with " +
+                    "existing Esurance applications.",
+            }
+        ],
         tags: [
             "✨ Java",
             "✨ JUnit",
@@ -118,14 +142,20 @@ const experiences = [
         ]
     },
     {
-        type: "experience",
+        type: "experience-company",
         link: "https://www.vsp.com/",
         period: "Jun 2018 - May 2019",
-        title: "Software Engineer Intern at VSP Vision Care",
-        description:
-            "Developed and executed selenium, smoke, and regression tests " +
-            "on the staging environment. Performed functional tests on four " +
-            "different web portal applications.",
+        title: "VSP Vision Care",
+        roles: [
+            {
+                title: "Software Engineer Intern",
+                period: "Jun 2018 - May 2019",
+                description:
+                    "Developed and executed selenium, smoke, and regression tests " +
+                    "on the staging environment. Performed functional tests on four " +
+                    "different web portal applications.",
+            }
+        ],
         tags: [
             "✨ Java",
             "✨ Scrum",
@@ -133,13 +163,19 @@ const experiences = [
         ]
     },
     {
-        type: "experience",
-        link: "https://www.vsp.com/",
+        type: "experience-company",
+        link: "https://www.csus.edu/",
         period: "Aug 2017 - May 2019",
-        title: "Teaching Assistant at Sac State",
-        description:
-            "Helped, guided, and graded students' assignments and answered " +
-            "questions during online discussions.",
+        title: "California State University, Sacramento",
+        roles: [
+            {
+                title: "Teaching Assistant",
+                period: "Aug 2017 - May 2019",
+                description:
+                    "Helped, guided, and graded students' assignments and answered " +
+                    "questions during online discussions.",
+            }
+        ],
         tags: [
             "✨ Advanced Computer 3D Graphics",
         ]

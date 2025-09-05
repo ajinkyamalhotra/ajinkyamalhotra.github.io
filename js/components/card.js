@@ -60,8 +60,98 @@ function renderDetailedCard(item) {
   `;
 }
 
+function renderCompanyCard(item) {
+  const markerIcon = getMarkerIcon("experience");
+
+  const roles = item.roles || [];
+  const rolesHtml = roles.map((r, idx) => {
+    // Newest → Oldest array: show Promotion for all except the last (first job)
+    const showPromotion = idx < roles.length - 1;
+    const promotionBadge = showPromotion ? `
+      <span class="ml-2 inline-flex items-center gap-1 px-2 py-0.5 rounded-full
+                   bg-green-500/10 border border-green-500/20 text-green-400
+                   text-[11px] font-medium">
+        Promoted
+      </span>
+    ` : "";
+
+    const verticalDivder = showPromotion ? `
+      <hr class="my-4 border-t border-white/10" />
+    ` : "";
+
+    return `
+      <li class="relative pl-3">
+        <span class="absolute left-0 top-2 w-2 h-2 rounded-full bg-current/60"></span>
+        <div class="flex flex-wrap items-baseline gap-x-2">
+          <span class="text-lg font-bold text-gray-300 flex items-center gap-1">${r.title}</span>
+          <span class="text-sm text-gray-300">${r.period || ""} ${promotionBadge} </span>
+        </div>
+        ${r.description ? `
+          <p class="text-gray-400 mt-3" style="text-align: justify;">
+            ${r.description}
+          </p>
+        ` : ""}
+      </li>
+      ${verticalDivder}
+    `;
+  }).join("");
+
+  // Tiny favicon helper (optional)
+  function companyIcon(link = "") {
+    try {
+      const u = new URL(link);
+      const host = u.hostname.replace(/^www\./, "");
+      return `<img src="https://www.google.com/s2/favicons?domain=${host}&sz=64" 
+                   alt=""
+                   class="w-8 h-8 rounded-sm opacity-90"
+                   loading="lazy">`;
+    } catch {
+      return "";
+    }
+  }
+
+  return `<a href="${item.link}" target="_blank" class="card group block relative">
+      ${markerIcon ? `
+        <div class="absolute top-2 right-2">
+          <span class="text-white text-xs uppercase px-2 py-1 rounded">
+            ${markerIcon}
+          </span>
+        </div>
+      ` : ""}
+      <div>
+          <!-- Header row -->
+          <div class="flex items-start md:items-center gap-3">
+            ${companyIcon(item.link)}
+            <div class="min-w-0">
+              <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
+                ${item.title}
+                ${arrowIcon}
+              </h3>
+              <div class="text-sm text-gray-300">${item.period || ""}</div>
+            </div>
+          </div>
+          <!-- Roles -->
+          <ul class="mt-4 space-y-4">
+            ${rolesHtml}
+          </ul>
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-1 mt-5">
+            ${(item.tags || []).map(tag => `
+              <span class="tag-pill px-3 py-1 rounded-full text-xs font-medium">
+                ${tag}
+              </span>
+            `).join('')}
+          </div>
+        </div>
+    </a>`
+}
+
 // Main function to create a card. It now supports "experience", "project", and "education" types.
 export function createCard(item) {
+  if (item.type === "experience-company") {
+    return renderCompanyCard(item);
+  }
+  // existing fallback for everything else
   return renderDetailedCard(item);
 }
 
@@ -71,17 +161,45 @@ export function initCardSearch(expSearchInput, projSearchInput, experiences,
   logAction(`${initCardSearch.name}()`, () => {
     // Experience card filtering
     expSearchInput.addEventListener("input", function (e) {
-      const query = e.target.value.toLowerCase();
+      const query = (e.target.value || "").trim().toLowerCase();
+      if (!query) {
+        // Empty query → show everything
+        renderExperiences(expContainer, experiences);
+        return;
+      }
+
       const filteredExperiences = experiences.filter(exp => {
-        if (exp.type !== "experience") return false;
-        return (
-          exp.title.toLowerCase().includes(query) ||
-          exp.description.toLowerCase().includes(query) ||
-          (exp.tags && exp.tags.some(
-            tag => tag.toLowerCase().includes(query)))
+        if (exp.type !== "experience-company") return false;
+
+        // Company-level fields
+        const companyTitle = (exp.title || "").toLowerCase();
+        const companyPeriod = (exp.period || "").toLowerCase();
+        const companyTags = Array.isArray(exp.tags) ? exp.tags.map(t => (t || "").toLowerCase()) : [];
+
+        // Role-level fields
+        const roles = Array.isArray(exp.roles) ? exp.roles : [];
+        const roleTitles = roles.map(r => (r.title || "").toLowerCase());
+        const rolePeriods = roles.map(r => (r.period || "").toLowerCase());
+        const roleDescriptions = roles.map(r => (r.description || "").toLowerCase());
+        const roleTags = roles.flatMap(r =>
+          Array.isArray(r.tags) ? r.tags.map(t => (t || "").toLowerCase()) : []
         );
+
+        // Create a single haystack for simple .includes
+        const haystackParts = [
+          companyTitle,
+          companyPeriod,
+          ...companyTags,
+          ...roleTitles,
+          ...rolePeriods,
+          ...roleDescriptions,
+          ...roleTags
+        ];
+
+        const haystack = haystackParts.join(" • ");
+        return haystack.includes(query);
       });
-      // Call render function with the container and filtered data
+
       renderExperiences(expContainer, filteredExperiences);
     });
 
