@@ -42,8 +42,26 @@ function renderDetailedCard(item) {
   const isEducation = item.type === "education";
   const logoSrc = item.logoUrl || (isEducation ? schoolIcon(item.link) : "");
   const logoImg = logoSrc
-    ? `<img src="${logoSrc}" alt="" class="w-10 h-10 rounded-sm opacity-90 shrink-0" loading="lazy">`
+    ? `<img src="${logoSrc}" alt="" class="w-20 h-20 rounded-sm opacity-90 shrink-0" loading="lazy">`
     : "";
+
+  // Title section: if education, show logo + title + arrow
+  const titleSection = isEducation
+    ? `
+      <h3 class="text-lg font-bold text-gray-300 flex items-center gap-2">
+        <span>${item.title}</span>
+        ${arrowIcon}
+      </h3>
+      <div class="text-gray-300 font-semibold">
+        ${item.period || ""}
+      </div>
+    `
+    : `
+      <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
+        ${item.title}
+        ${arrowIcon}
+      </h3>
+    `;
 
   return `
     <a href="${item.link}" target="_blank" class="card group block relative">
@@ -55,15 +73,17 @@ function renderDetailedCard(item) {
         </div>
       ` : ""}
       <div class="flex flex-col md:flex-row gap-1 items-start md:items-center">
-        <div class="text-gray-300 font-semibold w-full md:w-1/4">
-          ${item.period || ""}
-        </div>
-        <div class="w-full md:w-3/4">
-          <h3 class="text-lg font-bold text-gray-300 flex items-center gap-1">
+        ${!isEducation ? `
+          <div class="text-gray-300 font-semibold w-full md:w-1/4">
+            ${item.period || ""}
+          </div>
+        ` : `
+          <div class="text-gray-300 font-semibold w-full md:w-1/4 flex justify-center items-center">
             ${logoImg}
-            ${item.title}
-            ${arrowIcon}
-          </h3>
+          </div>
+        `}
+        <div class="w-full md:w-3/4">
+          ${titleSection}
           <p class="text-gray-400 mt-3" style="text-align: justify;">
             ${item.description || ""}
           </p>
