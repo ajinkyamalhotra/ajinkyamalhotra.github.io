@@ -155,13 +155,24 @@ function renderCompanyCard(item) {
             ${roleDur}
           </div>
         </div>
-        ${r.description ? `
-          <p class="text-gray-400 mt-3" style="text-align: justify;">
-            ${r.description}
-          </p>
-        ` : ""}
-      </li>
-      ${verticalDivider}
+          ${(() => {
+        const items = Array.isArray(r.description)
+          ? r.description
+          : String(r.description ?? "")
+            .split(/\n+/)
+            .map(s => s.trim())
+            .filter(Boolean);
+
+        if (!items.length) return "";
+
+        return `
+        <ul class="mt-3 list-disc text-gray-400">
+          ${items.map(item => `<li class="text-justify">${item}</li>`).join("")}
+        </ul>
+      `;
+      })()}
+  </li>
+  ${verticalDivider}
     `;
   }).join("");
 

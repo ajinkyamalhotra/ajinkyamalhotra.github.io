@@ -51,26 +51,26 @@ const experiences = [
             {
                 title: "Senior Software Engineer",
                 period: "Apr 2025 - Present",
-                description:
-                    "Developing telemetry, orchestration, and driver interaction software supporting ARM's next-generation chips, enabling efficient performance monitoring and seamless Machine Learning System Integration.\n" +
-                    "Leading Performance Models Productization team responsible for external releases to global partners.",
+                description: [
+                    "Developing telemetry, orchestration, and driver interaction software supporting ARM's next-generation chips, enabling efficient performance monitoring and seamless Machine Learning System Integration.",
+                    "Leading Performance Models Productization team responsible for external releases to global partners."
+                ],
             },
             {
                 title: "Software Engineer",
                 period: "Jan 2024 - Apr 2025",
-                description:
-                    "Working on Performance Models Productization team which " +
-                    "handles external releases to various partners. Optimizing " +
-                    "AWS infrastructure using various tools.",
+                description: [
+                    "Working on Performance Models Productization team which handles external releases to various partners.",
+                    "Optimizing AWS infrastructure using various tools.",
+                ]
             },
             {
                 title: "Software Engineer Intern",
                 period: "May 2023 - Aug 2023",
-                description:
-                    "Worked on automating AWS pipeline, by managing AMIs updates, " +
-                    "EC2 instances, and EBS Volumes. Accomplished automation of " +
-                    "complex manually repetitive tasks using a variety of tools " +
-                    "and improved overall operational efficiency.",
+                description: [
+                    "Worked on automating AWS pipeline, by managing AMIs updates EC2 instances, and EBS Volumes.",
+                    "Accomplished automation of complex manually repetitive tasks using a variety of tools and improved overall operational efficiency.",
+                ]
             }
         ],
         tags: [
@@ -100,12 +100,11 @@ const experiences = [
             {
                 title: "Cloud Support Engineer",
                 period: "May 2020 - Jun 2022",
-                description:
-                    "Applied advanced troubleshooting techniques to provide unique " +
-                    "solutions to AWS customers. Drove multiple projects to improve " +
-                    "internal support-related processes and overall customer " +
-                    "experience. Worked on critical, highly complex customer " +
-                    "problems that spanned throughout multiple AWS services.",
+                description: [
+                    "Applied advanced troubleshooting techniques to provide unique solutions to AWS customers.",
+                    "Drove multiple projects to improve internal support-related processes and overall customer experience.",
+                    "Worked on critical, highly complex customer problems that spanned throughout multiple AWS services.",
+                ]
             }
         ],
         tags: [
@@ -129,8 +128,7 @@ const experiences = [
                 title: "Software Engineer",
                 period: "Aug 2019 - May 2020",
                 description:
-                    "Designed, enhanced, and maintained APIs for integration with " +
-                    "existing Esurance applications.",
+                    "Designed, enhanced, and maintained APIs for integration with existing Esurance applications.",
             }
         ],
         tags: [
@@ -150,10 +148,10 @@ const experiences = [
             {
                 title: "Software Engineer Intern",
                 period: "Jun 2018 - May 2019",
-                description:
-                    "Developed and executed selenium, smoke, and regression tests " +
-                    "on the staging environment. Performed functional tests on four " +
-                    "different web portal applications.",
+                description: [
+                    "Developed and executed selenium, smoke, and regression tests on the staging environment.",
+                    "Performed functional tests on four different web portal applications.",
+                ]
             }
         ],
         tags: [
@@ -171,9 +169,9 @@ const experiences = [
             {
                 title: "Teaching Assistant",
                 period: "Aug 2017 - May 2019",
-                description:
-                    "Helped, guided, and graded students' assignments and answered " +
-                    "questions during online discussions.",
+                description: [
+                    "Helped, guided, and graded students' assignments and answered questions during online discussions.",
+                ]
             }
         ],
         tags: [
