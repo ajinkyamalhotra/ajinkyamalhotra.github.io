@@ -35,11 +35,14 @@ export function populateInfo(siteNameEl, jobTitleEl, taglineEl, siteData,
     }
 
     const frag = document.createDocumentFragment();
-    siteData.about.forEach(paragraph => {
+    siteData.about.forEach((paragraph, i) => {
       const p = document.createElement("p");
-      p.className = "mb-4 text-lg";
+      p.className = "mb-4 text-lg transition duration-500 opacity-0 translate-y-4";
       p.textContent = paragraph;
       p.style.textAlign = 'justify';
+      setTimeout(() => {
+        p.classList.add("opacity-100", "translate-y-0");
+      }, i * 200);
       frag.appendChild(p);
     });
     aboutEl.appendChild(frag);

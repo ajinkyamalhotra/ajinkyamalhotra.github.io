@@ -141,7 +141,7 @@ function renderCompanyCard(item) {
 
     const { start, end, isPresent } = parsePeriod(r.period || "");
     const roleDur = (start && end) ? formatDuration(diffYM(start, end)) : "";
-    const verticalDivider = showPromotion ? `<hr class="my-4 border-t border-white/10" />` : "";
+    const verticalDivider = showPromotion ? `<hr class="my-4 border-t border-white/50" />` : "";
 
     return `
       <li class="relative pl-3">
@@ -151,7 +151,7 @@ function renderCompanyCard(item) {
             <span class="text-lg font-bold text-gray-300">${r.title}</span>
             <span class="text-sm text-gray-300 ml-2">${r.period || ""} ${promotionBadge}</span>
           </div>
-          <div class="hidden md:block text-xs text-gray-400 whitespace-nowrap ml-auto">
+          <div class="hidden md:block text-xs text-gray-300 whitespace-nowrap ml-auto">
             ${roleDur}
           </div>
         </div>
