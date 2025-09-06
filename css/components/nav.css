@@ -21,11 +21,14 @@
     cursor: pointer;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    justify-content: flex-end;
+    text-align: right;
 }
 
 .nav-button i {
     font-size: 20px;
     opacity: 0.8;
+    align-items: right;
 }
 
 .nav-button:hover {
@@ -38,7 +41,7 @@
     font-weight: bold;
 }
 
-.nav-button::after {
+.nav-button::before {
     content: "";
     display: block;
     width: 0;
@@ -49,8 +52,8 @@
     color: var(--accent-color)
 }
 
-.nav-button:hover::after,
-.nav-button.nav-active::after {
+.nav-button:hover::before,
+.nav-button.nav-active::before {
     width: 100%;
 }
 
