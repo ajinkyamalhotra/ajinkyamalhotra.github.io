@@ -66,7 +66,7 @@ export async function githubApiWrapper() {
                 };
                 const formattedDate = deploymentDate.toLocaleString("en-US", options);
                 versionElement.innerHTML =
-                    `<span class="fancy-number">${count}</span>`;
+                    `<span class="fancy-number">${count / 100}</span>`;
                 dateElement.innerHTML =
                     `<span class="date-text">${formattedDate} EST</span>`;
                 //shaElement.innerHTML =

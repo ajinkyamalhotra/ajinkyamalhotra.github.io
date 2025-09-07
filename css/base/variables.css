@@ -8,3 +8,18 @@
     --card-bg: rgba(255, 255, 255, 0.02);
     --hover-bg: rgba(255, 255, 255, 0.1);
 }
+
+/* Light mode overrides */
+body.light {
+    --primary-bg: #f9fbfd;
+    /* soft light background */
+    --accent-color: #D18A00;
+    /* deeper teal for contrast */
+    --sub-accent-color: red;
+    /* warm golden brown */
+    --text-color: #1a1a1a;
+    /* dark text for readability */
+    --card-bg: rgba(0, 0, 0, 0.03);
+    /* subtle gray for cards */
+    --hover-bg: rgba(0, 0, 0, 0.07);
+}

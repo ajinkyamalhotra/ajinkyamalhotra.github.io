@@ -10,7 +10,7 @@ body {
 }
 
 #tagline {
-    color: var(--accent-color);
+    color: var(--accent-color) !important;
 }
 
 /* Preloader Styles */

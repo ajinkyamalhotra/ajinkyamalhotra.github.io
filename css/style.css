@@ -23,28 +23,10 @@
 /* (Optionally, add any overrides or extra styles here) */
 
 /* Light mode global overrides */
-body.light {
-    background-color: #e3f2fd;
-    color: #000000;
-}
-
-body.light .card {
-    background: rgba(49, 130, 206, 0.1);
-}
-
-body.light .nav-button {
-    color: #000000;
-}
-
-body.light .nav-button.nav-active {
-    color: #000000;
-    border-left-color: #3182ce;
-}
 
 body.light .spotlight {
-    background: radial-gradient(circle,
-            rgba(49, 130, 206, 0.1) 10%, rgba(250, 250, 250, 0) 90%);
-    box-shadow: 0 0 150px rgba(49, 130, 206, 0.048);
+    background: none !important;
+    box-shadow: none !important;
 }
 
 /* Force text to be black in light mode */
