@@ -100,7 +100,7 @@ export function renderSidebar() {
     return logAction(`${renderSidebar.name}()`, () => {
         const aside = document.createElement("aside");
         aside.id = "leftSidebar";
-        aside.className = "w-1/3 overflow-y-auto text-white p-3 flex flex-col pt-16 pb-0";
+        aside.className = "w-1/3 overflow-y-auto text-white p-6 flex flex-col pt-20 pb-0";
 
         // Header Section
         const header = document.createElement("header");
@@ -127,7 +127,7 @@ export function renderSidebar() {
 
         // Navigation Bar
         const nav = document.createElement("nav");
-        nav.className = "fancy-nav";
+        nav.className = "fancy-nav pt-8";
 
         const navButtons = [
             {
@@ -181,7 +181,7 @@ export function renderSidebar() {
         // Social Icons Container
         const socialContainer = document.createElement("div");
         socialContainer.id = "socialContainer";
-        socialContainer.className = "my-4 social-icons";
+        socialContainer.className = "my-4 social-icons pt-8";
         aside.appendChild(socialContainer);
 
         return aside;

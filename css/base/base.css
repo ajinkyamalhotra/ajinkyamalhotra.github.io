@@ -140,6 +140,7 @@ body {
         justify-content: flex-start !important;
         align-items: stretch !important;
         height: auto;
+        padding: 0.75rem;
     }
 
     #mainContainer {

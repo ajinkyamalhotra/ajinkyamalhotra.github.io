@@ -7,13 +7,13 @@ export function renderMainContent() {
   return logAction(`${renderMainContent.name}()`, () => {
     const main = document.createElement("main");
     main.id = "rightSection";
-    main.className = "w-2/3 overflow-y-auto p-3 h-full custom-scrollbar pt-16 pb-0";
+    main.className = "w-2/3 overflow-y-auto p-8 h-full custom-scrollbar pb-0 pt-0";
 
     // About Section
     const aboutSection = document.createElement("section");
     aboutSection.id = "section1";
     aboutSection.className =
-      "fade-in mb-6 p-3 rounded-lg text-gray-400 leading-relaxed pt-8";
+      "fade-in mb-6 p-3 rounded-lg text-gray-400 leading-relaxed pt-20 pb-5";
     const aboutContent = document.createElement("div");
     aboutContent.id = "aboutContent";
     aboutSection.appendChild(aboutContent);
@@ -22,7 +22,7 @@ export function renderMainContent() {
     // Experience Section
     const expSection = document.createElement("section");
     expSection.id = "section2";
-    expSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
+    expSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4 pt-7 pb-5";
     expSection.innerHTML = `
       <br>
       <input type="text" id="experienceSearch" placeholder="Search experiences..."
@@ -34,7 +34,7 @@ export function renderMainContent() {
     // Projects Section
     const projSection = document.createElement("section");
     projSection.id = "section3";
-    projSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
+    projSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4 pt-7 pb-5";
     projSection.innerHTML = `
       <br>
       <input type="text" id="projectSearch" placeholder="Search projects..." class
@@ -46,7 +46,7 @@ export function renderMainContent() {
     // Skills Section
     const skillsSection = document.createElement("section");
     skillsSection.id = "section4";
-    skillsSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
+    skillsSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4 pt-7 pb-5";
     skillsSection.innerHTML = `
       <br>
       <div class="space-y-4 w-full max-w-4xl" id="skillsContainer"></div>
@@ -56,7 +56,7 @@ export function renderMainContent() {
     // Education Section
     const eduSection = document.createElement("section");
     eduSection.id = "section5";
-    eduSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4";
+    eduSection.className = "fade-in mb-10 p-3 border-t border-gray-300 mt-4 pt-7 pb-5";
     eduSection.innerHTML = `
       <br>
       <div class="space-y-4 w-full max-w-4xl" id="eduContainer"></div>
@@ -67,7 +67,7 @@ export function renderMainContent() {
     const timelineSection = document.createElement("section");
     timelineSection.id = "sectionTimeline";
     timelineSection.className = "fade-in mb-10 p-3 border-t border-gray-300 " +
-      "mt-4 relative";
+      "mt-4 relative pt-7";
     const toggleBtn = document.createElement("button");
     toggleBtn.id = "toggleSortBtn";
     toggleBtn.className =

@@ -66,7 +66,7 @@ export function renderApp() {
         // Create the main container that holds the sidebar and main content.
         const mainContainer = document.createElement("div");
         mainContainer.id = "outerContainer";
-        mainContainer.className = "flex justify-center items-center h-screen p-3 pt-0 pb-0 overflow-hidden";
+        mainContainer.className = "flex justify-center items-center h-screen p-10 pt-0 pb-0 overflow-hidden sm:p-3";
 
         // Create a "spotlight" element
         const spotlight = document.createElement("div");
@@ -77,7 +77,7 @@ export function renderApp() {
         // Create the inner container that holds sidebar and main content
         const innerContainer = document.createElement("div");
         innerContainer.id = "mainContainer";
-        innerContainer.className = "w-full max-w-7xl h-full " +
+        innerContainer.className = "w-full max-w-[90rem] h-full " +
             "rounded-lg flex overflow-hidden gap-4";
 
         // Append sidebar and main content
