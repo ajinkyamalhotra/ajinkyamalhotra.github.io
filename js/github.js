@@ -19,8 +19,9 @@ function fmtDate(iso) {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
+      timeZoneName: "short",
     };
-    return `${d.toLocaleString("en-US", opts)} EST`;
+    return d.toLocaleString("en-US", opts);
   } catch {
     return "--";
   }

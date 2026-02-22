@@ -18,6 +18,26 @@ export function initProjectModal({
   let lastFocus = null;
   let currentProject = null;
 
+  const focusables = () =>
+    [...overlay.querySelectorAll("a, button, [href], [tabindex]:not([tabindex='-1'])")].filter(
+      (el) => !el.hasAttribute("disabled")
+    );
+
+  const trapTab = (e) => {
+    if (!isOpen || e.key !== "Tab") return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   function open(project) {
     currentProject = project;
     isOpen = true;
@@ -50,6 +70,7 @@ export function initProjectModal({
 
     overlay.setAttribute("data-open", "true");
     overlay.setAttribute("aria-hidden", "false");
+    document.addEventListener("keydown", trapTab);
 
     // Wire copy button
     const copyBtn = document.getElementById("modalCopyLink");
@@ -74,6 +95,7 @@ export function initProjectModal({
     overlay.setAttribute("aria-hidden", "true");
     bodyEl.innerHTML = "";
     currentProject = null;
+    document.removeEventListener("keydown", trapTab);
     lastFocus?.focus?.();
   }
 

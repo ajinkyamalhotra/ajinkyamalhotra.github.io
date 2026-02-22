@@ -31,7 +31,7 @@
   --sans: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  --container: 1160px;
+  --container: 1240px;
 
   --topbar-h: 70px;
   --spot-x: 50vw;
@@ -138,7 +138,7 @@ html[data-theme="terminal"] {
 
 /* Reset */
 * { box-sizing: border-box; }
-html, body { min-height: 100%; }
+html, body { min-height: 100%; width: 100%; max-width: 100%; }
 html { background: var(--bg0); }
 body {
   margin: 0;
@@ -224,7 +224,9 @@ html.spotlight-on body::after {
 }
 
 .container {
-  width: min(var(--container), calc(100% - 2 * 20px));
+  width: 100%;
+  max-width: var(--container);
+  padding: 0 20px;
   margin: 0 auto;
 }
 
@@ -321,7 +323,7 @@ html[data-theme="sand"] .nav,
 html[data-theme="porcelain"] .nav { background: rgba(17,21,33,0.02); }
 
 .nav a {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--fg1);
   padding: 7px 9px;
   border-radius: 12px;
@@ -1293,11 +1295,23 @@ html[data-theme="porcelain"] .repo__chip { background: rgba(17,21,33,0.06); }/* 
 .input {
   width: 100%;
   padding: 12px 12px;
+  height: 42px;
+  line-height: 1.2;
   border-radius: 16px;
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.03);
   color: var(--fg0);
   outline: none;
+}
+.input[type="search"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+.input[type="search"]::-webkit-search-decoration,
+.input[type="search"]::-webkit-search-cancel-button,
+.input[type="search"]::-webkit-search-results-button,
+.input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }
 .input::placeholder { color: var(--fg2); }
 
@@ -1669,11 +1683,13 @@ html[data-theme="porcelain"] .subskill { background: rgba(17,21,33,0.06); }
 .palette {
   position: relative;
   width: min(720px, calc(100% - 28px));
+  max-height: calc(100vh - 28px);
+  overflow: auto;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.06);
   box-shadow: 0 36px 120px -52px var(--shadow2);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .palette__top {
@@ -1743,6 +1759,7 @@ html[data-theme="porcelain"] .subskill { background: rgba(17,21,33,0.06); }
   position: relative;
   width: min(980px, calc(100% - 28px));
   height: min(78vh, 700px);
+  max-height: calc(100vh - 28px);
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   background: rgba(0,0,0,0.52);
@@ -1799,6 +1816,7 @@ html[data-theme="porcelain"] .terminal {
 
 .termLine { margin: 0 0 8px; }
 .termLine--dim { color: rgba(255,255,255,0.62); }
+.termDim { color: rgba(255,255,255,0.62); }
 .termPrompt { color: var(--accent2); }
 .termCmd { color: rgba(255,255,255,0.92); }
 .termErr { color: var(--danger); }
@@ -1853,11 +1871,13 @@ html[data-theme="porcelain"] .terminal {
 .modal {
   position: relative;
   width: min(860px, calc(100% - 28px));
+  max-height: calc(100vh - 28px);
+  overflow: auto;
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.06);
   box-shadow: 0 42px 160px -72px var(--shadow2);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .modal__bar {
@@ -2008,10 +2028,21 @@ html[data-theme="porcelain"] .terminal {
 }
 
 @media (max-width: 620px) {
+  .topbar { height: auto; }
+  .topbar__inner { flex-wrap: nowrap; padding: 10px 0; }
+  .brand { min-width: 0; }
+  .brand__text { min-width: 0; }
+  .brand__name { font-size: 15px; white-space: nowrap; }
+  .brand__role { display: none; }
+  .topbar__actions { gap: 8px; }
+  .icon-btn { width: 42px; height: 42px; border-radius: 14px; }
   .topbar__actions .btn { display: none; }
   .impact-grid { grid-template-columns: 1fr; }
   .projects { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
+  .container { padding: 0 12px; }
+  .input { height: 40px; padding: 10px 12px; }
+  .hero__tagline { font-size: 11px; }
 }
 
 /* Respect reduced motion */
@@ -2129,4 +2160,20 @@ html[data-theme="porcelain"] .terminal {
 @media (max-width: 760px){
   .termHelp__row{ flex-direction: column; }
   .termHelp__left{ min-width: 0; }
+}
+.input--compact {
+  height: 44px;
+  min-height: 44px;
+  max-height: 44px;
+  padding: 0 12px;
+  line-height: 44px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.input--compact::placeholder {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

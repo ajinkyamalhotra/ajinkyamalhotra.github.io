@@ -32,6 +32,26 @@ export function initTerminal({
   let history = loadHistory();
   let historyIdx = history.length;
 
+  const focusables = () =>
+    [...overlay.querySelectorAll("input, button, [href], [tabindex]:not([tabindex='-1'])")].filter(
+      (el) => !el.hasAttribute("disabled")
+    );
+
+  const trapTab = (e) => {
+    if (!isOpen || e.key !== "Tab") return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   const write = (html, cls = "") => {
     const p = document.createElement("p");
     p.className = `termLine ${cls}`.trim();
@@ -128,6 +148,7 @@ export function initTerminal({
     overlay.setAttribute("aria-hidden", "false");
     input.value = "";
     setTimeout(() => input.focus(), 0);
+    document.addEventListener("keydown", trapTab);
   };
 
   const close = () => {
@@ -135,6 +156,7 @@ export function initTerminal({
     isOpen = false;
     overlay.setAttribute("data-open", "false");
     overlay.setAttribute("aria-hidden", "true");
+    document.removeEventListener("keydown", trapTab);
   };
 
   const toggle = () => (isOpen ? close() : open());
@@ -189,7 +211,7 @@ function setPrompt() {
     print(`${profile.name} — ${profile.role} (${profile.location})`);
     print("");
     if (profile.summary) print(profile.summary);
-    if (profile.tagline) print(profile.tagline);
+    if (Array.isArray(profile.taglines) && profile.taglines.length) print(profile.taglines[0]);
     print("");
     // quick links
     const links = [];

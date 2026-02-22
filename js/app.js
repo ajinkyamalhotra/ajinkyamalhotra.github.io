@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initNavigation();
   initReveal();
   initGlobalShortcuts({ focusProjectSearch: () => qs("#projectSearch")?.focus() });
+  initResponsivePlaceholders();
 
   // Terminal + palette
   const terminal = initTerminal({
@@ -511,7 +512,8 @@ function makeProjectsRenderer({ onOpenProject } = {}) {
 
   // Keyboard: open via Enter on focused card
   grid?.addEventListener("keydown", (e) => {
-    if (e.key !== "Enter") return;
+    if (e.key !== "Enter" && e.key !== " ") return;
+    if (e.key === " ") e.preventDefault();
     const card = e.target.closest("[data-project]");
     if (!card) return;
     card.click();
@@ -616,6 +618,22 @@ function initNavigation() {
     setTimeout(() => scrollToHash(window.location.hash, { smooth: false }), 0);
     setTimeout(updateActive, 20);
   }
+}
+
+function initResponsivePlaceholders() {
+  const input = qs("#experienceSearch");
+  if (!input) return;
+
+  const full = input.getAttribute("placeholder") || "";
+  const short = "Filter experience…";
+
+  const apply = () => {
+    const useShort = window.innerWidth <= 620;
+    input.setAttribute("placeholder", useShort ? short : full);
+  };
+
+  apply();
+  window.addEventListener("resize", debounce(apply, 150), { passive: true });
 }
 
 export function scrollToHash(hash, { smooth = true } = {}) {

@@ -20,6 +20,26 @@ export function initCommandPalette({
   let filtered = actions;
   let active = 0;
 
+  const focusables = () =>
+    [...overlay.querySelectorAll("input, button, [href], [tabindex]:not([tabindex='-1'])")].filter(
+      (el) => !el.hasAttribute("disabled")
+    );
+
+  const trapTab = (e) => {
+    if (!isOpen || e.key !== "Tab") return;
+    const items = focusables();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
   function open() {
     if (isOpen) return;
     isOpen = true;
@@ -30,6 +50,7 @@ export function initCommandPalette({
     active = 0;
     render();
     setTimeout(() => input.focus(), 0);
+    document.addEventListener("keydown", trapTab);
   }
 
   function close() {
@@ -37,6 +58,7 @@ export function initCommandPalette({
     isOpen = false;
     overlay.setAttribute("data-open", "false");
     overlay.setAttribute("aria-hidden", "true");
+    document.removeEventListener("keydown", trapTab);
   }
 
   function render() {

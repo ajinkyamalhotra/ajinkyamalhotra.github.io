@@ -2,7 +2,7 @@
    NOTE: GitHub Pages serves with HTTPS so SW works in production.
 */
 
-const CACHE = "ajinkyaos-v6.1";
+const CACHE = "ajinkyaos-v6.21";
 
 const ASSETS = [
   "./",
