@@ -36,6 +36,17 @@ export function initTerminal({
   const HISTORY_KEY = "ajinkyaos.term.history";
   let history = loadHistory();
   let historyIdx = history.length;
+  let pointerDownInBody = false;
+  let draggedInBody = false;
+
+  const focusInput = ({ preventScroll = false } = {}) => {
+    try {
+      if (preventScroll) input.focus({ preventScroll: true });
+      else input.focus();
+    } catch {
+      input.focus();
+    }
+  };
 
   const focusables = () =>
     [...overlay.querySelectorAll("input, button, [href], [tabindex]:not([tabindex='-1'])")].filter(
@@ -150,7 +161,7 @@ export function initTerminal({
     overlay.setAttribute("data-open", "true");
     overlay.setAttribute("aria-hidden", "false");
     input.value = "";
-    setTimeout(() => input.focus(), 0);
+    setTimeout(() => focusInput(), 0);
     document.addEventListener("keydown", trapTab);
   };
 
@@ -643,11 +654,30 @@ function cmdTheme(arg) {
 
   maxBtn?.addEventListener("click", () => {
     setMaximized(!isMaximized);
-    input.focus();
+    focusInput({ preventScroll: true });
+  });
+
+  body.addEventListener("mousedown", (e) => {
+    if (e.button !== 0) return;
+    pointerDownInBody = true;
+    draggedInBody = false;
+  });
+
+  body.addEventListener("mousemove", () => {
+    if (pointerDownInBody) draggedInBody = true;
+  });
+
+  window.addEventListener("mouseup", () => {
+    pointerDownInBody = false;
   });
 
   body.addEventListener("click", () => {
-    input.focus();
+    const sel = window.getSelection?.();
+    const hasSelection = !!sel && !sel.isCollapsed && body.contains(sel.anchorNode);
+    const endedDragSelection = draggedInBody && hasSelection;
+    draggedInBody = false;
+    if (endedDragSelection) return;
+    focusInput({ preventScroll: true });
   });
 
   openBtn?.addEventListener("click", open);
