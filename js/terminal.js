@@ -14,12 +14,16 @@ export function initTerminal({
   overlayId = "terminalOverlay",
   openBtnId = "terminalBtn",
   bodyId = "terminalBody",
+  outputId = "terminalOutput",
   inputId = "terminalInput",
   promptId = "terminalPrompt",
 } = {}) {
   const overlay = document.getElementById(overlayId);
+  const terminal = overlay?.querySelector(".terminal") || null;
   const openBtn = document.getElementById(openBtnId);
+  const maxBtn = document.getElementById("terminalMaxBtn");
   const body = document.getElementById(bodyId);
+  const output = document.getElementById(outputId) || body;
   const input = document.getElementById(inputId);
   const prompt = document.getElementById(promptId);
 
@@ -28,6 +32,7 @@ export function initTerminal({
   }
 
   let isOpen = false;
+  let isMaximized = false;
   const HISTORY_KEY = "ajinkyaos.term.history";
   let history = loadHistory();
   let historyIdx = history.length;
@@ -39,6 +44,10 @@ export function initTerminal({
 
   const trapTab = (e) => {
     if (!isOpen || e.key !== "Tab") return;
+    if (document.activeElement === input) {
+      e.preventDefault();
+      return;
+    }
     const items = focusables();
     if (!items.length) return;
     const first = items[0];
@@ -53,10 +62,10 @@ export function initTerminal({
   };
 
   const write = (html, cls = "") => {
-    const p = document.createElement("p");
-    p.className = `termLine ${cls}`.trim();
-    p.innerHTML = html;
-    body.appendChild(p);
+    const line = document.createElement("div");
+    line.className = `termLine ${cls}`.trim();
+    line.innerHTML = html;
+    output.appendChild(line);
     body.scrollTop = body.scrollHeight;
   };
 
@@ -107,37 +116,31 @@ export function initTerminal({
       if (!byGroup.has(g)) byGroup.set(g, []);
       byGroup.get(g).push(d);
     }
-    const groups = [...byGroup.keys()].sort((a,b)=> (GROUP_ORDER.indexOf(a)===-1?999:GROUP_ORDER.indexOf(a)) - (GROUP_ORDER.indexOf(b)===-1?999:GROUP_ORDER.indexOf(b)));
+    const groups = [...byGroup.keys()].sort(
+      (a, b) =>
+        (GROUP_ORDER.indexOf(a) === -1 ? 999 : GROUP_ORDER.indexOf(a)) -
+        (GROUP_ORDER.indexOf(b) === -1 ? 999 : GROUP_ORDER.indexOf(b))
+    );
 
-    const groupHtml = groups.map(g=>{
-      const rows = byGroup.get(g).map(d=>{
-        const aliases = (d.aliases && d.aliases.length) ? `<span class="termHelp__aliases">${d.aliases.map(a=>`<span class="termChip">${escapeHtml(a)}</span>`).join(" ")}</span>` : "";
-        return `
-          <div class="termHelp__row">
-            <div class="termHelp__left">
-              <span class="termCmd">${escapeHtml(d.usage || d.cmd)}</span>
-              ${aliases}
-            </div>
-            <div class="termHelp__right termDim">${escapeHtml(d.desc || "")}</div>
-          </div>
-        `;
-      }).join("");
-      return `
-        <div class="termHelp__group">
-          <div class="termHelp__h">${escapeHtml(g)}</div>
-          ${rows}
-        </div>
-      `;
-    }).join("");
+    const groupHtml = groups
+      .map((g) => {
+        const rows = byGroup
+          .get(g)
+          .map((d) => {
+            const aliases = d.aliases?.length
+              ? `<span class="termManual__aliases">${d.aliases
+                  .map((a) => `<span class="termManual__chip">${escapeHtml(a)}</span>`)
+                  .join("")}</span>`
+              : "";
+            return `<div class="termManual__row"><div class="termManual__left"><span class="termCmd">${escapeHtml(d.usage || d.cmd)}</span>${aliases}</div><div class="termManual__right termDim">${escapeHtml(d.desc || "")}</div></div>`;
+          })
+          .join("");
+        return `<section class="termManual__group" aria-label="${escapeHtml(g)}"><h4 class="termManual__h">${escapeHtml(g)}</h4>${rows}</section>`;
+      })
+      .join("");
 
-    write(`
-      <div class="termHelp2">
-        ${groupHtml}
-        <div class="termHelp__foot termDim">
-          <span class="termCmd">Try to type a command in terminal and hit enter</span>
-        </div>
-      </div>
-    `, "");
+    const manual = `<div class="termManual">${groupHtml}<div class="termManual__foot termDim"><span class="termCmd">Tip:</span> type any command and press Enter.</div></div>`;
+    write(manual, "termLine--manual");
   };
 
 
@@ -154,12 +157,29 @@ export function initTerminal({
   const close = () => {
     if (!isOpen) return;
     isOpen = false;
+    setMaximized(false);
     overlay.setAttribute("data-open", "false");
     overlay.setAttribute("aria-hidden", "true");
     document.removeEventListener("keydown", trapTab);
   };
 
   const toggle = () => (isOpen ? close() : open());
+
+  const renderMaxButton = () => {
+    if (!maxBtn) return;
+    maxBtn.innerHTML = isMaximized
+      ? '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4h12v12"></path><path d="M16 8h-8v12h12v-8"></path></svg>'
+      : '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"></rect></svg>';
+    maxBtn.setAttribute("aria-label", isMaximized ? "Restore terminal size" : "Maximize terminal");
+    maxBtn.setAttribute("title", isMaximized ? "Restore terminal size" : "Maximize terminal");
+    maxBtn.setAttribute("aria-pressed", isMaximized ? "true" : "false");
+  };
+
+  const setMaximized = (next) => {
+    isMaximized = !!next;
+    terminal?.classList.toggle("terminal--maximized", isMaximized);
+    renderMaxButton();
+  };
 
     function loadHistory() {
     try {
@@ -183,7 +203,6 @@ export function initTerminal({
 
   function listSections() {
     return [
-      "boot",
       "about",
       "impact",
       "staff",
@@ -388,7 +407,6 @@ function cmdTheme(arg) {
     const sec = listSections().find((s) => normalize(s).includes(q));
     if (!sec) { print(`Unknown section: ${arg}`, "termErr"); return; }
     const map = {
-      boot: "#overview",
       about: "#overview",
       impact: "#impact",
       staff: "#staff",
@@ -495,7 +513,7 @@ function cmdTheme(arg) {
         cmdEcho(arg);
         break;
       case "clear":
-        body.innerHTML = "";
+        output.innerHTML = "";
         break;
       case "exit":
       case "quit":
@@ -541,6 +559,7 @@ function cmdTheme(arg) {
     }
     if (e.key === "Tab") {
       e.preventDefault();
+      e.stopPropagation();
       const v = input.value;
       const parts = v.split(/\s+/);
       const head = parts[0] || "";
@@ -624,6 +643,15 @@ function cmdTheme(arg) {
     if (closer) close();
   });
 
+  maxBtn?.addEventListener("click", () => {
+    setMaximized(!isMaximized);
+    input.focus();
+  });
+
+  body.addEventListener("click", () => {
+    input.focus();
+  });
+
   openBtn?.addEventListener("click", open);
 
   // Global shortcut: ~
@@ -640,6 +668,7 @@ function cmdTheme(arg) {
   });
 
   setPrompt();
+  renderMaxButton();
 
   // Welcome
   write(`<span class="termOk">Welcome.</span> Type <span class="termCmd">help</span> to see commands.`, "");

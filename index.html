@@ -77,8 +77,12 @@
     <div class="overlay__backdrop" data-close="terminal"></div>
     <div class="terminal" role="dialog" aria-modal="true" aria-label="Terminal">
       <div class="terminal__bar">
-        <div class="terminal__dots" aria-hidden="true">
-          <span></span><span></span><span></span>
+        <div class="terminal__windowControls" aria-label="Terminal window controls">
+          <button id="terminalMaxBtn" class="terminal__max" type="button" aria-label="Maximize terminal" title="Maximize terminal">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+            </svg>
+          </button>
         </div>
         <div class="terminal__title"><span class="mono">ajinkya@portfolio</span> <span class="muted">:~</span></div>
         <button class="terminal__close" type="button" data-close="terminal" aria-label="Close terminal">
@@ -87,12 +91,20 @@
           </svg>
         </button>
       </div>
-      <div id="terminalBody" class="terminal__body" tabindex="0" aria-live="polite"></div>
-      <div class="terminal__inputRow">
-        <span id="terminalPrompt" class="terminal__prompt mono"></span>
-        <input id="terminalInput" class="terminal__input mono" type="text" autocomplete="off" spellcheck="false" />
+      <div id="terminalBody" class="terminal__body" tabindex="0" aria-live="polite">
+        <div class="terminal__hints mono">
+          <span><kbd>Tab</kbd> autocomplete</span>
+          <span><kbd>Up/Down</kbd> history</span>
+          <span><kbd>Ctrl</kbd>+<kbd>C</kbd> clear line</span>
+          <span><kbd>Esc</kbd> close</span>
+          <span><span class="mono">help</span> manual</span>
+        </div>
+        <div id="terminalOutput"></div>
+        <div class="terminal__inputInline">
+          <span id="terminalPrompt" class="terminal__prompt mono"></span>
+          <input id="terminalInput" class="terminal__input mono" type="text" autocomplete="off" spellcheck="false" />
+        </div>
       </div>
-      <div class="terminal__tips mono">Tips: Tab autocomplete · Up/Down history · Ctrl+C clear line · Esc close · help manual</div>
     </div>
   </div>
 
