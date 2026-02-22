@@ -209,7 +209,6 @@ export function initTerminal({
       "experience",
       "projects",
       "skills",
-      "radar",
       "resume",
       "contact",
     ];
@@ -413,7 +412,6 @@ function cmdTheme(arg) {
       experience: "#experience",
       projects: "#projects",
       skills: "#skills",
-      radar: "#overview",
       resume: "#resume",
       contact: "#contact",
     };

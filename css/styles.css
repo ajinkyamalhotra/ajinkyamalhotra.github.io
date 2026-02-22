@@ -1172,6 +1172,12 @@ html[data-theme="porcelain"] .repo__chip { background: rgba(17,21,33,0.06); }/* 
   color: var(--fg2);
   font-size: 13px;
 }
+.writingItem__summary {
+  margin-top: 8px;
+  color: var(--fg1);
+  font-size: 13px;
+  line-height: 1.55;
+}
 
 .caseStudy__section,
 .artifact__row {

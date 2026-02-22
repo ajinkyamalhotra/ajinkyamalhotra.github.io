@@ -314,6 +314,7 @@ function renderWriting() {
           <span class="badge">${escape(w.status || "")}</span>
         </div>
         <div class="writingItem__meta">${escape(w.type || "")}</div>
+        ${w.summary ? `<div class="writingItem__summary">${escape(w.summary)}</div>` : ""}
       </article>
     `
     )

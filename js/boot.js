@@ -1,25 +1,25 @@
 import { sleep } from "./utils.js";
 
 const SESSION_KEY = "aj_boot_seen";
+const FALLBACK_SW_VERSION = "v1.15";
 
-export function initBootSequence({ force = false } = {}) {
-  const boot = document.getElementById("boot");
-  const logEl = document.getElementById("bootLog");
-  const skipBtn = document.getElementById("bootSkip");
-  const stageEl = document.getElementById("bootStage");
-  const pctEl = document.getElementById("bootPct");
-  const barEl = document.getElementById("bootBar");
-  const trackEl = barEl?.parentElement ?? null;
+async function getServiceWorkerVersion() {
+  try {
+    const res = await fetch("./sw.js", { cache: "no-store" });
+    if (!res.ok) return FALLBACK_SW_VERSION;
+    const text = await res.text();
+    const cacheMatch = text.match(/const\s+CACHE\s*=\s*["']([^"']+)["']/);
+    const cacheName = cacheMatch?.[1] || "";
+    const versionMatch = cacheName.match(/v[0-9]+(?:\.[0-9]+)*/i);
+    return versionMatch?.[0] || FALLBACK_SW_VERSION;
+  } catch {
+    return FALLBACK_SW_VERSION;
+  }
+}
 
-  if (!boot || !logEl) return;
-
-  const seen = sessionStorage.getItem(SESSION_KEY) === "1";
-  if (seen && !force) return;
-
-  sessionStorage.setItem(SESSION_KEY, "1");
-
-  const lines = [
-    "AJINKYA.OS BOOTMGR v1.15",
+function buildBootLines(swVersion) {
+  return [
+    `AJINKYA.OS BOOTMGR ${swVersion}`,
     "Machine: AJK-DEV-01  |  CPU: 8C/16T  |  RAM: 32GB",
     "----------------------------------------------------",
     "[  0.000] UEFI: POST start",
@@ -36,7 +36,7 @@ export function initBootSequence({ force = false } = {}) {
     "[  1.164] SVC : compositor..................ready",
     "[  1.231] SVC : input manager...............ready",
     "[  1.307] SVC : network stack...............online",
-    "[  1.387] SVC : cache daemon (sw.js v1.15)..active",
+    `[  1.387] SVC : cache daemon (sw.js ${swVersion})..active`,
     "[  1.468] SVC : telemetry/GitHub radar......deferred",
     "[  1.551] LOGIN: user authenticated",
     "[  1.620] USERSPACE: start portfolio session",
@@ -56,6 +56,23 @@ export function initBootSequence({ force = false } = {}) {
     "Tip: Ctrl+K opens command palette | ~ opens terminal",
     "",
   ];
+}
+
+export function initBootSequence({ force = false } = {}) {
+  const boot = document.getElementById("boot");
+  const logEl = document.getElementById("bootLog");
+  const skipBtn = document.getElementById("bootSkip");
+  const stageEl = document.getElementById("bootStage");
+  const pctEl = document.getElementById("bootPct");
+  const barEl = document.getElementById("bootBar");
+  const trackEl = barEl?.parentElement ?? null;
+
+  if (!boot || !logEl) return;
+
+  const seen = sessionStorage.getItem(SESSION_KEY) === "1";
+  if (seen && !force) return;
+
+  sessionStorage.setItem(SESSION_KEY, "1");
 
   const setProgress = (value, stage) => {
     const pct = Math.max(0, Math.min(100, Math.round(value)));
@@ -101,6 +118,8 @@ export function initBootSequence({ force = false } = {}) {
   setProgress(0, "Firmware init");
 
   (async () => {
+    const swVersion = await getServiceWorkerVersion();
+    const lines = buildBootLines(swVersion);
     logEl.textContent = "";
     for (const [idx, l] of lines.entries()) {
       if (cancelled) return;

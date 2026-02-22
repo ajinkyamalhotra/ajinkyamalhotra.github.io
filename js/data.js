@@ -165,7 +165,7 @@ export const experience = [
         title: "Senior Software Engineer",
         period: "Apr 2025 — Present",
         bullets: [
-          "Developing telemetry, orchestration, and driver-interaction software for next‑gen Arm chips (performance monitoring, load balancing, ML system integration).",
+          "Developing telemetry, orchestration, and driver-interaction software for next-gen Arm chips (performance monitoring, load balancing, ML system integration).",
           "Leading Performance Models productization work for external releases to global partners.",
           "Designed GitLab CI/CD pipelines that reduced release cycle times by ~30% and improved build reliability.",
         ],
@@ -214,7 +214,7 @@ export const experience = [
         bullets: [
           "Applied advanced troubleshooting to solve complex customer problems across multiple AWS services.",
           "Created internal automation/diagnostic tools used globally, reducing average case resolution time by ~15%.",
-          "Resolved high‑severity escalations for enterprise customers and partnered with engineering to prioritize fixes/enhancements.",
+          "Resolved high-severity escalations for enterprise customers and partnered with engineering to prioritize fixes/enhancements.",
         ],
       },
     ],
@@ -241,7 +241,7 @@ export const experience = [
         title: "Software Engineer",
         period: "Aug 2019 — May 2020",
         bullets: [
-          "Built a caching layer for a high‑traffic API reducing query latency by ~80% (served from cache instead of MongoDB).",
+          "Built a caching layer for a high-traffic API reducing query latency by ~80% (served from cache instead of MongoDB).",
           "Maintained and enhanced 5 payment-related APIs, ensuring scalability and compliance under high transaction load.",
           "Integrated Splunk logging/monitoring and cut average incident resolution time by ~30%.",
         ],
@@ -299,7 +299,7 @@ export const projects = [
     period: "Mar 2023 — May 2023",
     link: "https://github.com/ajinkyamalhotra/Steam-Game-Recommendation/",
     desc:
-      "Recommendation system using Content‑Based Filtering and VBPR. Deployed on AWS Lambda + Heroku; improved recommendation accuracy ~25% and reduced processing time ~60%.",
+      "Recommendation system using Content-Based Filtering and VBPR. Deployed on AWS Lambda + Heroku; improved recommendation accuracy ~25% and reduced processing time ~60%.",
     tags: ["Python", "AWS Lambda", "Heroku", "ML", "HTML/CSS"],
     highlights: [
       "Content-Based Filtering + VBPR",
@@ -312,7 +312,7 @@ export const projects = [
     period: "Feb 2023 — Apr 2023",
     link: "https://github.com/ajinkyamalhotra/Chess-Master",
     desc:
-      "Human vs CPU chess-like game with a Minimax AI optimized via Alpha‑Beta pruning, Depth‑Limited Search, and Iterative Deepening.",
+      "Human vs CPU chess-like game with a Minimax AI optimized via Alpha-Beta pruning, Depth-Limited Search, and Iterative Deepening.",
     tags: ["Java", "Minimax", "Alpha-Beta", "Algorithms"],
     highlights: ["Game AI", "Search optimization"],
   },
@@ -651,19 +651,32 @@ export const testStrategy = {
 
 export const writing = [
   {
-    title: "How I Cut Build Times by 58% Without Cutting Test Confidence",
-    type: "Engineering Note",
-    status: "Planned",
+    title: "Cutting CI Build Time 58% Without Reducing Test Confidence",
+    type: "Engineering Note (published to Confluence)",
+    status: "Published",
+    summary:
+      "Decomposed monolithic pipelines into deterministic stages with targeted retries and clear ownership.",
   },
   {
-    title: "Practical AWS Cost Controls for Performance Workloads",
-    type: "Engineering Note",
-    status: "Planned",
+    title: "Pipeline Failure Taxonomy: A Practical Triage Framework",
+    type: "Engineering Note (published to Confluence)",
+    status: "Published",
+    summary:
+      "A failure taxonomy that turns flaky failures into actionable categories with owners and SLAs.",
   },
   {
-    title: "Designing CI Pipelines for External Partner Releases",
-    type: "Engineering Note",
-    status: "Planned",
+    title: "Release Gates That Scale With Partner Expectations",
+    type: "Engineering Note (published to Confluence)",
+    status: "Published",
+    summary:
+      "Minimum release gates that keep partner deliveries predictable without slowing teams.",
+  },
+  {
+    title: "Immutable Artifacts and Promotion Pipelines in GitLab",
+    type: "Engineering Note (published to Confluence)",
+    status: "Published",
+    summary:
+      "Immutable artifact promotion to keep release confidence high without rebuild drift.",
   },
 ];
 
