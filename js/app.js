@@ -207,7 +207,7 @@ function renderCaseStudies() {
         </div>
         <div class="caseStudy__meta">${escape(c.scope || "")} • ${escape(c.role || "")}</div>
         <div class="caseStudy__section"><strong>Problem:</strong> ${escape(c.problem || "")}</div>
-        <div class="caseStudy__section"><strong>Constraints:</strong> ${(c.constraints || []).map((x) => `<span class="tag">${escape(x)}</span>`).join("")}</div>
+        <div class="caseStudy__section"><strong>Constraints:</strong><ul>${(c.constraints || []).map((x) => `<li>${escape(x)}</li>`).join("")}</ul></div>
         <div class="caseStudy__section"><strong>Architecture:</strong><ul>${(c.architecture || []).map((x) => `<li>${escape(x)}</li>`).join("")}</ul></div>
         <div class="caseStudy__section"><strong>Tradeoffs:</strong><ul>${(c.tradeoffs || []).map((x) => `<li>${escape(x)}</li>`).join("")}</ul></div>
         <div class="caseStudy__section"><strong>Outcomes:</strong><ul>${(c.outcomes || []).map((x) => `<li>${escape(x)}</li>`).join("")}</ul></div>
@@ -233,7 +233,7 @@ function renderDecisionArtifacts() {
         <div class="artifact__title">${escape(a.title || "")}</div>
         <div class="artifact__row"><strong>Context:</strong> ${escape(a.context || "")}</div>
         <div class="artifact__row"><strong>Decision:</strong> ${escape(a.decision || "")}</div>
-        <div class="artifact__row"><strong>Alternatives:</strong> ${(a.alternatives || []).map((x) => `<span class="tag">${escape(x)}</span>`).join("")}</div>
+        <div class="artifact__row"><strong>Alternatives:</strong><ul>${(a.alternatives || []).map((x) => `<li>${escape(x)}</li>`).join("")}</ul></div>
         <div class="artifact__row"><strong>Result:</strong> ${escape(a.result || "")}</div>
       </article>
     `

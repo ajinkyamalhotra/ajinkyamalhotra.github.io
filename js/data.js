@@ -672,6 +672,9 @@ export const themePresets = [
   { id: "neon", label: "Neon" },
   { id: "terminal", label: "Terminal" },
   { id: "paper", label: "Paper" },
+  { id: "dawn", label: "Dawn" },
+  { id: "sand", label: "Sand" },
+  { id: "porcelain", label: "Porcelain" },
 ];
 
 
