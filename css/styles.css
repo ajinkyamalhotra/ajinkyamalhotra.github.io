@@ -1967,6 +1967,48 @@ html[data-theme="porcelain"] .terminal {
   font-weight: 650;
 }
 
+.boot__progress {
+  padding: 10px 16px 4px;
+}
+
+.boot__progressMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.78);
+}
+
+.boot__stage {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boot__pct {
+  color: rgba(178,255,110,0.92);
+  font-weight: 700;
+}
+
+.boot__track {
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.boot__bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(110,231,255,0.92), rgba(178,255,110,0.92));
+  box-shadow: 0 0 18px rgba(110,231,255,0.5);
+  transition: width 120ms linear;
+}
+
 .boot__log {
   padding: 14px 16px 16px;
   margin: 0;
@@ -2040,7 +2082,7 @@ html[data-theme="porcelain"] .terminal {
   .impact-grid { grid-template-columns: 1fr; }
   .projects { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
-  .container { padding: 0 12px; }
+  .container { padding: 8px 12px; }
   .input { height: 40px; padding: 10px 12px; }
   .hero__tagline { font-size: 11px; }
 }

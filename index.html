@@ -40,6 +40,15 @@
         </div>
         <button id="bootSkip" class="boot__skip" type="button">Skip</button>
       </div>
+      <div class="boot__progress" aria-live="polite">
+        <div class="boot__progressMeta">
+          <span id="bootStage" class="boot__stage">Firmware init</span>
+          <span id="bootPct" class="boot__pct">0%</span>
+        </div>
+        <div class="boot__track" role="progressbar" aria-label="Boot progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div id="bootBar" class="boot__bar"></div>
+        </div>
+      </div>
       <pre id="bootLog" class="boot__log"></pre>
     </div>
   </div>
