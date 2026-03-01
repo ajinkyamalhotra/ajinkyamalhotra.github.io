@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+set -eu
+
+commit_msg_file="$1"
+
+if ! grep -qi '^Signed-off-by:' "$commit_msg_file"; then
+  echo "Commit blocked: missing Signed-off-by trailer."
+  echo "Use: git commit -s -m \"<message>\""
+  exit 1
+fi

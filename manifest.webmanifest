@@ -1,6 +1,6 @@
 {
-  "name": "Ajinkya Malhotra — Portfolio",
-  "short_name": "AjinkyaOS",
+  "name": "Portfolio",
+  "short_name": "Portfolio",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#070A13",

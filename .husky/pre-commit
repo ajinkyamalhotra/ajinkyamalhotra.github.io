@@ -1,0 +1,43 @@
+#!/usr/bin/env sh
+set -eu
+
+echo "husky(pre-commit): lint"
+npm run lint
+
+echo "husky(pre-commit): coverage (>=90%)"
+npm run test:coverage
+
+echo "husky(pre-commit): write coverage entrypoint"
+cat > coverage.html <<'EOF'
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Coverage Report</title>
+    <meta http-equiv="refresh" content="0; url=coverage/index.html" />
+  </head>
+  <body>
+    <p>Redirecting to <a href="coverage/index.html">coverage report</a>...</p>
+    <script>
+      window.location.replace("coverage/index.html");
+    </script>
+  </body>
+</html>
+EOF
+
+if [ ! -d coverage ]; then
+  echo "Commit blocked: coverage directory was not generated."
+  exit 1
+fi
+
+echo "husky(pre-commit): stage coverage artifacts"
+git add coverage.html
+git add -A coverage
+
+conflicts="$(git diff --cached --check | grep -i 'conflict marker' || true)"
+if [ -n "$conflicts" ]; then
+  echo "Commit blocked: unresolved merge conflict markers detected in staged changes."
+  echo "$conflicts"
+  exit 1
+fi
