@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { clamp, unique } from "@shared/utils/math.js";
-import { escapeHtml, formatNumber, normalize, toTitleCase } from "@shared/utils/text.js";
+import { clamp } from "@shared/utils/math.js";
+import { escapeHtml, formatNumber, normalize } from "@shared/utils/text.js";
 
 describe("text utilities", () => {
   it("normalizes case and whitespace", () => {
@@ -11,10 +11,6 @@ describe("text utilities", () => {
     expect(escapeHtml('<div class="x">& test</div>')).toBe(
       "&lt;div class=&quot;x&quot;&gt;&amp; test&lt;/div&gt;",
     );
-  });
-
-  it("formats title case", () => {
-    expect(toTitleCase("mULTI word VALUE")).toBe("Multi Word Value");
   });
 
   it("formats numbers and placeholders", () => {
@@ -28,9 +24,5 @@ describe("math utilities", () => {
     expect(clamp(5, 1, 3)).toBe(3);
     expect(clamp(0, 1, 3)).toBe(1);
     expect(clamp(2, 1, 3)).toBe(2);
-  });
-
-  it("returns unique values preserving order", () => {
-    expect(unique(["a", "b", "a", "c"])).toEqual(["a", "b", "c"]);
   });
 });

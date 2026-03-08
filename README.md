@@ -24,7 +24,7 @@ The codebase is split by runtime concern, not by file type:
 ### Why this architecture
 
 - Reduces coupling: features own their rendering + behavior
-- Keeps shared logic explicit: clipboard, text utils, storage keys, router constants
+- Keeps shared logic explicit: clipboard, text utils, and storage keys
 - Scales safely: adding sections/features does not require touching unrelated modules
 - Supports migration paths: can move to CMS/localization/dark mode without rewriting core
 
@@ -238,10 +238,10 @@ This keeps deploy output simple for GitHub Pages/static hosting.
 
 ## Testing Strategy
 
-Current baseline includes 46 passing Vitest tests across:
+Current baseline includes 43 passing Vitest tests across:
 - Shared utilities (`text`, `math`, `time`, `async`, `dom`, `platform`)
-- Shared services (`clipboard`, `storage repository`)
-- Constants and mappings
+- Shared services (`clipboard`)
+- Constants
 - App providers (`theme`, `hash router`, `service worker`, `document metadata`)
 - Feature behavior (`contact`, `command palette`, `project modal`, `projects`, `experience`, `navigation shortcuts`)
 
@@ -336,4 +336,3 @@ The content registry can be replaced by an adapter layer fetching CMS JSON and n
 
 - Pros: strong offline resilience for static assets
 - Trade-off: requires version bump discipline to invalidate stale caches
-

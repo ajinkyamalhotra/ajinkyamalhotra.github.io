@@ -3,7 +3,7 @@
   Strategy: cache-first for local static assets, network fallback for uncached same-origin files.
 */
 
-const CACHE = "portfolio-v2.0";
+const CACHE = "portfolio-v2.1";
 
 const STATIC_ASSETS = [
   "./",
@@ -40,10 +40,8 @@ const STATIC_ASSETS = [
   "./src/shared/components/toast.js",
   "./src/shared/config/content-registry.js",
   "./src/shared/constants/events.js",
-  "./src/shared/constants/routes.js",
   "./src/shared/constants/storage-keys.js",
   "./src/shared/services/clipboard-service.js",
-  "./src/shared/services/storage-repository.js",
   "./src/shared/utils/async.js",
   "./src/shared/utils/dom.js",
   "./src/shared/utils/math.js",

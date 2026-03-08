@@ -28,9 +28,3 @@ export function createElement(tagName, className, attributes = {}) {
 
   return node;
 }
-
-export function removeChildren(node) {
-  while (node.firstChild) {
-    node.removeChild(node.firstChild);
-  }
-}
